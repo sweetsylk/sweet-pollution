@@ -1,7 +1,7 @@
 /* Main Background */
 
 .main-background {
-    -fx-background-color: #F0F0F0; /* light gray */
+    -fx-background-color: #F0F0F0; /* light grey */
 }
 
 /* Header */
@@ -28,7 +28,7 @@
 }
 
 .header-button:hover {
-    -fx-background-color: #B0B0B0;
+    -fx-background-color: #B0B0B0; /* grey */
 }
 
 /* Coordinates */
@@ -64,7 +64,7 @@
 
 /* Secondary Page */
 .secondary-page {
-    -fx-background-color: #8C92AC; /* cool gray */
+    -fx-background-color: #8C92AC; /* cool grey */
     -fx-padding: 30px;
 }
 

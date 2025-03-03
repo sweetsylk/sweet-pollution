@@ -9,7 +9,7 @@ public class GeneralUI extends Application {
     private Scene mainScene, statsScene;
   
     public void start(Stage primaryStage) {
-        // creating ther borderpane
+        // creating the borderpane
         BorderPane root = new BorderPane();
         root.getStyleClass().add("main-background");
 
