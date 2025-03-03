@@ -7,14 +7,13 @@ import javafx.stage.Stage;
 
 public class GeneralUI extends Application {
     private Scene mainScene, statsScene;
-
-    @Override
+  
     public void start(Stage primaryStage) {
         // creating ther borderpane
         BorderPane root = new BorderPane();
         root.getStyleClass().add("main-background");
 
-        // instantiate the header, containing the map and stats buttons
+        // make the header, containing the map and stats buttons horizontally
         HBox header = new HBox();
         header.getStyleClass().add("header");
 
