@@ -62,14 +62,8 @@
     -fx-padding: 20px;
 }
 
-/* Secondary Page */
-.secondary-page {
-    -fx-background-color: #8C92AC; /* cool grey */
-    -fx-padding: 30px;
+/* Secondary Background */
+.secondary-background {
+    -fx-background-color: #F0F0F0; /* light grey */
 }
-
-/* Stats Title */
-.stats-title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
 }
