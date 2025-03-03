@@ -36,7 +36,7 @@ public class GeneralUI extends Application {
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
-        dropdown1.getItems().addAll("2001", "2000", "1999");
+        dropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
 
         // second dropdownbox, for choosing the pollutant
         Label dropdown2Label = new Label("Pollutant:");
