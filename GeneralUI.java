@@ -4,6 +4,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class GeneralUI extends Application {
     private Scene mainScene, statsScene;
@@ -47,10 +49,16 @@ public class GeneralUI extends Application {
         sideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
         root.setLeft(sideBar);
 
-        // center: generic placeholder content, add London later
-        Label contentLabel = new Label("Main Content Area");
-        contentLabel.getStyleClass().add("content-area");
-        root.setCenter(contentLabel);
+        // load the map
+        Image londonImage = new Image(getClass().getResource("London.png").toExternalForm());
+        ImageView londonImageView = new ImageView(londonImage);
+
+        // make the image fit the available space
+        londonImageView.setPreserveRatio(true); //ratio is always kept, only have to change one dimension
+        londonImageView.setFitWidth(1310); // adjust this dynamically later to fit window size?
+
+        // add the image to the center
+        root.setCenter(londonImageView);
 
         // bottom: co-ordinates
         Label footer = new Label("Co-ordinates:");
@@ -68,6 +76,9 @@ public class GeneralUI extends Application {
 
         // Button actions for scene switching
         statsButton.setOnAction(e -> primaryStage.setScene(statsScene));
+        
+        // enable automatic fullscreen
+        primaryStage.setFullScreen(true);
 
         // set up primary scene (main scene)
         primaryStage.setTitle("General UI");
@@ -110,15 +121,16 @@ public class GeneralUI extends Application {
         Label label = new Label(title);
         label.getStyleClass().add("content-area");
 
-        // functionality of map button to go back to primary scene
-        mapButton.setOnAction(e -> primaryStage.setScene(mainScene));
-
-        // set center content
+        // functionality of map button to go back to primary scene and resize to fullscreen
+        mapButton.setOnAction(e -> {primaryStage.setScene(mainScene);
+                                    primaryStage.setFullScreen(true);});
+                                    
+        // set content in correct locations
         root.setCenter(label);
         root.setLeft(sideBar);
-
+        
         // create and return the new scene
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root,1200,900);
         
         // connect external css file
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
