@@ -130,7 +130,7 @@ public class GeneralUI extends Application {
         root.setLeft(sideBar);
         
         // create and return the new scene
-        Scene scene = new Scene(root,1200,900);
+        Scene scene = new Scene(root,800,500);
         
         // connect external css file
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
