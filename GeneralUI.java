@@ -66,7 +66,7 @@ public class GeneralUI extends Application {
         root.setBottom(footer);
 
         // create the primary scene (the map view)
-        mainScene = new Scene(root, 800, 500);
+        mainScene = new Scene(root, 1600, 1400);
         
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -75,7 +75,8 @@ public class GeneralUI extends Application {
         statsScene = createSecondaryScene("Stats", primaryStage);
 
         // Button actions for scene switching
-        statsButton.setOnAction(e -> primaryStage.setScene(statsScene));
+        statsButton.setOnAction(e -> {primaryStage.setScene(statsScene);
+                                     primaryStage.setFullScreen(true);});
         
         // enable automatic fullscreen
         primaryStage.setFullScreen(true);
@@ -130,7 +131,7 @@ public class GeneralUI extends Application {
         root.setLeft(sideBar);
         
         // create and return the new scene
-        Scene scene = new Scene(root,800,500);
+        Scene scene = new Scene(root,1600,1400);
         
         // connect external css file
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
