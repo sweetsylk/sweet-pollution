@@ -6,6 +6,8 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GeneralUI extends Application {
     private Scene mainScene, statsScene;
@@ -44,7 +46,21 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-
+        
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        // //Combobox event handler
+        // ActionListener comboBoxListener = new ActionListener(){
+            // @Override
+            // public void actionPerformed(ActionEvent e){
+                // String year = (String) dropdown1.getSelectionModel().getSelectedItem();
+                // String pollutant = (String) dropdown2.getSelectionModel().getSelectedItem();
+                // String filename = String.format("UKAirPollutionData/%s/mapno2%d.csv");
+                // System.out.println(filename);
+            // }
+        
+        // };
+        
         // add the dropdown boxes to the sidebar
         sideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
         root.setLeft(sideBar);
@@ -135,6 +151,31 @@ public class GeneralUI extends Application {
         // connect external css file
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         return scene;
+    }
+    
+    // Event handler for combo boxes
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null) {
+            String filename = "";
+            switch (pollutant) {
+            case "NO2":
+                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                break;
+            case "PM2.5":
+                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                break;
+            case "PM10":
+                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                break;
+            default:
+                System.out.println("Unknown file loaded");
+            }
+            if (!filename.equals("")){
+                new FileLoadDemo(filename);
+            }
+        }
     }
     
     //used to launch program
