@@ -4,33 +4,6 @@
     -fx-background-color: #F0F0F0; /* light grey */
 }
                                          
-/* Header */
-.header {
-    -fx-background-color: #C0C0C0; /* silver */
-    -fx-padding: 10px;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #303030; 
-    -fx-alignment: center;
-}
-
-/* Header Buttons */
-.header-button {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px;
-    -fx-text-fill: #202020;
-    -fx-background-color: #C0C0C0; /* silver */
-    -fx-border-color: #A0A0A0;
-    -fx-border-width: 0 1px 0 0;
-    -fx-alignment: center;
-    -fx-pref-width: 50%;
-}
-
-.header-button:hover {
-    -fx-background-color: #B0B0B0; /* grey */
-}
-
 /* Coordinates */
 .coordinates {
     -fx-padding: 10px;
@@ -46,7 +19,8 @@
     -fx-padding: 10px;
 }
 
-/* Buttons */
+/* Buttons */    
+/*for future implementation of buttons */
 .button {
     -fx-background-color: #E0E0E0; 
     -fx-border-radius: 5px;
@@ -66,4 +40,5 @@
 .secondary-background {
     -fx-background-color: #F0F0F0; /* light grey */
 }
-}
+
+
