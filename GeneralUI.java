@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.paint.*;
+import javafx.scene.shape.Circle;
 
 public class GeneralUI extends Application {
     public void start(Stage primaryStage) {
@@ -20,8 +22,6 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-        
-        
         
         // MAP TAB CREATION
         // creating the borderpane
@@ -48,7 +48,6 @@ public class GeneralUI extends Application {
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
-        
         // add the dropdown boxes to the sidebar 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
         mapLayout.setLeft(mapSideBar);
@@ -72,7 +71,6 @@ public class GeneralUI extends Application {
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
 
-        
         
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
@@ -98,8 +96,6 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
-        
-        
 
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
@@ -119,7 +115,10 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
-    // Event handler for combo boxes
+    /**
+     * Uses the selected year and pollutant from each combobox to load up the correct file
+     * @Param the choice selected from the year and pollutant combo boxes
+     */
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
