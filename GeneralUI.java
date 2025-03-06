@@ -59,6 +59,12 @@ public class GeneralUI extends Application {
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
         
+        
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+
+
         //Listeners for the comboboxes
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
@@ -160,16 +166,10 @@ public class GeneralUI extends Application {
             }
         }
     }
+    
     // removes map grid
-    private void gridOff(ActionEvent Event){
-
-        for(int col = 0; col<25; col++){
-            for(int row = 0; row<17;row++){
-                grid.getChildren().remove(col, row);
-                System.out.println(col + "," + row);
-            }
-
-        }
+    private void gridOff(ActionEvent event) {
+    grid.getChildren().clear(); // Completely removes all grid elements
     }
  
 
@@ -188,12 +188,13 @@ public class GeneralUI extends Application {
                 break;
             case "PM10":
                 filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+
                 break;
             default:
                 System.out.println("Unknown file loaded");
             }
             if (!filename.equals("")){
-                new FileLoadDemo(filename);
+                new LocationHandler(filename);
             }
         }
     }
