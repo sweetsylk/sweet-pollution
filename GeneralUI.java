@@ -49,7 +49,6 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-        
 
 
         //first button to turn on grid for map
@@ -60,6 +59,12 @@ public class GeneralUI extends Application {
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
         
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+
+        
+        // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
