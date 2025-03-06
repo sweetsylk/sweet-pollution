@@ -191,10 +191,7 @@ public class GeneralUI extends Application {
         }
     }
     
-    public void cursor(){
-        if(
-        
-    }
+   
 
     //used to launch the program
     public static void main(String[] args) {

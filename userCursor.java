@@ -29,7 +29,9 @@ public class userCursor
     public int getPosition()
     {
         // put your code here
-        return ;
+        
+        
+        return 1;
     }
     
     public void readMap(){
