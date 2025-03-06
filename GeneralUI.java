@@ -134,12 +134,13 @@ public class GeneralUI extends Application {
                 break;
             case "PM10":
                 filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+
                 break;
             default:
                 System.out.println("Unknown file loaded");
             }
             if (!filename.equals("")){
-                new FileLoadDemo(filename);
+                new LocationHandler(filename);
             }
         }
     }
