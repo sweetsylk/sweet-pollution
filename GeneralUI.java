@@ -10,6 +10,7 @@ import javafx.scene.paint.*;
 import javafx.scene.shape.Circle;
 
 public class GeneralUI extends Application {
+    
     public void start(Stage primaryStage) {
         // INITIALISATION
         // create a tab pane for switching between pages
@@ -71,7 +72,6 @@ public class GeneralUI extends Application {
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
 
-        
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -96,7 +96,7 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
-
+        
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
@@ -115,11 +115,12 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
+    
     /**
      * Uses the selected year and pollutant from each combobox to load up the correct file
      * @Param the choice selected from the year and pollutant combo boxes
      */
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+    private void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         if (year != null && pollutant != null) {
@@ -142,7 +143,7 @@ public class GeneralUI extends Application {
             }
         }
     }
-    
+        
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
