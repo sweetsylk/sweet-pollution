@@ -6,8 +6,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.event.ActionEvent;
 
 public class GeneralUI extends Application {
+    private GridPane grid = new GridPane();
+    private StackPane stack = new StackPane();
+    // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
         // create a tab pane for switching between pages
@@ -20,7 +26,6 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-        
         
         
         // MAP TAB CREATION
@@ -44,8 +49,13 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
         
+        //first button to turn on grid for map
+        Button mapGridOn = new Button("map grid on ");
+        Button mapGridOff = new Button("map grid off ");
+        
+        
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -55,9 +65,16 @@ public class GeneralUI extends Application {
         // ensure the image scales properly
         londonImageView.setPreserveRatio(true);
         londonImageView.setFitWidth(1310); // only one dimension has to change
+        
+        // create a stack pane to fit grid map onto image 
+        StackPane stack = new StackPane();
+        stack.getChildren().add(londonImageView);
+        stack.getChildren().add(grid);
+        mapGridOn.setOnAction(this::gridOn);
+        mapGridOff.setOnAction(this::gridOff);
 
         // place the image in the center of the map layout
-        mapLayout.setCenter(londonImageView);
+        mapLayout.setCenter(stack);
 
         // bottom area: display coordinates
         Label mapFooter = new Label("Co-ordinates:");
@@ -66,7 +83,6 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
-
         
         
         // STATS TAB CREATION
@@ -114,6 +130,33 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
+    
+    private void gridOn(ActionEvent Event){
+        grid.setHgap(0);
+        grid.setVgap(0);
+        
+        for(int col = 0; col<26; col++){
+            for(int row = 0; row<17;row++){
+                Rectangle cell = new Rectangle(50,50);
+                cell.setStroke(Color.GREY);
+                cell.setFill(Color.TRANSPARENT);
+                grid.add(cell, col, row);
+            }
+        }
+    }
+    
+    private void gridOff(ActionEvent Event){
+
+        for(int col = 0; col<26; col++){
+            for(int row = 0; row<17;row++){
+                grid.getChildren().remove(col, row);
+                System.out.println(col + "," + row);
+            }
+
+        }
+    }
+    
+    //private 
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
