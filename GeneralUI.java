@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.scene.Cursor;
 
 public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
@@ -33,7 +34,7 @@ public class GeneralUI extends Application {
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
-        // create a vertical sidebar for dropdowns in the map tab
+        // create a sidebar for dropdowns in the map tab, containing the UI vertically
         VBox mapSideBar = new VBox(15);
         mapSideBar.getStyleClass().add("sidebar");
         mapSideBar.setPrefWidth(200);
@@ -49,6 +50,7 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
         
+
         //first button to turn on grid for map
         Button mapGridOn = new Button("map grid on ");
         Button mapGridOff = new Button("map grid off ");
@@ -56,6 +58,12 @@ public class GeneralUI extends Application {
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
+
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+
+        
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -111,7 +119,7 @@ public class GeneralUI extends Application {
         statsTab.setContent(statsLayout);
         
         
-        
+
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
@@ -130,12 +138,13 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
-    
+
+    //displays map grid
     private void gridOn(ActionEvent Event){
         grid.setHgap(0);
         grid.setVgap(0);
         
-        for(int col = 0; col<26; col++){
+        for(int col = 0; col<25; col++){
             for(int row = 0; row<17;row++){
                 Rectangle cell = new Rectangle(50,50);
                 cell.setStroke(Color.GREY);
@@ -144,10 +153,10 @@ public class GeneralUI extends Application {
             }
         }
     }
-    
+    // removes map grid
     private void gridOff(ActionEvent Event){
 
-        for(int col = 0; col<26; col++){
+        for(int col = 0; col<25; col++){
             for(int row = 0; row<17;row++){
                 grid.getChildren().remove(col, row);
                 System.out.println(col + "," + row);
@@ -155,8 +164,38 @@ public class GeneralUI extends Application {
 
         }
     }
+ 
+
+    // Event handler for combo boxes
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null) {
+            String filename = "";
+            switch (pollutant) {
+            case "NO2":
+                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                break;
+            case "PM2.5":
+                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                break;
+            case "PM10":
+                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                break;
+            default:
+                System.out.println("Unknown file loaded");
+            }
+            if (!filename.equals("")){
+                new FileLoadDemo(filename);
+            }
+        }
+    }
     
-    //private 
+    public void cursor(){
+        if(
+        
+    }
+
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
