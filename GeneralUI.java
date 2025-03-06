@@ -50,6 +50,7 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
         
+<<<<<<< HEAD
 
         //first button to turn on grid for map
         Button mapGridOn = new Button("map grid on ");
@@ -64,6 +65,15 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
         
+=======
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+
+        
+        // add the dropdown boxes to the sidebar 
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
+>>>>>>> dd3f7beb4b38974ae1283f68bacb8583bc01ffae
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -138,6 +148,7 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
+<<<<<<< HEAD
 
     //displays map grid
     private void gridOn(ActionEvent Event){
@@ -193,6 +204,33 @@ public class GeneralUI extends Application {
     
    
 
+=======
+    // Event handler for combo boxes
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null) {
+            String filename = "";
+            switch (pollutant) {
+            case "NO2":
+                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                break;
+            case "PM2.5":
+                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                break;
+            case "PM10":
+                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                break;
+            default:
+                System.out.println("Unknown file loaded");
+            }
+            if (!filename.equals("")){
+                new FileLoadDemo(filename);
+            }
+        }
+    }
+    
+>>>>>>> dd3f7beb4b38974ae1283f68bacb8583bc01ffae
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
