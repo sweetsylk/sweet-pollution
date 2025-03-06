@@ -28,7 +28,7 @@ public class GeneralUI extends Application {
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
-        // create a vertical sidebar for dropdowns in the map tab
+        // create a sidebar for dropdowns in the map tab, containing the UI vertically
         VBox mapSideBar = new VBox(15);
         mapSideBar.getStyleClass().add("sidebar");
         mapSideBar.setPrefWidth(200);
@@ -44,7 +44,7 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
         
-        // add the dropdown boxes to the sidebar, containing the UI vertically 
+        // add the dropdown boxes to the sidebar 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
         mapLayout.setLeft(mapSideBar);
 
@@ -95,7 +95,7 @@ public class GeneralUI extends Application {
         statsTab.setContent(statsLayout);
         
         
-        
+
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
