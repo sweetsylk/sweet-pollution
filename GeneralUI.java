@@ -34,7 +34,7 @@ public class GeneralUI extends Application {
 
     private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
-    private BorderPane stack = new BorderPane(); // Allows absolute positioning
+    private BorderPane stack = new BorderPane();
 
     // load and display the map image
     public void start(Stage primaryStage) {

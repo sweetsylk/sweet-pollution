@@ -17,19 +17,15 @@ public class HeatmapAndMarkerGenerator     {
     private static final double MIN_NORTHING = 168504;
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
-    private static final Color GREEN = new Color(0,0.75,0.1,0.1);
-    private static final Color YELLOW = new Color(0.25,0.75,0.1,0.1);
-    private static final Color ORANGE = new Color(0.5,0.75,0.1,0.1);
-    private static final Color RED = new Color(0.75,0.25,0.1,0.1);
-    private static final Color CRIMSON = new Color(0.5,0,0.1,0.1);
-    private static final Color PURPLE = new Color(0.25,0,0.5,0.1);
+
+
 
 
 
     // Load pollution data and return a list of Circle markers
     public static List<Node> loadData(Boolean heatMap, DataSet data) {
 
-        List<Node> markers = new ArrayList<Node>();
+        List<Node> markers = new ArrayList<>();
 
         System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
         System.out.println("Total Data Points: " + data.getData().size());
@@ -40,6 +36,7 @@ public class HeatmapAndMarkerGenerator     {
             double easting = point.x();
             double northing = point.y();
             double pollution = point.value();
+            double gridCode = point.gridCode();
 
             // Check if the point is inside the valid london range
             if (easting < MIN_EASTING || easting > MAX_EASTING || northing < MIN_NORTHING || northing > MAX_NORTHING) {
@@ -51,10 +48,10 @@ public class HeatmapAndMarkerGenerator     {
             double yPixel = convertNorthingToPixel(northing);
 
             if (heatMap) {
-                generateRectangle(xPixel, yPixel, pollution, data, markers);
+                generateRectangle(xPixel, yPixel, pollution,markers, point, data, heatMap);
             }
             else {
-                generateCircle(xPixel, yPixel, pollution, data, markers);
+                generateCircle(xPixel, yPixel, pollution,markers, point, data, heatMap);
             }
 
 
@@ -67,36 +64,38 @@ public class HeatmapAndMarkerGenerator     {
 
     }
 
-    private static void generateRectangle(double x, double y, double pollution, DataSet data, List <Node> markers)
+    public static void generateRectangle(double x, double y, double pollution, List <Node> markers, DataPoint point, DataSet data, boolean heatMap)
     {
         // Create pollution marker
         Rectangle marker = new Rectangle();
         marker.setWidth(83);
         marker.setHeight(89);
-        marker.setFill(getPollutionColor(pollution));
+        marker.setFill(getPollutionColor(pollution, heatMap));
         marker.setCursor(Cursor.HAND);
         marker.toFront();
 
         // Set correct X and Y positions
         marker.setLayoutX(x);
         marker.setLayoutY(y);
-
-
-        // Tooltip for pollution data
-        Tooltip tooltip = new Tooltip(
-                String.format("%s (%s) \nPollution: %.2f %s",
-                        data.getPollutant(), data.getYear(), pollution, data.getUnits()));
-        Tooltip.install(marker, tooltip);
+        generateToolPoint(point, marker, data, pollution);
         markers.add(marker);
 
 
 
+
     }
-    private static void generateCircle(double x, double y, double pollution, DataSet data, List <Node> markers)
+    public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
+        // Tooltip for pollution data
+        Tooltip tooltip = new Tooltip(
+                String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %df\n GridCode: %d ",
+                        data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(),point.y(), point.gridCode()));
+        Tooltip.install(marker, tooltip);
+    }
+    public static void generateCircle(double x, double y, double pollution, List <Node> markers, DataPoint point, DataSet data, boolean heatMap)
     {
         // Create pollution marker
         Circle marker = new Circle(5);
-        marker.setFill(getPollutionColor(pollution));
+        marker.setFill(getPollutionColor(pollution, heatMap));
         marker.setStroke(Color.BLACK);
         marker.setStrokeWidth(1);
         marker.setCursor(Cursor.HAND);
@@ -106,12 +105,8 @@ public class HeatmapAndMarkerGenerator     {
         marker.setLayoutX(x);
         marker.setLayoutY(y);
 
+        generateToolPoint(point, marker, data, pollution);
 
-        // Tooltip for pollution data
-        Tooltip tooltip = new Tooltip(
-                String.format("%s (%s) \nPollution: %.2f %s",
-                        data.getPollutant(), data.getYear(), pollution, data.getUnits()));
-        Tooltip.install(marker, tooltip);
         markers.add(marker);
 
 
@@ -131,15 +126,17 @@ public class HeatmapAndMarkerGenerator     {
     }
 
 
-    // This gives a colour to the points (can be configured later)
-    private static Color getPollutionColor(double pollution) {
-        if (pollution < 10) return GREEN;
-        else if (pollution < 20) return YELLOW;
-        else if (pollution < 30) return ORANGE;
-        else if (pollution < 40) return RED;
-        else if (pollution < 50) return CRIMSON;
-        else return PURPLE;
+    private static Color getPollutionColor(double pollution, boolean heatMap) {
+        double alpha = heatMap ? 0.05 : 1; // heatmap is a more transparent color
+
+        if (pollution < 10) return Color.rgb(0, 191, 0, alpha);       // Green
+        else if (pollution < 20) return Color.rgb(255, 215, 0, alpha); // Yellow
+        else if (pollution < 30) return Color.rgb(255, 140, 0, alpha); // Orange
+        else if (pollution < 40) return Color.rgb(220, 20, 60, alpha); // Red
+        else if (pollution < 50) return Color.rgb(139, 0, 0, alpha);   // Crimson
+        else return Color.rgb(128, 0, 128, alpha);                     // Purple
     }
+
 
 }
 
