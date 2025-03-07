@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -9,11 +10,24 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
+import java.util.List;
 
 public class GeneralUI extends Application {
+    // These are the minimum and maximum values for the northing and eastings coordinates
+    private static final double MIN_EASTING = 510394;
+    private static final double MAX_EASTING = 553297;
+    private static final double MIN_NORTHING = 168504;
+    private static final double MAX_NORTHING = 193305;
+
+    // these are just the image width and height (1781 x 1100)
+    private static final int MAP_WIDTH = 1781;
+    private static final int MAP_HEIGHT = 1100;
+
     private GridPane grid = new GridPane();
-    private StackPane stack = new StackPane();
+    private Pane stack = new Pane(); // Allows absolute positioning
+
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -85,10 +99,11 @@ public class GeneralUI extends Application {
 
         // ensure the image scales properly
         londonImageView.setPreserveRatio(true);
-        londonImageView.setFitWidth(1310); // only one dimension has to change
-        
-        // create a stack pane to fit grid map onto image 
-        StackPane stack = new StackPane();
+        londonImageView.setFitWidth(MAP_WIDTH); // Ensure it matches the map width
+        londonImageView.setFitHeight(MAP_HEIGHT);
+
+
+        // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
         stack.getChildren().add(grid);
         mapGridOn.setOnAction(this::gridOn);
@@ -153,20 +168,29 @@ public class GeneralUI extends Application {
     
 
     //displays map grid
-    private void gridOn(ActionEvent Event){
-        grid.setHgap(0);
-        grid.setVgap(0);
-        
-        for(int col = 0; col<25; col++){
-            for(int row = 0; row<17;row++){
-                Rectangle cell = new Rectangle(50,50);
+    private void gridOn(ActionEvent event) {
+        grid.getChildren().clear();
+
+        int cols = 25;
+        int rows = 17;
+
+        double cellWidth = MAP_WIDTH / (double) cols;
+        double cellHeight = MAP_HEIGHT / (double) rows;
+
+        for (int col = 0; col < cols; col++) {
+            for (int row = 0; row < rows; row++) {
+                Rectangle cell = new Rectangle(cellWidth, cellHeight);
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
+
+                GridPane.setColumnIndex(cell, col);
+                GridPane.setRowIndex(cell, row);
                 grid.add(cell, col, row);
             }
         }
     }
-    
+
+
     // removes map grid
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
@@ -194,7 +218,23 @@ public class GeneralUI extends Application {
                 System.out.println("Unknown file loaded");
             }
             if (!filename.equals("")){
-                new LocationHandler(filename);
+                DataLoader loader = new DataLoader();
+                DataSet dataSet = loader.loadDataFile(filename);
+
+                System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+
+                List<Circle> markers = DataHandler.loadData(dataSet);
+                System.out.println("Markers Created: " + markers.size());
+
+                if (!markers.isEmpty()) {
+                    Platform.runLater(() -> stack.getChildren().addAll(markers));
+                }
+
+
+
+
+
+
             }
         }
     }
