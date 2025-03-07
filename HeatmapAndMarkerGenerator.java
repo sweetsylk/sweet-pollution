@@ -8,7 +8,8 @@ import javafx.scene.control.Tooltip;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeatmapAndMarkerGenerator	 {
+
+public class HeatmapAndMarkerGenerator     {
 
     private static final double MAX_EASTING = 553297;
     private static final double MIN_EASTING = 510394;
@@ -60,9 +61,7 @@ public class HeatmapAndMarkerGenerator	 {
 
         }
 
-
         System.out.println("Valid Data Points Used: " + validPoints);
-
 
         return markers;
 

@@ -67,6 +67,8 @@ public class GeneralUI extends Application {
 
 
 
+
+
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -147,6 +149,7 @@ public class GeneralUI extends Application {
         mapTab.setContent(mapLayout);
         
         
+        
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -166,8 +169,12 @@ public class GeneralUI extends Application {
         Label statsLabel = new Label("Stats View");
         statsLabel.getStyleClass().add("content-area");
 
-        // place the stats label in the center
-        statsLayout.setCenter(statsLabel);
+        // place the stats chart in the center
+        statsLayout.setCenter(statisticsChart());
+        
+        // place buttons on the left side of stats layout
+        
+        
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
@@ -193,6 +200,7 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
 
+
     
     private Node statisticsChart(){
         NumberAxis xAxis = new NumberAxis();
@@ -206,12 +214,13 @@ public class GeneralUI extends Application {
         }
         ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
         
-        seriesList.add(new XYChart.Series("0.5^2 +3", dataList));
+        seriesList.add(new XYChart.Series("Trends", dataList));
         chart.setData(seriesList);
         
         return chart;
     }
     
+
 
     public boolean heatMapIsOn()
     {
@@ -285,6 +294,8 @@ public class GeneralUI extends Application {
                 System.out.println("Unknown file loaded");
             }
             displayData();
+
+
 
 
 
