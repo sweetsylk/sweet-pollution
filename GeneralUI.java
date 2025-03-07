@@ -13,6 +13,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import java.util.List;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.LineChart;
+import javafx.collections.*;
+import javafx.scene.Node;
+
+
+
 
 public class GeneralUI extends Application {
     // These are the minimum and maximum values for the northing and eastings coordinates
@@ -146,7 +154,7 @@ public class GeneralUI extends Application {
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
         
-        
+        //statsLayout.setCenter(statisticsChart());
 
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
@@ -164,6 +172,24 @@ public class GeneralUI extends Application {
         // display primaryStage
         primaryStage.setScene(mainScene);
         primaryStage.show();
+    }
+    
+    private Node statisticsChart(){
+        NumberAxis xAxis = new NumberAxis();
+        NumberAxis yAxis = new NumberAxis();
+        
+        LineChart chart = new LineChart(xAxis, yAxis);
+        
+        ObservableList<XYChart.Data> dataList = FXCollections.observableArrayList();
+        for(int i = 0; i <10; i++){
+            dataList.add(new XYChart.Data(i, 0.5*i*i +3));
+        }
+        ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
+        
+        seriesList.add(new XYChart.Series("0.5^2 +3", dataList));
+        chart.setData(seriesList);
+        
+        return chart;
     }
     
 
