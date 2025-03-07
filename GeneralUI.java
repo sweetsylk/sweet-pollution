@@ -8,9 +8,16 @@ import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.event.ActionEvent;
+import javafx.scene.Cursor;
 
 public class GeneralUI extends Application {
-    
+
+    private GridPane grid = new GridPane();
+    private StackPane stack = new StackPane();
+    // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
         // create a tab pane for switching between pages
@@ -23,7 +30,7 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-        
+ 
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
@@ -44,13 +51,19 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+
+        //first button to turn on grid for map
+        Button mapGridOn = new Button("map grid on ");
+        Button mapGridOff = new Button("map grid off ");
+        
+        // add the dropdown boxes to the sidebar, containing the UI vertically 
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
         
         //Listeners for the comboboxes
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
         // add the dropdown boxes to the sidebar 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2);
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -60,9 +73,16 @@ public class GeneralUI extends Application {
         // ensure the image scales properly
         londonImageView.setPreserveRatio(true);
         londonImageView.setFitWidth(1310); // only one dimension has to change
-
+        
+        // create a stack pane to fit grid map onto image 
+        stack.getChildren().add(londonImageView);
+        stack.getChildren().add(grid);
+        generateCircles(0,0,Color.YELLOW);
+        mapGridOn.setOnAction(this::gridOn);
+        mapGridOff.setOnAction(this::gridOff);
+        
         // place the image in the center of the map layout
-        mapLayout.setCenter(londonImageView);
+        mapLayout.setCenter(stack);
 
         // bottom area: display coordinates
         Label mapFooter = new Label("Co-ordinates:");
@@ -114,8 +134,26 @@ public class GeneralUI extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
-    
-    
+
+    //displays map grid
+    private void gridOn(ActionEvent Event){
+        grid.setHgap(0);
+        grid.setVgap(0);
+        
+        for(int col = 0; col<25; col++){
+            for(int row = 0; row<17;row++){
+                Rectangle cell = new Rectangle(50,50);
+                cell.setStroke(Color.GREY);
+                cell.setFill(Color.TRANSPARENT);
+                grid.add(cell, col, row);
+            }
+        }
+    }
+    // removes map grid
+    private void gridOff(ActionEvent Event){
+        grid.getChildren().clear();
+    }
+ 
     /**
      * Uses the selected year and pollutant from each combobox to load up the correct file
      * @Param the choice selected from the year and pollutant combo boxes
@@ -139,11 +177,23 @@ public class GeneralUI extends Application {
                 System.out.println("Unknown file loaded");
             }
             if (!filename.equals("")){
-                new FileLoadDemo(filename);
+                new LocationHandler(filename);
             }
         }
     }
-        
+    
+    /**
+     * Creates a circle to be placed on the map which represents a datapoint
+     */
+    private void generateCircles(int x, int y, Color colour){
+        Circle pin = new Circle();
+        pin.setTranslateX(x);
+        pin.setTranslateY(y);
+        pin.setRadius(4);
+        pin.setFill(colour);
+        System.out.println("Generating circle at: (" + x + ", " + y + ")");
+        stack.getChildren().add(pin);
+    }   
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
