@@ -1,13 +1,16 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
@@ -15,15 +18,13 @@ import java.util.List;
 
 public class GeneralUI extends Application {
     // These are the minimum and maximum values for the northing and eastings coordinates
-    private static final double MIN_EASTING = 510394;
-    private static final double MAX_EASTING = 553297;
-    private static final double MIN_NORTHING = 168504;
-    private static final double MAX_NORTHING = 193305;
 
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
+    private static String filename = "";
 
+    private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane(); // Allows absolute positioning
 
@@ -73,14 +74,17 @@ public class GeneralUI extends Application {
         Button mapGridOn = new Button("map grid on ");
         Button mapGridOff = new Button("map grid off ");
 
+        ToggleButton heatMap = new ToggleButton("Heat Map");
+
         dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         mapGridOff.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
 
 
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
         
         //Listeners for the comboboxes
@@ -121,6 +125,7 @@ public class GeneralUI extends Application {
         stack.getChildren().add(grid);
         mapGridOn.setOnAction(this::gridOn);
         mapGridOff.setOnAction(this::gridOff);
+        heatMap.setOnAction(this::heatMapToggle);
 
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
@@ -179,7 +184,25 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
     }
-    
+    public boolean heatMapIsOn()
+    {
+        return heatMapOn;
+    }
+
+
+    private void heatMapToggle(ActionEvent actionEvent) {
+        if (heatMapOn)
+        {
+            heatMapOn = false;
+        }
+        else
+        {
+            heatMapOn = true;
+
+        }
+        displayData();
+    }
+
 
     // displays map grid
     private void gridOn(ActionEvent event) {
@@ -217,7 +240,6 @@ public class GeneralUI extends Application {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         if (year != null && pollutant != null) {
-            String filename = "";
             switch (pollutant) {
             case "NO2":
                 filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
@@ -232,18 +254,8 @@ public class GeneralUI extends Application {
             default:
                 System.out.println("Unknown file loaded");
             }
-            if (!filename.equals("")){
-                DataLoader loader = new DataLoader();
-                DataSet dataSet = loader.loadDataFile(filename);
+            displayData();
 
-                System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
-
-                List<Rectangle> markers = DataHandler.loadData(dataSet);
-                System.out.println("Markers Created: " + markers.size());
-
-                if (!markers.isEmpty()) {
-                    Platform.runLater(() -> stack.getChildren().addAll(markers));
-                }
 
 
 
@@ -252,8 +264,24 @@ public class GeneralUI extends Application {
 
             }
         }
+
+
+    public void displayData()
+    {
+        if (!filename.equals("")){
+            DataLoader loader = new DataLoader();
+            DataSet dataSet = loader.loadDataFile(filename);
+
+            System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+
+            List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
+
+            Platform.runLater(() -> {
+                stack.getChildren().removeIf(node -> node instanceof Shape); // Clear previous markers
+                stack.getChildren().addAll(markers); // Add new markers
+            });
     }
-    
+        }
     //used to launch the program
     public static void main(String[] args) {
         launch(args);

@@ -1,11 +1,14 @@
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import javafx.scene.control.Tooltip;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataHandler {
+public class HeatmapAndMarkerGenerator	 {
 
     private static final double MAX_EASTING = 553297;
     private static final double MIN_EASTING = 510394;
@@ -23,8 +26,9 @@ public class DataHandler {
 
 
     // Load pollution data and return a list of Circle markers
-    public static List<Rectangle> loadData(DataSet data) {
-        List<Rectangle> markers = new ArrayList<>();
+    public static List<Node> loadData(Boolean heatMap, DataSet data) {
+
+        List<Node> markers = new ArrayList<Node>();
 
         System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
         System.out.println("Total Data Points: " + data.getData().size());
@@ -45,39 +49,73 @@ public class DataHandler {
             double xPixel = convertEastingToPixel(easting);
             double yPixel = convertNorthingToPixel(northing);
 
+            if (heatMap) {
+                generateRectangle(xPixel, yPixel, pollution, data, markers);
+            }
+            else {
+                generateCircle(xPixel, yPixel, pollution, data, markers);
+            }
 
 
-
-            // Create pollution marker
-            Rectangle marker = new Rectangle();
-            marker.setWidth(83);
-            marker.setHeight(89);
-            marker.setFill(getPollutionColor(pollution));
-            marker.setCursor(Cursor.HAND);
-            marker.toFront();
-
-            // Set correct X and Y positions
-            marker.setLayoutX(xPixel);
-            marker.setLayoutY(yPixel);
-
-
-            // Tooltip for pollution data
-            Tooltip tooltip = new Tooltip(
-                    String.format("%s (%s) \nPollution: %.2f %s",
-                            data.getPollutant(), data.getYear(), pollution, data.getUnits()));
-            Tooltip.install(marker, tooltip);
-
-            // Add marker to list
-            markers.add(marker);
-            validPoints++;
 
         }
 
 
         System.out.println("Valid Data Points Used: " + validPoints);
-        System.out.println("Total Markers Created: " + markers.size());
+
 
         return markers;
+
+    }
+
+    private static void generateRectangle(double x, double y, double pollution, DataSet data, List <Node> markers)
+    {
+        // Create pollution marker
+        Rectangle marker = new Rectangle();
+        marker.setWidth(83);
+        marker.setHeight(89);
+        marker.setFill(getPollutionColor(pollution));
+        marker.setCursor(Cursor.HAND);
+        marker.toFront();
+
+        // Set correct X and Y positions
+        marker.setLayoutX(x);
+        marker.setLayoutY(y);
+
+
+        // Tooltip for pollution data
+        Tooltip tooltip = new Tooltip(
+                String.format("%s (%s) \nPollution: %.2f %s",
+                        data.getPollutant(), data.getYear(), pollution, data.getUnits()));
+        Tooltip.install(marker, tooltip);
+        markers.add(marker);
+
+
+
+    }
+    private static void generateCircle(double x, double y, double pollution, DataSet data, List <Node> markers)
+    {
+        // Create pollution marker
+        Circle marker = new Circle(5);
+        marker.setFill(getPollutionColor(pollution));
+        marker.setStroke(Color.BLACK);
+        marker.setStrokeWidth(1);
+        marker.setCursor(Cursor.HAND);
+        marker.toFront();
+
+        // Set correct X and Y positions
+        marker.setLayoutX(x);
+        marker.setLayoutY(y);
+
+
+        // Tooltip for pollution data
+        Tooltip tooltip = new Tooltip(
+                String.format("%s (%s) \nPollution: %.2f %s",
+                        data.getPollutant(), data.getYear(), pollution, data.getUnits()));
+        Tooltip.install(marker, tooltip);
+        markers.add(marker);
+
+
     }
 
 
