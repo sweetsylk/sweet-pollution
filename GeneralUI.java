@@ -57,8 +57,6 @@ public class GeneralUI extends Application {
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
 
-
-
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -139,6 +137,7 @@ public class GeneralUI extends Application {
         mapTab.setContent(mapLayout);
         
         
+        
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -184,6 +183,7 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
     }
+
     public boolean heatMapIsOn()
     {
         return heatMapOn;
@@ -255,13 +255,6 @@ public class GeneralUI extends Application {
                 System.out.println("Unknown file loaded");
             }
             displayData();
-
-
-
-
-
-
-
             }
         }
 
