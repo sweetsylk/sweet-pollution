@@ -167,8 +167,6 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
     
-
-    //displays map grid          
     private void gridOn(ActionEvent event) {
         grid.getChildren().clear();
 
@@ -239,6 +237,7 @@ public class GeneralUI extends Application {
             }
         }
     }
+    
     
     //used to launch the program
     public static void main(String[] args) {
