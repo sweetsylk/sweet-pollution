@@ -36,6 +36,7 @@ public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
 
+    private Graphs pollutionGraph = new Graphs();
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -168,7 +169,8 @@ public class GeneralUI extends Application {
         Label statsdropdown2Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-        
+
+
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
         Button trendsOverTimeButton = new Button("Trends over Time");
@@ -198,16 +200,16 @@ public class GeneralUI extends Application {
         statsLabel.getStyleClass().add("content-area");
 
         // place the stats chart in the center
-        statsLayout.setCenter(statisticsChart());
-        
+        statsLayout.setCenter(pollutionGraph.getGraph());
+
         // place buttons on the left side of stats layout
         
         
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
-        
-        //statsLayout.setCenter(statisticsChart());
+
+
 
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
@@ -229,24 +231,22 @@ public class GeneralUI extends Application {
     }
 
 
-    
-    private Node statisticsChart(){
+
+    private Node statisticsChart() {
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
-        
-        LineChart chart = new LineChart(xAxis, yAxis);
-        
-        ObservableList<XYChart.Data> dataList = FXCollections.observableArrayList();
-        
-        ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
-        
-        seriesList.add(new XYChart.Series("Trends", dataList));
-        chart.setData(seriesList);
+        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
+
+        ObservableList<XYChart.Data<Number, Number>> dataList = FXCollections.observableArrayList();
+        XYChart.Series<Number, Number> series = new XYChart.Series<>("Trends", dataList);
+
+        chart.getData().add(series);
         chart.setTitle("Pollution Levels");
-        
+
         return chart;
     }
-    
+
+
 
 
     public boolean heatMapIsOn()
@@ -257,17 +257,10 @@ public class GeneralUI extends Application {
 
 
     private void heatMapToggle(ActionEvent actionEvent) {
-        if (heatMapOn)
-        {
-            heatMapOn = false;
-        }
-        else
-        {
-            heatMapOn = true;
-
-        }
+        heatMapOn = !heatMapOn;
         displayData();
     }
+
 
 
     // displays map grid
@@ -305,38 +298,39 @@ public class GeneralUI extends Application {
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+
         if (year != null && pollutant != null) {
             switch (pollutant) {
-            case "NO2":
-                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                break;
-            case "PM2.5":
-                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                break;
-            case "PM10":
-                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-
-                break;
-            default:
-                System.out.println("Unknown file loaded");
+                case "NO2":
+                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                    break;
+                case "PM2.5":
+                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                    break;
+                case "PM10":
+                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                    break;
+                default:
+                    System.out.println("Unknown file loaded");
+                    return;
             }
+
+            // refresh heatmap and markers
             displayData();
 
+            // update the graph
+            DataLoader loader = new DataLoader();
+            DataSet data = loader.loadDataFile(filename);
+            List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
+            List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
 
-
-
-
-
-
-
-
-            }
+            pollutionGraph.loadData(years, pollutionLevels);
         }
+    }
 
 
-    public void displayData()
-    {
-        if (!filename.equals("")){
+    public void displayData() {
+        if (!filename.isEmpty()) {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
@@ -345,13 +339,14 @@ public class GeneralUI extends Application {
             List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
 
             Platform.runLater(() -> {
-                stack.getChildren().removeIf(node -> node instanceof Shape); // Clear previous markers
-                stack.getChildren().addAll(markers); // Add new markers
+                stack.getChildren().removeIf(node -> node instanceof Shape);
+                stack.getChildren().addAll(markers);
             });
-    }
         }
-        
-    
+    }
+
+
+
     //used to launch the program
     public static void main(String[] args) {
         launch(args);

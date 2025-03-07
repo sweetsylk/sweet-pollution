@@ -1,55 +1,40 @@
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.LineChart;
-import javafx.collections.*;
 import javafx.scene.Node;
-/**
- * Write a description of class Graphs here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Graphs
-{
-    // instance variables - replace the example below with your own
-    private int x;
-    NumberAxis xAxis = new NumberAxis();
-    NumberAxis yAxis = new NumberAxis();
-    LineChart chart = new LineChart(xAxis, yAxis);
-    /**
-     * Constructor for objects of class Graphs
-     */
-    public Graphs()
-    {
-        // initialise instance variables
-        
-        ObservableList<XYChart.Data> dataList = FXCollections.observableArrayList();
-        for(int i = 0; i <10; i++){
-            dataList.add(new XYChart.Data(i, 0.5*i*i +3));
-        }
-        ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
-        
-        seriesList.add(new XYChart.Series("Trends", dataList));
-        chart.setData(seriesList);
-        
-        
+import java.util.List;
+
+public class Graphs {
+    private NumberAxis xAxis = new NumberAxis(2018, 2023, 1);
+    private NumberAxis yAxis = new NumberAxis();
+    private LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
+    private XYChart.Series<Number, Number> series;
+
+    public Graphs() {
+        xAxis.setLabel("Year");
+        yAxis.setLabel("Pollution Level");
+        chart.setTitle("Pollution Trends");
+
+        series = new XYChart.Series<>();
+        series.setName("Pollution Over Time");
+
+        chart.getData().add(series);
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * This takes in the data and plots it onto the graph
+     * @param years
+     * @param pollutionLevels
      */
-    public Node loadGraph()
-    {
+    public void loadData(List<Integer> years, List<Double> pollutionLevels) {
+        series.getData().clear();
+
+        for (int i = 0; i < years.size(); i++) {
+            series.getData().add(new XYChart.Data<>(years.get(i), pollutionLevels.get(i)));
+        }
+    }
+
+    public Node getGraph() {
         return chart;
     }
-    
-    public void addToGrah(){
-        
-    }
-    
-        
-    }
-
+}
