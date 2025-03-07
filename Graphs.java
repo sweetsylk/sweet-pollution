@@ -50,9 +50,6 @@ public class Graphs
         
     }
     
-    public Data loadData(){
-        DataLoader loader = new DataLoader();
-        DataSet dataSet = loader.loadDataFile(filename);
         
     }
-}
+

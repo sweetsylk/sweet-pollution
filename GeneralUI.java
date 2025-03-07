@@ -155,7 +155,7 @@ public class GeneralUI extends Application {
         statsLayout.getStyleClass().add("secondary-background");
 
         // create an temporarily empty sidebar for the stats tab
-        VBox statsSideBar = new VBox();
+        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
         
@@ -168,9 +168,24 @@ public class GeneralUI extends Application {
         Label statsdropdown2Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2);
+        Button averagePollutionButton = new Button("Average");
+        Button highestPollutionButton = new Button("Highest");
+        Button trendsOverTimeButton = new Button("Trends over Time");
+        
+        statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        
+        
+        statsSideBar.setPrefWidth(150);
+        statsSideBar.setAlignment(Pos.TOP_CENTER);
+        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+        
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
         // bottom area: display coordinates
@@ -222,13 +237,12 @@ public class GeneralUI extends Application {
         LineChart chart = new LineChart(xAxis, yAxis);
         
         ObservableList<XYChart.Data> dataList = FXCollections.observableArrayList();
-        for(int i = 0; i <10; i++){
-            dataList.add(new XYChart.Data(i, 0.5*i*i +3));
-        }
+        
         ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
         
         seriesList.add(new XYChart.Series("Trends", dataList));
         chart.setData(seriesList);
+        chart.setTitle("Pollution Levels");
         
         return chart;
     }
