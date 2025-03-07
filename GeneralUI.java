@@ -158,6 +158,19 @@ public class GeneralUI extends Application {
         VBox statsSideBar = new VBox();
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
+        
+        // first dropdown box, for choosing the year
+        Label statsdropdown1Label = new Label("Year:");
+        ComboBox<String> statsdropdown1 = new ComboBox<>();
+        statsdropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+        
+        // second dropdown box, for choosing the pollutant
+        Label statsdropdown2Label = new Label("Pollutant:");
+        ComboBox<String> statsdropdown2 = new ComboBox<>();
+        statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+
+        
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2);
         statsLayout.setLeft(statsSideBar);
 
         // bottom area: display coordinates
@@ -323,6 +336,8 @@ public class GeneralUI extends Application {
             });
     }
         }
+        
+    
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
