@@ -14,7 +14,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import java.util.List;
 
-
 public class GeneralUI extends Application {
     // These are the minimum and maximum values for the northing and eastings coordinates
     private static final double MIN_EASTING = 510394;
@@ -122,6 +121,7 @@ public class GeneralUI extends Application {
         mapTab.setContent(mapLayout);
         
         
+        
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -168,8 +168,7 @@ public class GeneralUI extends Application {
     }
     
 
-    //displays map grid
-                
+    //displays map grid          
     private void gridOn(ActionEvent event) {
         grid.getChildren().clear();
 
@@ -182,7 +181,6 @@ public class GeneralUI extends Application {
         for (int col = 0; col < cols; col++) {
             for (int row = 0; row < rows; row++) {
                 Rectangle cell = new Rectangle(cellWidth, cellHeight);
-
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
 
