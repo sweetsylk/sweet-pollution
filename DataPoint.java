@@ -16,4 +16,5 @@
  */
 public record DataPoint(int gridCode, int x, int y, double value)
 {
+
 }

@@ -26,6 +26,7 @@ public class DataLoader
         System.out.println("Loading file " + fileName + "...");
         
         URL url = getClass().getResource(fileName);
+
         try (BufferedReader br = new BufferedReader(new FileReader(new File(url.toURI()).getAbsolutePath()))) {
             // the first four lines of the file hold special information; read them in:
             String pollutant = readDataHeader(br);
@@ -45,6 +46,11 @@ public class DataLoader
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);
                 dataSet.addData(values);
+                try {
+                    dataSet.addData(values);
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping invalid row: " + line);
+                }
             }
             System.out.println("Loading file... done.");
             return dataSet;

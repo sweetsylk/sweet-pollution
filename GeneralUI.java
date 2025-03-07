@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -6,17 +7,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
-import javafx.scene.paint.*;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
+import java.util.List;
 
 public class GeneralUI extends Application {
 
+    // These are the minimum and maximum values for the northing and eastings coordinates
+    private static final double MIN_EASTING = 510394;
+    private static final double MAX_EASTING = 553297;
+    private static final double MIN_NORTHING = 168504;
+    private static final double MAX_NORTHING = 193305;
+
+    // these are just the image width and height (1781 x 1100)
+    private static final int MAP_WIDTH = 1781;
+    private static final int MAP_HEIGHT = 1100;
+
     private GridPane grid = new GridPane();
-    private StackPane stack = new StackPane();
+    private Pane stack = new Pane(); // Allows absolute positioning
+
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -30,7 +42,7 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
- 
+
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
@@ -52,18 +64,26 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
 
+
+
         //first button to turn on grid for map
         Button mapGridOn = new Button("map grid on ");
         Button mapGridOff = new Button("map grid off ");
         
+        
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
+        
         
         //Listeners for the comboboxes
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
-        // add the dropdown boxes to the sidebar 
+
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -72,15 +92,16 @@ public class GeneralUI extends Application {
 
         // ensure the image scales properly
         londonImageView.setPreserveRatio(true);
-        londonImageView.setFitWidth(1310); // only one dimension has to change
-        
-        // create a stack pane to fit grid map onto image 
+        londonImageView.setFitWidth(MAP_WIDTH); // Ensure it matches the map width
+        londonImageView.setFitHeight(MAP_HEIGHT);
+
+
+        // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
         stack.getChildren().add(grid);
-        generateCircles(0,0,Color.YELLOW);
         mapGridOn.setOnAction(this::gridOn);
         mapGridOff.setOnAction(this::gridOff);
-        
+
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
 
@@ -134,31 +155,41 @@ public class GeneralUI extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
+    
 
     //displays map grid
-    private void gridOn(ActionEvent Event){
-        grid.setHgap(0);
-        grid.setVgap(0);
-        
-        for(int col = 0; col<25; col++){
-            for(int row = 0; row<17;row++){
-                Rectangle cell = new Rectangle(50,50);
+    private void gridOn(ActionEvent event) {
+        grid.getChildren().clear();
+
+        int cols = 25;
+        int rows = 17;
+
+        double cellWidth = MAP_WIDTH / (double) cols;
+        double cellHeight = MAP_HEIGHT / (double) rows;
+
+        for (int col = 0; col < cols; col++) {
+            for (int row = 0; row < rows; row++) {
+                Rectangle cell = new Rectangle(cellWidth, cellHeight);
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
+
+                GridPane.setColumnIndex(cell, col);
+                GridPane.setRowIndex(cell, row);
                 grid.add(cell, col, row);
             }
         }
     }
+
+
     // removes map grid
-    private void gridOff(ActionEvent Event){
-        grid.getChildren().clear();
+    private void gridOff(ActionEvent event) {
+    grid.getChildren().clear(); // Completely removes all grid elements
     }
  
-    /**
-     * Uses the selected year and pollutant from each combobox to load up the correct file
-     * @Param the choice selected from the year and pollutant combo boxes
-     */
-    private void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+
+    // Event handler for combo boxes
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         if (year != null && pollutant != null) {
@@ -172,12 +203,25 @@ public class GeneralUI extends Application {
                 break;
             case "PM10":
                 filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+
                 break;
             default:
                 System.out.println("Unknown file loaded");
             }
             if (!filename.equals("")){
-                new LocationHandler(filename);
+
+                DataLoader loader = new DataLoader();
+                DataSet dataSet = loader.loadDataFile(filename);
+
+                System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+
+                List<Circle> markers = DataHandler.loadData(dataSet);
+                System.out.println("Markers Created: " + markers.size());
+
+                if (!markers.isEmpty()) {
+                    Platform.runLater(() -> stack.getChildren().addAll(markers));
+                }
+
             }
         }
     }
