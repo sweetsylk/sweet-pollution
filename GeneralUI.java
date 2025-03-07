@@ -1,16 +1,18 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import java.util.List;
 import javafx.scene.chart.XYChart;
@@ -24,17 +26,15 @@ import javafx.scene.Node;
 
 public class GeneralUI extends Application {
     // These are the minimum and maximum values for the northing and eastings coordinates
-    private static final double MIN_EASTING = 510394;
-    private static final double MAX_EASTING = 553297;
-    private static final double MIN_NORTHING = 168504;
-    private static final double MAX_NORTHING = 193305;
 
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
+    private static String filename = "";
 
+    private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
-    private Pane stack = new Pane(); // Allows absolute positioning
+    private BorderPane stack = new BorderPane(); // Allows absolute positioning
 
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -57,11 +57,16 @@ public class GeneralUI extends Application {
         mapLayout.getStyleClass().add("main-background");
 
         // create a sidebar for dropdowns in the map tab, containing the UI vertically
-        VBox mapSideBar = new VBox(15);
+        VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
-        mapSideBar.setPrefWidth(200);
+        mapSideBar.setPrefWidth(150);
         mapSideBar.setAlignment(Pos.TOP_CENTER);
-        
+        mapSideBar.prefHeightProperty().bind(stack.heightProperty());
+        mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+
+
+
+
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -76,10 +81,18 @@ public class GeneralUI extends Application {
         //first button to turn on grid for map
         Button mapGridOn = new Button("map grid on ");
         Button mapGridOff = new Button("map grid off ");
-        
-        
+
+        ToggleButton heatMap = new ToggleButton("Heat Map");
+
+        dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        mapGridOff.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+
+
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
         
         //Listeners for the comboboxes
@@ -106,9 +119,13 @@ public class GeneralUI extends Application {
         ImageView londonImageView = new ImageView(londonImage);
 
         // ensure the image scales properly
-        londonImageView.setPreserveRatio(true);
-        londonImageView.setFitWidth(MAP_WIDTH); // Ensure it matches the map width
+        londonImageView.setPreserveRatio(false);
+        londonImageView.setFitWidth(MAP_WIDTH);
         londonImageView.setFitHeight(MAP_HEIGHT);
+        // map image scales with window
+        londonImageView.fitWidthProperty().bind(stack.widthProperty());
+        londonImageView.fitHeightProperty().bind(stack.heightProperty());
+
 
 
         // use a stack pane to fit grid map onto image
@@ -116,6 +133,7 @@ public class GeneralUI extends Application {
         stack.getChildren().add(grid);
         mapGridOn.setOnAction(this::gridOn);
         mapGridOff.setOnAction(this::gridOff);
+        heatMap.setOnAction(this::heatMapToggle);
 
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
@@ -171,8 +189,10 @@ public class GeneralUI extends Application {
         
         // display primaryStage
         primaryStage.setScene(mainScene);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
+
     
     private Node statisticsChart(){
         NumberAxis xAxis = new NumberAxis();
@@ -193,21 +213,43 @@ public class GeneralUI extends Application {
     }
     
 
-    //displays map grid
+    public boolean heatMapIsOn()
+    {
+        return heatMapOn;
+    }
+
+
+
+    private void heatMapToggle(ActionEvent actionEvent) {
+        if (heatMapOn)
+        {
+            heatMapOn = false;
+        }
+        else
+        {
+            heatMapOn = true;
+
+        }
+        displayData();
+    }
+
+
+    // displays map grid
     private void gridOn(ActionEvent event) {
         grid.getChildren().clear();
 
         int cols = 25;
         int rows = 17;
 
-        double cellWidth = MAP_WIDTH / (double) cols;
-        double cellHeight = MAP_HEIGHT / (double) rows;
+        double cellWidth = stack.getWidth() / cols;
+        double cellHeight = stack.getHeight() / rows;
 
         for (int col = 0; col < cols; col++) {
             for (int row = 0; row < rows; row++) {
                 Rectangle cell = new Rectangle(cellWidth, cellHeight);
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
+
 
                 GridPane.setColumnIndex(cell, col);
                 GridPane.setRowIndex(cell, row);
@@ -221,14 +263,13 @@ public class GeneralUI extends Application {
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
- 
+
 
     // Event handler for combo boxes
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         if (year != null && pollutant != null) {
-            String filename = "";
             switch (pollutant) {
             case "NO2":
                 filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
@@ -243,18 +284,8 @@ public class GeneralUI extends Application {
             default:
                 System.out.println("Unknown file loaded");
             }
-            if (!filename.equals("")){
-                DataLoader loader = new DataLoader();
-                DataSet dataSet = loader.loadDataFile(filename);
+            displayData();
 
-                System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
-
-                List<Circle> markers = DataHandler.loadData(dataSet);
-                System.out.println("Markers Created: " + markers.size());
-
-                if (!markers.isEmpty()) {
-                    Platform.runLater(() -> stack.getChildren().addAll(markers));
-                }
 
 
 
@@ -263,9 +294,24 @@ public class GeneralUI extends Application {
 
             }
         }
+
+
+    public void displayData()
+    {
+        if (!filename.equals("")){
+            DataLoader loader = new DataLoader();
+            DataSet dataSet = loader.loadDataFile(filename);
+
+            System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+
+            List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
+
+            Platform.runLater(() -> {
+                stack.getChildren().removeIf(node -> node instanceof Shape); // Clear previous markers
+                stack.getChildren().addAll(markers); // Add new markers
+            });
     }
-    
-    
+        }
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
