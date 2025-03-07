@@ -1,5 +1,5 @@
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.Cursor;
 import javafx.scene.control.Tooltip;
 import java.util.ArrayList;
@@ -13,10 +13,18 @@ public class DataHandler {
     private static final double MIN_NORTHING = 168504;
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
+    private static final Color GREEN = new Color(0,0.75,0.1,0.1);
+    private static final Color YELLOW = new Color(0.25,0.75,0.1,0.1);
+    private static final Color ORANGE = new Color(0.5,0.75,0.1,0.1);
+    private static final Color RED = new Color(0.75,0.25,0.1,0.1);
+    private static final Color CRIMSON = new Color(0.5,0,0.1,0.1);
+    private static final Color PURPLE = new Color(0.25,0,0.5,0.1);
+
+
 
     // Load pollution data and return a list of Circle markers
-    public static List<Circle> loadData(DataSet data) {
-        List<Circle> markers = new ArrayList<>();
+    public static List<Rectangle> loadData(DataSet data) {
+        List<Rectangle> markers = new ArrayList<>();
 
         System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
         System.out.println("Total Data Points: " + data.getData().size());
@@ -41,10 +49,10 @@ public class DataHandler {
 
 
             // Create pollution marker
-            Circle marker = new Circle(5);
+            Rectangle marker = new Rectangle();
+            marker.setWidth(83);
+            marker.setHeight(89);
             marker.setFill(getPollutionColor(pollution));
-            marker.setStroke(Color.BLACK);
-            marker.setStrokeWidth(1.5);
             marker.setCursor(Cursor.HAND);
             marker.toFront();
 
@@ -88,12 +96,12 @@ public class DataHandler {
 
     // This gives a colour to the points (can be configured later)
     private static Color getPollutionColor(double pollution) {
-        if (pollution < 10) return Color.GREEN;
-        else if (pollution < 20) return Color.LIGHTGREEN;
-        else if (pollution < 30) return Color.YELLOW;
-        else if (pollution < 40) return Color.ORANGE;
-        else if (pollution < 50) return Color.RED;
-        else return Color.DARKRED;
+        if (pollution < 10) return GREEN;
+        else if (pollution < 20) return YELLOW;
+        else if (pollution < 30) return ORANGE;
+        else if (pollution < 40) return RED;
+        else if (pollution < 50) return CRIMSON;
+        else return PURPLE;
     }
 
 }

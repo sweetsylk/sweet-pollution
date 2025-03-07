@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class GeneralUI extends Application {
     private static final int MAP_HEIGHT = 1100;
 
     private GridPane grid = new GridPane();
-    private Pane stack = new Pane(); // Allows absolute positioning
+    private BorderPane stack = new BorderPane(); // Allows absolute positioning
 
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -49,11 +48,16 @@ public class GeneralUI extends Application {
         mapLayout.getStyleClass().add("main-background");
 
         // create a sidebar for dropdowns in the map tab, containing the UI vertically
-        VBox mapSideBar = new VBox(15);
+        VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
-        mapSideBar.setPrefWidth(200);
+        mapSideBar.setPrefWidth(150);
         mapSideBar.setAlignment(Pos.TOP_CENTER);
-        
+        mapSideBar.prefHeightProperty().bind(stack.heightProperty());
+        mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+
+
+
+
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -68,8 +72,13 @@ public class GeneralUI extends Application {
         //first button to turn on grid for map
         Button mapGridOn = new Button("map grid on ");
         Button mapGridOff = new Button("map grid off ");
-        
-        
+
+        dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        mapGridOff.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+
+
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff);
         
@@ -98,9 +107,13 @@ public class GeneralUI extends Application {
         ImageView londonImageView = new ImageView(londonImage);
 
         // ensure the image scales properly
-        londonImageView.setPreserveRatio(true);
-        londonImageView.setFitWidth(MAP_WIDTH); // Ensure it matches the map width
+        londonImageView.setPreserveRatio(false);
+        londonImageView.setFitWidth(MAP_WIDTH);
         londonImageView.setFitHeight(MAP_HEIGHT);
+        // map image scales with window
+        londonImageView.fitWidthProperty().bind(stack.widthProperty());
+        londonImageView.fitHeightProperty().bind(stack.heightProperty());
+
 
 
         // use a stack pane to fit grid map onto image
@@ -163,25 +176,27 @@ public class GeneralUI extends Application {
         
         // display primaryStage
         primaryStage.setScene(mainScene);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
     
 
-    //displays map grid
+    // displays map grid
     private void gridOn(ActionEvent event) {
         grid.getChildren().clear();
 
         int cols = 25;
         int rows = 17;
 
-        double cellWidth = MAP_WIDTH / (double) cols;
-        double cellHeight = MAP_HEIGHT / (double) rows;
+        double cellWidth = stack.getWidth() / cols;
+        double cellHeight = stack.getHeight() / rows;
 
         for (int col = 0; col < cols; col++) {
             for (int row = 0; row < rows; row++) {
                 Rectangle cell = new Rectangle(cellWidth, cellHeight);
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
+
 
                 GridPane.setColumnIndex(cell, col);
                 GridPane.setRowIndex(cell, row);
@@ -195,7 +210,7 @@ public class GeneralUI extends Application {
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
- 
+
 
     // Event handler for combo boxes
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
@@ -223,7 +238,7 @@ public class GeneralUI extends Application {
 
                 System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
 
-                List<Circle> markers = DataHandler.loadData(dataSet);
+                List<Rectangle> markers = DataHandler.loadData(dataSet);
                 System.out.println("Markers Created: " + markers.size());
 
                 if (!markers.isEmpty()) {
