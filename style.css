@@ -41,4 +41,22 @@
     -fx-background-color: #F0F0F0; /* light grey */
 }
 
+#projectTitleLabel {
+    -fx-font-size: 56px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}
+
+#instructionsLabel {
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+#continueBtn {
+    -fx-alignment: center;
+    -fx-font-size: 30px;
+    -fx-background-color: #1087ef
+}
 

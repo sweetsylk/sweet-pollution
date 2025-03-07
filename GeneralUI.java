@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.Cursor;
 import java.util.List;
+import javafx.scene.layout.BorderPane;
 
 public class GeneralUI extends Application {
 
@@ -28,10 +29,25 @@ public class GeneralUI extends Application {
 
     private GridPane grid = new GridPane();
     private Pane stack = new Pane(); // Allows absolute positioning
-
+    
+    
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
+        
+        //Welcome Page not added to the start scene
+        Label projectTitleLabel = new Label("Pollution Solution \nby Ayesha, Irfan, Ridwan and Khem");
+        projectTitleLabel.setId("projectTitleLabel");
+        Label instructionsLabel = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        instructionsLabel.setId("instructionsLabel");
+        Button continueBtn = new Button("Continue");
+        continueBtn.setId("continueBtn");
+        StackPane topWelcomePane = new StackPane(projectTitleLabel);
+        StackPane centerWelcomePane = new StackPane(instructionsLabel);
+        StackPane bottomWelcomePane = new StackPane(continueBtn);
+        BorderPane WelcomePane = new BorderPane(centerWelcomePane, topWelcomePane, null, bottomWelcomePane, null);
+        WelcomePane.getStyleClass().add("main-background");
+        
         // create a tab pane for switching between pages
         TabPane tabPane = new TabPane(); 
 
@@ -143,7 +159,7 @@ public class GeneralUI extends Application {
 
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 1600, 1400);
-        
+        //WelcomePane
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -226,18 +242,6 @@ public class GeneralUI extends Application {
         }
     }
     
-    /**
-     * Creates a circle to be placed on the map which represents a datapoint
-     */
-    private void generateCircles(int x, int y, Color colour){
-        Circle pin = new Circle();
-        pin.setTranslateX(x);
-        pin.setTranslateY(y);
-        pin.setRadius(4);
-        pin.setFill(colour);
-        System.out.println("Generating circle at: (" + x + ", " + y + ")");
-        stack.getChildren().add(pin);
-    }   
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
