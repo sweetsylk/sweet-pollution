@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-import javafx.scene.Cursor;
 
 public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
@@ -157,9 +156,9 @@ public class GeneralUI extends Application {
         grid.setHgap(0);
         grid.setVgap(0);
         
-        for(int col = 0; col<25; col++){
+        for(int col = 0; col<24; col++){
             for(int row = 0; row<17;row++){
-                Rectangle cell = new Rectangle(50,50);
+                Rectangle cell = new Rectangle(15,15);
                 cell.setStroke(Color.GREY);
                 cell.setFill(Color.TRANSPARENT);
                 grid.add(cell, col, row);
