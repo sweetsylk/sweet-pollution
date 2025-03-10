@@ -35,6 +35,7 @@ public class WelcomeScreen extends Application {
 
             GeneralUI mainApp = new GeneralUI(); //instantiate the general UI class
 
+
             mainApp.start(primaryStage); // switch scene to main page   
         });
 
