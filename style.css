@@ -17,7 +17,7 @@
     -fx-tabtab-max-width: 150px; /* Maximum width of the tabs */
     -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
     -fx-tab-max-height: 40px; /* Maximum height of the tabs */
-    -fx-tab-min-height: 25px
+    -fx-tab-min-height: 25px  /* Minimum height of the tabs */
 
 /* Sidebar */
 .sidebar {
