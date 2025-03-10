@@ -74,16 +74,7 @@
     -fx-padding: 10px 20px;
     -fx-border-radius: 20px; /* slighly ovular shape of button */
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
-=======
->>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
-=======
->>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
 .continue-button:hover {
     -fx-background-color: #B22222; /* light red */
 }

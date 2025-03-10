@@ -87,20 +87,10 @@ public class GeneralUI extends Application {
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
         
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
-
-
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
-
-        
         // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
-        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
 
         
         // add the dropdown boxes to the sidebar 
@@ -161,7 +151,7 @@ public class GeneralUI extends Application {
         additionalDropdownLabel.setVisible(false);
 
         // listener for the metric dropdown of "Average" 
-        statsdropdown2.setOnAction(_ -> {
+        statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
@@ -175,7 +165,9 @@ public class GeneralUI extends Application {
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
         Button trendsOverTimeButton = new Button("Trends over Time");
-
+        
+        
+        //
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
@@ -192,7 +184,7 @@ public class GeneralUI extends Application {
         statsLayout.setLeft(statsSideBar);
 
         //Listeners for the comboboxes
-        statsdropdown1.setOnAction(_ -> handleStatsComboBoxSelection(statsdropdown1));
+        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
 
         // bottom area: display coordinates
         Label statsFooter = new Label("Co-ordinates:");
