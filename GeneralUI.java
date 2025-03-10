@@ -29,6 +29,7 @@ public class GeneralUI extends Application {
     private BorderPane stack = new BorderPane();
     private Graphs pollutionGraph = new Graphs();
     private VBox statsSideBar = new VBox(12);
+    private int minStatsSideBarNodes;
     
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -211,6 +212,9 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
         
+        //taking note of the minimum number of nodes on the stats side bar
+        minStatsSideBarNodes = numberOfNodes(statsSideBar);
+        
         // Enable fullscreen AFTER switching scenes
         primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
@@ -272,6 +276,7 @@ public class GeneralUI extends Application {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         String metric = dropdown3.getSelectionModel().getSelectedItem();
+        removeNodes();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
                 displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
@@ -341,7 +346,19 @@ public class GeneralUI extends Application {
             statsSideBar.getChildren().add(text);
         }
     }
-
+    
+    private int numberOfNodes(Pane pane){
+        return pane.getChildren().size();
+    }
+    
+    private void removeNodes(){
+        if (statsSideBar.getChildren().size() > minStatsSideBarNodes){
+            for (int i=0; i <= 6; i++){
+                statsSideBar.getChildren().remove(-1);
+            }
+        }
+    }
+    
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
