@@ -21,8 +21,8 @@ public class DataLoader
      * 
      * @return A DataSet object holding the complete dataset
      */
-    public DataSet loadDataFile(String fileName) 
-    {   
+    public DataSet loadDataFile(String fileName){ 
+
         URL url = getClass().getResource(fileName);
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(url.toURI()).getAbsolutePath()))) {
@@ -59,6 +59,7 @@ public class DataLoader
         }
     }
     
+    
     /**
      * Read one piece of information out of the header of the data file.
      * Each line in the header has the format
@@ -70,11 +71,12 @@ public class DataLoader
      * @return The data from the next header line of the file currently being read.
      */
     private String readDataHeader(BufferedReader br)
-        throws java.io.IOException
-    {
-        String line = br.readLine();
-        String[] values = line.split(COMMA_DELIMITER);
-        return values[0];
-    }
+            throws java.io.IOException
+        {
+            String line = br.readLine();
+            String[] values = line.split(COMMA_DELIMITER);
+            return values[0];
+        }
+    
 
 }

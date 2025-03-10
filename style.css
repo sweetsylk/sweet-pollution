@@ -4,23 +4,27 @@
     -fx-background-color: #F0F0F0; /* light grey */
 }
                                          
+/* Coordinates */
+.coordinates {
+    -fx-padding: 10px;
+    -fx-background-color: #C0C0C0; /* silver */
+    -fx-font-size: 12px;
+    -fx-text-fill: #505050;
+    -fx-alignment: center;
+}
+
+.tab-pane{
+    -fx-tabtab-max-width: 150px; /* Maximum width of the tabs */
+    -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
+    -fx-tab-max-height: 40px; /* Maximum height of the tabs */
+    -fx-tab-min-height: 25px
 
 /* Sidebar */
 .sidebar {
-    -fx-background-color: #C0C2C9;
+    -fx-background-color: #C0C2C9; /* darker grey*/
     -fx-padding: 10px;
 }
 
-/* Buttons */    
-/*for future implementation of buttons */
-.button {
-    -fx-background-color: #E0E0E0; 
-    -fx-border-radius: 5px;
-    -fx-font-weight: bold;
-}
-.button:hover {
-    -fx-background-color: #C0C0C0; /* silver */
-}
 
 /* Content Area */
 .content-area {
