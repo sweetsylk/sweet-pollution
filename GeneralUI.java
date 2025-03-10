@@ -12,19 +12,12 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+
 import java.util.List;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.LineChart;
-import javafx.collections.*;
-import javafx.scene.Node;
-
-
+import java.util.Objects;
 
 
 public class GeneralUI extends Application {
-    // These are the minimum and maximum values for the northing and eastings coordinates
-
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
@@ -39,7 +32,7 @@ public class GeneralUI extends Application {
     public void start(Stage primaryStage) {
         // INITIALISATION
         // create a tab pane for switching between pages
-        TabPane tabPane = new TabPane();
+        TabPane tabPane = new TabPane(); 
 
         // create map and stats tabs
         Tab mapTab = new Tab("Map");
@@ -48,8 +41,9 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-
-
+        
+        
+        
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
@@ -63,16 +57,13 @@ public class GeneralUI extends Application {
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
-
-
-
-
+    
 
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
         dropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
-
+        
         // second dropdown box, for choosing the pollutant
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
@@ -94,28 +85,39 @@ public class GeneralUI extends Application {
 
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
+        
+        
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
+
 
         //Listeners for the comboboxes
-        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
 
+        
+        // add the dropdown boxes to the sidebar 
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2));
 
+        
         // add the dropdown boxes to the sidebar 
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
-        Image londonImage = new Image(getClass().getResource("London.png").toExternalForm());
+        Image londonImage = new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()); // this is to prevent null exceptions
         ImageView londonImageView = new ImageView(londonImage);
 
-        // ensure the image scales properly
+        // ensure the image scales properly if true
         londonImageView.setPreserveRatio(false);
         londonImageView.setFitWidth(MAP_WIDTH);
         londonImageView.setFitHeight(MAP_HEIGHT);
+        
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
-
-
 
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
@@ -127,35 +129,30 @@ public class GeneralUI extends Application {
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
 
-        // bottom area: display coordinates
-        Label mapFooter = new Label("Co-ordinates:");
-        mapFooter.getStyleClass().add("coordinates");
-        mapLayout.setBottom(mapFooter);
-
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
-
-
-
+        
+        
+    
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
-        statsLayout.getStyleClass().add("secondary-background");
+        statsLayout.getStyleClass().add("main-background");
 
         // create an temporarily empty sidebar for the stats tab
         VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
-
+        
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
         statsdropdown1.getItems().addAll("NO2", "PM10", "PM2.5");
-
-        //second dropdown box, for highest or average
+        
+        //second dropdown box, for highest or average 
         Label statsdropdown2Label = new Label("Metric:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("Highest", "Average");
-
+        
         // dropdown for metirc depending on "Average" option if pressed (hidden by default)
         Label additionalDropdownLabel = new Label("View By:");
         ComboBox<String> additionalDropdown = new ComboBox<>();
@@ -163,8 +160,8 @@ public class GeneralUI extends Application {
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
 
-        // listener for the metric dropdown of "Average"
-        statsdropdown2.setOnAction(event -> {
+        // listener for the metric dropdown of "Average" 
+        statsdropdown2.setOnAction(_ -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
@@ -190,27 +187,24 @@ public class GeneralUI extends Application {
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-
+        
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
 
         //Listeners for the comboboxes
-        statsdropdown1.setOnAction(event -> handleStatsComboBoxSelection(statsdropdown1));
+        statsdropdown1.setOnAction(_ -> handleStatsComboBoxSelection(statsdropdown1));
 
         // bottom area: display coordinates
         Label statsFooter = new Label("Co-ordinates:");
         statsFooter.getStyleClass().add("coordinates");
         statsLayout.setBottom(statsFooter);
 
-        // create and style the placeholder 
+        // create and style the placeholder
         Label statsLabel = new Label("Stats View");
         statsLabel.getStyleClass().add("content-area");
 
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
-
-        // place buttons on the left side of stats layout
-
 
 
         // assign the completed layout to the stats tab
@@ -223,20 +217,22 @@ public class GeneralUI extends Application {
 
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 1600, 1400);
-
+        
         //connect external css file
-        mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
 
-        // enable automatic fullscreen and set the title of the application
-        primaryStage.setFullScreen(true);
-        primaryStage.setTitle("Pollution Application");
-
+        // set the title of the application
+        primaryStage.setTitle("Pollution Solution");
+        
         // display primaryStage
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
         primaryStage.show();
+        
+        // Enable fullscreen AFTER switching scenes
+        primaryStage.setFullScreen(true);
+        primaryStage.show(); // Show the new window
     }
-
 
 
 
@@ -317,7 +313,6 @@ public class GeneralUI extends Application {
         String pollutant = statsdropdown1.getSelectionModel().getSelectedItem();
 
         if (pollutant != null) {
-            String filename = "";
             // Get trend data
             List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
@@ -325,8 +320,6 @@ public class GeneralUI extends Application {
             pollutionGraph.loadData(years, pollutionLevels);
         }
     }
-
-
 
 
     public void displayData() {
@@ -351,6 +344,4 @@ public class GeneralUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }

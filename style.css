@@ -13,6 +13,12 @@
     -fx-alignment: center;
 }
 
+.tab-pane{
+    -fx-tabtab-max-width: 150px; /* Maximum width of the tabs */
+    -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
+    -fx-tab-max-height: 40px; /* Maximum height of the tabs */
+    -fx-tab-min-height: 25px
+
 /* Sidebar */
 .sidebar {
     -fx-background-color: #C0C2C9; /* darker grey*/
@@ -68,6 +74,16 @@
     -fx-padding: 10px 20px;
     -fx-border-radius: 20px; /* slighly ovular shape of button */
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
+=======
+>>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
+=======
+>>>>>>> 07c080da4cc7e25a692e4ea129492f88fc503886
 .continue-button:hover {
     -fx-background-color: #B22222; /* light red */
 }
