@@ -58,7 +58,6 @@ public class GeneralUI extends Application {
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
-    
 
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
@@ -136,8 +135,7 @@ public class GeneralUI extends Application {
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        statsSideBar.setPrefWidth(200);
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
         // first dropdown box, for choosing the year
@@ -290,20 +288,20 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-            switch (pollutant) {
-                case "NO2":
-                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                    break;
-                case "PM2.5":
-                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                    break;
-                case "PM10":
-                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                    break;
-                default:
-                    System.out.println("Unknown file loaded");
-                    return;
-            }
+        switch (pollutant) {
+            case "NO2":
+                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                break;
+            case "PM2.5":
+                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                break;
+            case "PM10":
+                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                break;
+            default:
+                System.out.println("Unknown file loaded");
+                return;
+        }
          // refresh heatmap and markers
             displayData();
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
@@ -336,7 +334,6 @@ public class GeneralUI extends Application {
                 stack.getChildren().removeIf(node -> node instanceof Shape);
                 stack.getChildren().addAll(markers);
             });
-
         }
     }
 
