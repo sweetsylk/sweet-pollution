@@ -63,10 +63,6 @@ public class GeneralUI extends Application {
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
-        
-
-
-
 
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
@@ -123,6 +119,7 @@ public class GeneralUI extends Application {
         londonImageView.setPreserveRatio(false);
         londonImageView.setFitWidth(MAP_WIDTH);
         londonImageView.setFitHeight(MAP_HEIGHT);
+        
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
@@ -219,14 +216,17 @@ public class GeneralUI extends Application {
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
-        // enable automatic fullscreen and set the title of the application
-        primaryStage.setFullScreen(true);
-        primaryStage.setTitle("Pollution Application");
+        // set the title of the application
+        primaryStage.setTitle("Pollution Solution");
         
         // display primaryStage
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
         primaryStage.show();
+        
+        // Enable fullscreen AFTER switching scenes
+        primaryStage.setFullScreen(true);
+        primaryStage.show(); // Show the new window
     }
 
 
