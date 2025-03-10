@@ -69,8 +69,6 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
         
-        
-
         // create a single toggle button for the grid
         ToggleButton mapGridOn = new ToggleButton("Map Grid");
 
@@ -79,7 +77,7 @@ public class GeneralUI extends Application {
         mapGridOn.setSelected(false);
 
         // event handler for toggling the button
-        mapGridOn.setOnAction(event -> {
+        mapGridOn.setOnAction(e -> {
             gridMapToggle();
             if (gridMapIsOn() == true) {
                 gridOn(null);  // grid ON effect
@@ -138,6 +136,7 @@ public class GeneralUI extends Application {
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         //statsSideBar.setPrefWidth(200);
+        
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
@@ -181,17 +180,15 @@ public class GeneralUI extends Application {
         //Listeners for the comboboxes
         statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
 
-        // create and style the placeholder
-        Label statsLabel = new Label("Stats View");
-        statsLabel.getStyleClass().add("content-area");
-
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
-
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
 
+        
+        
+        
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
