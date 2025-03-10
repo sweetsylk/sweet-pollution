@@ -193,7 +193,7 @@ public class GeneralUI extends Application {
         tabPane.getTabs().addAll(mapTab, statsTab);
 
         // create the primary scene within the tab pane
-        Scene mainScene = new Scene(tabPane, 1600, 1400);
+        Scene mainScene = new Scene(tabPane, 800, 600);
         
         //tabPane
         //connect external css file
