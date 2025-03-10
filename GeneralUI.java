@@ -99,13 +99,7 @@ public class GeneralUI extends Application {
 
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
-        
-        
-
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
-
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -163,8 +157,8 @@ public class GeneralUI extends Application {
         additionalDropdownLabel.setVisible(false);
         
         //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown1.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
         
         // listener for the metric dropdown of "Average" 
         statsdropdown2.setOnAction(e -> {
@@ -222,12 +216,10 @@ public class GeneralUI extends Application {
         primaryStage.show(); // Show the new window
     }
 
-    
     public boolean gridMapIsOn()
     {
         return gridMapOn;
     }
-
 
 
     private void gridMapToggle() {
