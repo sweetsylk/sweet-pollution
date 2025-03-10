@@ -6,9 +6,11 @@ public class DataHandler {
     public static List<Double> getPollutantTrends(String pollutant) {
         List<Double> trend = new ArrayList<>();
 
-        for (int year = 2018; year <= 2023; year++) {
+        for (int year = 2018; year <= 2023; year++)
+        {
             String filename;
-            switch (pollutant) {
+            switch (pollutant)
+            {
                 case "NO2":
                     filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
                     break;
@@ -37,17 +39,18 @@ public class DataHandler {
     public static double getAveragePollutantLevel(DataSet data) {
         double total = 0.0;
 
-        for (DataPoint point : data.getData()) {
+        for (DataPoint point : data.getData())
+        {
             total += point.value();
 
         }
         double average = 0;
-        if (!data.getData().isEmpty()) {
+        if (!data.getData().isEmpty())
+        {
             average = total / data.getData().size();
         }
 
 
-        System.out.println(average);
         return average;
 
 

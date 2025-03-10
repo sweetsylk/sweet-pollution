@@ -87,7 +87,7 @@ public class HeatmapAndMarkerGenerator     {
     public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
         // Tooltip for pollution data
         Tooltip tooltip = new Tooltip(
-                String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %df\n GridCode: %d ",
+                String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ",
                         data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(),point.y(), point.gridCode()));
         Tooltip.install(marker, tooltip);
     }

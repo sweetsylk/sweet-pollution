@@ -10,16 +10,12 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-import javafx.scene.Cursor;
+
 import java.util.List;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.LineChart;
-import javafx.collections.*;
-import javafx.scene.Node;
+import java.util.Objects;
+
 
 public class GeneralUI extends Application {
     // these are just the image width and height (1781 x 1100)
@@ -92,14 +88,13 @@ public class GeneralUI extends Application {
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
         //Listeners for the comboboxes
-        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
 
-        // put the sidebar to the left of the screen
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
-        Image londonImage = new Image(getClass().getResource("London.png").toExternalForm());
+        Image londonImage = new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()); // this is to prevent null exceptions
         ImageView londonImageView = new ImageView(londonImage);
 
         // ensure the image scales properly if true
@@ -153,7 +148,7 @@ public class GeneralUI extends Application {
         additionalDropdownLabel.setVisible(false);
 
         // listener for the metric dropdown of "Average" 
-        statsdropdown2.setOnAction(event -> {
+        statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
@@ -163,10 +158,18 @@ public class GeneralUI extends Application {
                 additionalDropdownLabel.setVisible(false);
             }
         });
-  
+
+        Button averagePollutionButton = new Button("Average");
+        Button highestPollutionButton = new Button("Highest");
+        Button trendsOverTimeButton = new Button("Trends over Time");
+
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-             
+        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+
+
         statsSideBar.setPrefWidth(150);
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
@@ -175,7 +178,15 @@ public class GeneralUI extends Application {
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
 
-        // create and style the placeholder 
+        //Listeners for the comboboxes
+        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
+
+        // bottom area: display coordinates
+        Label statsFooter = new Label("Co-ordinates:");
+        statsFooter.getStyleClass().add("coordinates");
+        statsLayout.setBottom(statsFooter);
+
+        // create and style the placeholder
         Label statsLabel = new Label("Stats View");
         statsLabel.getStyleClass().add("content-area");
 
@@ -195,7 +206,7 @@ public class GeneralUI extends Application {
         Scene mainScene = new Scene(tabPane, 1600, 1400);
         
         //connect external css file
-        mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
 
         // set the title of the application
         primaryStage.setTitle("Pollution Solution");
@@ -210,21 +221,6 @@ public class GeneralUI extends Application {
         primaryStage.show(); // Show the new window
     }
 
-
-
-    private Node statisticsChart() {
-        NumberAxis xAxis = new NumberAxis();
-        NumberAxis yAxis = new NumberAxis();
-        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
-
-        ObservableList<XYChart.Data<Number, Number>> dataList = FXCollections.observableArrayList();
-        XYChart.Series<Number, Number> series = new XYChart.Series<>("Trends", dataList);
-
-        chart.getData().add(series);
-        chart.setTitle("Pollution Levels");
-
-        return chart;
-    }
 
 
 
@@ -297,13 +293,17 @@ public class GeneralUI extends Application {
 
             // refresh heatmap and markers
             displayData();
+        }
+    }
 
-            // update the graph
-            DataLoader loader = new DataLoader();
-            DataSet data = loader.loadDataFile(filename);
+    public void handleStatsComboBoxSelection(ComboBox<String> statsdropdown1) {
+        String pollutant = statsdropdown1.getSelectionModel().getSelectedItem();
+
+        if (pollutant != null) {
+            // Get trend data
             List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
-
+            // Update the graph data
             pollutionGraph.loadData(years, pollutionLevels);
         }
     }
