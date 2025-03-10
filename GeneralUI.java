@@ -356,7 +356,11 @@ public class GeneralUI extends Application {
             statsSideBar.getChildren().add(text);
         }
     }
-
+    
+    private int numberOfNodes(Pane pane){
+        return pane.getChildren().size();
+    }
+    
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
