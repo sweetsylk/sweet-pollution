@@ -54,6 +54,11 @@ public class DataHandler {
         return average;
     }
     
+    /** 
+     * 
+     * 
+     * @return An array list of the 10 dataPoints with the highest pollutant values
+     */
     public static ArrayList<DataPoint> getHighestPollutantLevel(String year, String pollutant) {
         ArrayList<DataPoint> highestPLs = new ArrayList<>();
         String filename = "";
