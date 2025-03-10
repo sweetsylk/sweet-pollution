@@ -21,12 +21,7 @@ import javafx.scene.chart.LineChart;
 import javafx.collections.*;
 import javafx.scene.Node;
 
-
-
-
 public class GeneralUI extends Application {
-    // These are the minimum and maximum values for the northing and eastings coordinates
-
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
@@ -144,16 +139,11 @@ public class GeneralUI extends Application {
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
 
-        // bottom area: display coordinates
-        Label mapFooter = new Label("Co-ordinates:");
-        mapFooter.getStyleClass().add("coordinates");
-        mapLayout.setBottom(mapFooter);
-
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
         
         
-        
+    
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -164,39 +154,48 @@ public class GeneralUI extends Application {
         statsSideBar.setPrefWidth(200);
         
         // first dropdown box, for choosing the year
-        Label statsdropdown1Label = new Label("Year:");
+        Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
-        statsdropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+        statsdropdown1.getItems().addAll("NO2", "PM10", "PM2.5");
         
-        // second dropdown box, for choosing the pollutant
-        Label statsdropdown2Label = new Label("Pollutant:");
+        //second dropdown box, for highest or average 
+        Label statsdropdown2Label = new Label("Metric:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
-        statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+        statsdropdown2.getItems().addAll("Highest", "Average");
+        
+        // dropdown for metirc depending on "Average" option if pressed (hidden by default)
+        Label additionalDropdownLabel = new Label("View By:");
+        ComboBox<String> additionalDropdown = new ComboBox<>();
+        additionalDropdown.getItems().addAll("Area", "Period");
+        additionalDropdown.setVisible(false); // initially hidden
+        additionalDropdownLabel.setVisible(false);
 
-
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
+        // listener for the metric dropdown of "Average" 
+        statsdropdown2.setOnAction(event -> {
+            String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
+            if ("Average".equals(selectedMetric)) {
+                additionalDropdown.setVisible(true); // show when "Average" is selected
+                additionalDropdownLabel.setVisible(true);
+            } else {
+                additionalDropdown.setVisible(false); // hide when "Average" is not selected
+                additionalDropdownLabel.setVisible(false);
+            }
+        });
+        
+        //button to view the trends over time
         Button trendsOverTimeButton = new Button("Trends over Time");
         
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        
-        
+             
         statsSideBar.setPrefWidth(150);
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, trendsOverTimeButton, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
-
-        // bottom area: display coordinates
-        Label statsFooter = new Label("Co-ordinates:");
-        statsFooter.getStyleClass().add("coordinates");
-        statsLayout.setBottom(statsFooter);
 
         // create and style the placeholder 
         Label statsLabel = new Label("Stats View");
@@ -205,9 +204,6 @@ public class GeneralUI extends Application {
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
 
-        // place buttons on the left side of stats layout
-        
-        
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
