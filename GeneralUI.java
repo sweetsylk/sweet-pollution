@@ -205,10 +205,9 @@ public class GeneralUI extends Application {
         // set the title of the application
         primaryStage.setTitle("Pollution Solution");
         
-        // display primaryStage
+        // set up primaryStage mainScene
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
-        primaryStage.show();
         
         //taking note of the minimum number of nodes on the stats side bar
         minStatsSideBarNodes = numberOfNodes(statsSideBar);
