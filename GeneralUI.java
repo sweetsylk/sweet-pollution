@@ -64,7 +64,6 @@ public class GeneralUI extends Application {
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
 
-
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
