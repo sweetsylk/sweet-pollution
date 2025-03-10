@@ -81,8 +81,8 @@ public class GeneralUI extends Application {
         mapSideBar.setAlignment(Pos.TOP_CENTER);
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-
-    
+        
+        
 
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
