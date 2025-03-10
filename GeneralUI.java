@@ -159,7 +159,27 @@ public class GeneralUI extends Application {
         Label statsdropdown2Label = new Label("Metric:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("Highest", "Average");
+        
+        // dropdown for "Average" option if pressed (hidden by default)
+        Label additionalDropdownLabel = new Label("View By:");
+        ComboBox<String> additionalDropdown = new ComboBox<>();
+        additionalDropdown.getItems().addAll("Area", "Period");
+        additionalDropdown.setVisible(false); // initially hidden
+        additionalDropdownLabel.setVisible(false);
 
+        // listener for the metric dropdown
+        statsdropdown2.setOnAction(event -> {
+            String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
+            if ("Average".equals(selectedMetric)) {
+                additionalDropdown.setVisible(true); // show when "Average" is selected
+                additionalDropdownLabel.setVisible(true);
+            } else {
+                additionalDropdown.setVisible(false); // hide when "Average" is not selected
+                additionalDropdownLabel.setVisible(false);
+            }
+        });
+        
+        //button to view the trends over time
         Button trendsOverTimeButton = new Button("Trends over Time");
         
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
@@ -172,7 +192,7 @@ public class GeneralUI extends Application {
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2,  trendsOverTimeButton);
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, trendsOverTimeButton, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
 
         // create and style the placeholder 
@@ -182,8 +202,6 @@ public class GeneralUI extends Application {
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
 
-        // place buttons on the left side of stats layout
-        
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
