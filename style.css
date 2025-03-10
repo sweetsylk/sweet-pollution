@@ -68,7 +68,6 @@
     -fx-padding: 10px 20px;
     -fx-border-radius: 20px; /* slighly ovular shape of button */
 }
-
 .continue-button:hover {
     -fx-background-color: #B22222; /* light red */
 }

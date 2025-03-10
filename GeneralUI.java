@@ -114,7 +114,7 @@ public class GeneralUI extends Application {
         Image londonImage = new Image(getClass().getResource("London.png").toExternalForm());
         ImageView londonImageView = new ImageView(londonImage);
 
-        // ensure the image scales properly
+        // ensure the image scales properly if true
         londonImageView.setPreserveRatio(false);
         londonImageView.setFitWidth(MAP_WIDTH);
         londonImageView.setFitHeight(MAP_HEIGHT);
@@ -122,8 +122,6 @@ public class GeneralUI extends Application {
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
-
-
 
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
@@ -142,7 +140,7 @@ public class GeneralUI extends Application {
     
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
-        statsLayout.getStyleClass().add("secondary-background");
+        statsLayout.getStyleClass().add("main-background");
 
         // create an temporarily empty sidebar for the stats tab
         VBox statsSideBar = new VBox(12);
@@ -177,20 +175,16 @@ public class GeneralUI extends Application {
                 additionalDropdownLabel.setVisible(false);
             }
         });
-        
-        //button to view the trends over time
-        Button trendsOverTimeButton = new Button("Trends over Time");
-        
+  
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
              
         statsSideBar.setPrefWidth(150);
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, trendsOverTimeButton, additionalDropdownLabel, additionalDropdown);
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
 
         // create and style the placeholder 
