@@ -50,7 +50,7 @@ public class DataHandler {
         return average;
     }
     
-    public static void getHighestPollutantLevel(String year, String pollutant) {
+    public static ArrayList<DataPoint> getHighestPollutantLevel(String year, String pollutant) {
         ArrayList<DataPoint> highestPLs = new ArrayList<>();
         String filename = "";
         switch (pollutant) {
@@ -77,6 +77,6 @@ public class DataHandler {
             highestPLs.add(data.get(i));
         }
         
-        System.out.println(highestPLs);
+        return highestPLs;
     }
 }

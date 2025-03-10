@@ -20,6 +20,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.LineChart;
 import javafx.collections.*;
 import javafx.scene.Node;
+import java.util.ArrayList;
 
 public class GeneralUI extends Application {
 
@@ -33,6 +34,8 @@ public class GeneralUI extends Application {
     private BorderPane stack = new BorderPane();
 
     private Graphs pollutionGraph = new Graphs();
+    
+    private VBox statsSideBar = new VBox(12);
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -142,7 +145,6 @@ public class GeneralUI extends Application {
         statsLayout.getStyleClass().add("secondary-background");
 
         // create an temporarily empty sidebar for the stats tab
-        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
         
@@ -170,6 +172,7 @@ public class GeneralUI extends Application {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
                 additionalDropdownLabel.setVisible(true);
             } else {
+                handleMetricBoxSelection(dropdown1, dropdown2, selectedMetric);
                 additionalDropdown.setVisible(false); // hide when "Average" is not selected
                 additionalDropdownLabel.setVisible(false);
             }
@@ -276,7 +279,15 @@ public class GeneralUI extends Application {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
 
-
+    public void handleMetricBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, String metric){
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null && metric != null){
+            if (metric.equals("Highest")){
+                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
+            }
+        }
+    }
     // Event handler for combo boxes
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
 
@@ -306,7 +317,6 @@ public class GeneralUI extends Application {
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
     
             pollutionGraph.loadData(years, pollutionLevels);
-            DataHandler.getHighestPollutantLevel(year, pollutant);
         }
     }
 
@@ -328,7 +338,12 @@ public class GeneralUI extends Application {
         }
     }
 
-
+    public void displayHighestPollutantLevels(ArrayList<DataPoint> data){
+        for (DataPoint dataPoints : data){
+            Label text = new Label("Pollutant Level: " + dataPoints.value() + "x = " + dataPoints.x() + "y = " + dataPoints.y() + "UGC: " + dataPoints.gridCode());
+            statsSideBar.getChildren().add(text);
+        }
+    }
 
     //used to launch the program
     public static void main(String[] args) {
