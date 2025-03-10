@@ -160,14 +160,14 @@ public class GeneralUI extends Application {
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("Highest", "Average");
         
-        // dropdown for "Average" option if pressed (hidden by default)
+        // dropdown for metirc depending on "Average" option if pressed (hidden by default)
         Label additionalDropdownLabel = new Label("View By:");
         ComboBox<String> additionalDropdown = new ComboBox<>();
         additionalDropdown.getItems().addAll("Area", "Period");
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
 
-        // listener for the metric dropdown
+        // listener for the metric dropdown of "Average" 
         statsdropdown2.setOnAction(event -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
