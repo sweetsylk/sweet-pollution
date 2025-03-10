@@ -22,12 +22,11 @@ public class GeneralUI extends Application {
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
     private static String filename = "";
-
     private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
-
     private Graphs pollutionGraph = new Graphs();
+    
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -69,10 +68,16 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
 
+        //buttons to turn the grid on and off for the map
+        ToggleButton mapGridOn = new ToggleButton("map grid on ");
+        ToggleButton mapGridOff = new ToggleButton("map grid off ");
+        
+        // create a toggle group of toggle buttons
+        ToggleGroup gridToggleGroup = new ToggleGroup();
 
-        //first button to turn on grid for map
-        Button mapGridOn = new Button("map grid on ");
-        Button mapGridOff = new Button("map grid off ");
+        // add buttons to the group, so only one can be set at a time
+        mapGridOn.setToggleGroup(gridToggleGroup);
+        mapGridOff.setToggleGroup(gridToggleGroup);
 
         ToggleButton heatMap = new ToggleButton("Heat Map");
 
@@ -83,17 +88,18 @@ public class GeneralUI extends Application {
         heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
 
 
+        
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
+
+
         
         // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
         dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
 
-        
-        // add the dropdown boxes to the sidebar 
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
