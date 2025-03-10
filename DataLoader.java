@@ -22,9 +22,7 @@ public class DataLoader
      * @return A DataSet object holding the complete dataset
      */
     public DataSet loadDataFile(String fileName) 
-    {
-        System.out.println("Loading file " + fileName + "...");
-        
+    {   
         URL url = getClass().getResource(fileName);
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(url.toURI()).getAbsolutePath()))) {
@@ -52,7 +50,6 @@ public class DataLoader
                     System.out.println("Skipping invalid row: " + line);
                 }
             }
-            System.out.println("Loading file... done.");
             return dataSet;
         }        
         catch(IOException | URISyntaxException e) {

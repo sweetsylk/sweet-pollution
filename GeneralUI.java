@@ -15,7 +15,11 @@ import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import java.util.List;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.LineChart;
+import javafx.collections.*;
+import javafx.scene.Node;
 
 public class GeneralUI extends Application {
 
@@ -28,8 +32,9 @@ public class GeneralUI extends Application {
 
     private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
-    private BorderPane stack = new BorderPane(); // Allows absolute positioning
+    private BorderPane stack = new BorderPane();
 
+    private Graphs pollutionGraph = new Graphs();
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
@@ -70,6 +75,10 @@ public class GeneralUI extends Application {
         mapSideBar.setAlignment(Pos.TOP_CENTER);
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+
+
+
+
 
 
         // first dropdown box, for choosing the year
@@ -142,9 +151,38 @@ public class GeneralUI extends Application {
         statsLayout.getStyleClass().add("secondary-background");
 
         // create an temporarily empty sidebar for the stats tab
-        VBox statsSideBar = new VBox();
+        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
+        
+        // first dropdown box, for choosing the year
+        Label statsdropdown1Label = new Label("Year:");
+        ComboBox<String> statsdropdown1 = new ComboBox<>();
+        statsdropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+        
+        // second dropdown box, for choosing the pollutant
+        Label statsdropdown2Label = new Label("Pollutant:");
+        ComboBox<String> statsdropdown2 = new ComboBox<>();
+        statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+
+
+        Button averagePollutionButton = new Button("Average");
+        Button highestPollutionButton = new Button("Highest");
+        Button trendsOverTimeButton = new Button("Trends over Time");
+        
+        statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        
+        
+        statsSideBar.setPrefWidth(150);
+        statsSideBar.setAlignment(Pos.TOP_CENTER);
+        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+        
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
         // bottom area: display coordinates
@@ -156,17 +194,21 @@ public class GeneralUI extends Application {
         Label statsLabel = new Label("Stats View");
         statsLabel.getStyleClass().add("content-area");
 
-        // place the stats label in the center
-        statsLayout.setCenter(statsLabel);
+        // place the stats chart in the center
+        statsLayout.setCenter(pollutionGraph.getGraph());
+
+        // place buttons on the left side of stats layout
+        
+        
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
-        
+
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
         // create the primary scene within the tab pane
-        Scene mainScene = new Scene(WelcomePane, 1600, 1400);
+        Scene mainScene = new Scene(tabPane, 1600, 1400);
         //tabPane
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -181,19 +223,24 @@ public class GeneralUI extends Application {
         primaryStage.show();
     }
 
-    private void heatMapToggle(ActionEvent actionEvent) {
-        if (heatMapOn)
-        {
-            heatMapOn = false;
-        }
-        else
-        {
-            heatMapOn = true;
+    private Node statisticsChart() {
+        NumberAxis xAxis = new NumberAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
 
-        }
-        displayData();
+        ObservableList<XYChart.Data<Number, Number>> dataList = FXCollections.observableArrayList();
+        XYChart.Series<Number, Number> series = new XYChart.Series<>("Trends", dataList);
+
+        chart.getData().add(series);
+        chart.setTitle("Pollution Levels");
+
+        return chart;
     }
 
+    private void heatMapToggle(ActionEvent actionEvent) {
+        heatMapOn = !heatMapOn;
+        displayData();
+    }
 
     // displays map grid
     private void gridOn(ActionEvent event) {
@@ -235,30 +282,37 @@ public class GeneralUI extends Application {
 
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+
         if (year != null && pollutant != null) {
             switch (pollutant) {
-            case "NO2":
-                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                break;
-            case "PM2.5":
-                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                break;
-            case "PM10":
-                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-
-                break;
-            default:
-                System.out.println("Unknown file loaded");
+                case "NO2":
+                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                    break;
+                case "PM2.5":
+                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                    break;
+                case "PM10":
+                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                    break;
+                default:
+                    System.out.println("Unknown file loaded");
+                    return;
             }
 
-            displayData();
-            }
+            // update the graph
+            DataLoader loader = new DataLoader();
+            DataSet data = loader.loadDataFile(filename);
+            List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
+            List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
+    
+            pollutionGraph.loadData(years, pollutionLevels);
+            DataHandler.getHighestPollutantLevel(year, pollutant);
         }
+    }
 
 
-    public void displayData()
-    {
-        if (!filename.equals("")){
+    public void displayData() {
+        if (!filename.isEmpty()) {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
@@ -267,12 +321,15 @@ public class GeneralUI extends Application {
             List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
 
             Platform.runLater(() -> {
-                stack.getChildren().removeIf(node -> node instanceof Shape); // Clear previous markers
-                stack.getChildren().addAll(markers); // Add new markers
+                stack.getChildren().removeIf(node -> node instanceof Shape);
+                stack.getChildren().addAll(markers);
             });
 
-    }
         }
+    }
+
+
+
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
