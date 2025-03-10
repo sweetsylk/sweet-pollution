@@ -19,16 +19,6 @@
     -fx-padding: 10px;
 }
 
-/* Buttons */    
-/*for future implementation of buttons */
-.button {
-    -fx-background-color: #E0E0E0; /* medium-light grey
-    -fx-border-radius: 5px;
-    -fx-font-weight: bold;
-}
-.button:hover {
-    -fx-background-color: #C0C0C0; /* silver */
-}
 
 /* Content Area */
 .content-area {
