@@ -21,9 +21,6 @@ import javafx.scene.chart.LineChart;
 import javafx.collections.*;
 import javafx.scene.Node;
 
-
-
-
 public class GeneralUI extends Application {
     // These are the minimum and maximum values for the northing and eastings coordinates
 
@@ -141,16 +138,11 @@ public class GeneralUI extends Application {
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
 
-        // bottom area: display coordinates
-        Label mapFooter = new Label("Co-ordinates:");
-        mapFooter.getStyleClass().add("coordinates");
-        mapLayout.setBottom(mapFooter);
-
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
         
         
-        
+    
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("secondary-background");
@@ -190,11 +182,6 @@ public class GeneralUI extends Application {
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
-        // bottom area: display coordinates
-        Label statsFooter = new Label("Co-ordinates:");
-        statsFooter.getStyleClass().add("coordinates");
-        statsLayout.setBottom(statsFooter);
-
         // create and style the placeholder 
         Label statsLabel = new Label("Stats View");
         statsLabel.getStyleClass().add("content-area");
@@ -203,7 +190,6 @@ public class GeneralUI extends Application {
         statsLayout.setCenter(pollutionGraph.getGraph());
 
         // place buttons on the left side of stats layout
-        
         
 
         // assign the completed layout to the stats tab
