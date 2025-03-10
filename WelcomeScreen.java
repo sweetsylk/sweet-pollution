@@ -31,7 +31,7 @@ public class WelcomeScreen extends Application {
 
         // when clicked, switch to the main page (GeneralUI)
         continueButton.setOnAction(e -> {
-            GeneralUI mainApp = new GeneralUI(); //instantiate the class
+            GeneralUI mainApp = new GeneralUI(); //instantiate the general UI class
             mainApp.start(primaryStage); // switch scene to main page   
         });
 
