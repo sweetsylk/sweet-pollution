@@ -63,7 +63,7 @@ public class GeneralUI extends Application {
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
-
+        
 
 
 
@@ -228,23 +228,6 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
     }
-
-
-
-    private Node statisticsChart() {
-        NumberAxis xAxis = new NumberAxis();
-        NumberAxis yAxis = new NumberAxis();
-        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
-
-        ObservableList<XYChart.Data<Number, Number>> dataList = FXCollections.observableArrayList();
-        XYChart.Series<Number, Number> series = new XYChart.Series<>("Trends", dataList);
-
-        chart.getData().add(series);
-        chart.setTitle("Pollution Levels");
-
-        return chart;
-    }
-
 
 
 
