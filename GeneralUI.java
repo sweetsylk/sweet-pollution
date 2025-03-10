@@ -14,10 +14,20 @@ import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 
 import java.util.List;
+
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.LineChart;
+import javafx.collections.*;
+import javafx.scene.Node;
+import java.util.ArrayList;
+
 import java.util.Objects;
 
 
+
 public class GeneralUI extends Application {
+
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
@@ -26,10 +36,27 @@ public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
     private Graphs pollutionGraph = new Graphs();
+
+    private VBox statsSideBar = new VBox(12);
+
     
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
+        
+        //Welcome Page not added to the start scene
+        Label projectTitleLabel = new Label("Pollution Solution \nby Ayesha, Irfan, Ridwan and Khem");
+        projectTitleLabel.setId("projectTitleLabel");
+        Label instructionsLabel = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        instructionsLabel.setId("instructionsLabel");
+        Button continueBtn = new Button("Continue");
+        continueBtn.setId("continueBtn");
+        StackPane topWelcomePane = new StackPane(projectTitleLabel);
+        StackPane centerWelcomePane = new StackPane(instructionsLabel);
+        StackPane bottomWelcomePane = new StackPane(continueBtn);
+        BorderPane WelcomePane = new BorderPane(centerWelcomePane, topWelcomePane, null, bottomWelcomePane, null);
+        WelcomePane.getStyleClass().add("main-background");
+        
         // create a tab pane for switching between pages
         TabPane tabPane = new TabPane(); 
 
@@ -40,15 +67,14 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-        
-        
-        
+
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
         // create a sidebar for dropdowns in the map tab, containing the UI vertically
+        
         VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
         mapSideBar.setPrefWidth(150);
@@ -75,7 +101,9 @@ public class GeneralUI extends Application {
         // create a toggle group of toggle buttons
         ToggleGroup gridToggleGroup = new ToggleGroup();
 
+
         // add buttons to the group, so only one can be set at a time
+
         mapGridOn.setToggleGroup(gridToggleGroup);
         mapGridOff.setToggleGroup(gridToggleGroup);
 
@@ -93,12 +121,16 @@ public class GeneralUI extends Application {
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
         
 
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
 
         
         // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
         dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+
 
         mapLayout.setLeft(mapSideBar);
 
@@ -127,15 +159,12 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
-        
-        
-    
+
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("main-background");
 
         // create an temporarily empty sidebar for the stats tab
-        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setPrefWidth(200);
         
@@ -163,6 +192,7 @@ public class GeneralUI extends Application {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
                 additionalDropdownLabel.setVisible(true);
             } else {
+                handleMetricBoxSelection(dropdown1, dropdown2, selectedMetric);
                 additionalDropdown.setVisible(false); // hide when "Average" is not selected
                 additionalDropdownLabel.setVisible(false);
             }
@@ -208,14 +238,12 @@ public class GeneralUI extends Application {
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
 
-
-
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 1600, 1400);
-        
+        //tabPane
         //connect external css file
         mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
 
@@ -232,23 +260,10 @@ public class GeneralUI extends Application {
         primaryStage.show(); // Show the new window
     }
 
-
-
-
-
-    public boolean heatMapIsOn()
-    {
-        return heatMapOn;
-    }
-
-
-
     private void heatMapToggle(ActionEvent actionEvent) {
         heatMapOn = !heatMapOn;
         displayData();
     }
-
-
 
     // displays map grid
     private void gridOn(ActionEvent event) {
@@ -274,15 +289,28 @@ public class GeneralUI extends Application {
         }
     }
 
-
+    public boolean heatMapIsOn()
+    {
+        return heatMapOn;
+    }
+    
     // removes map grid
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
 
-
+    public void handleMetricBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, String metric){
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null && metric != null){
+            if (metric.equals("Highest")){
+                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
+            }
+        }
+    }
     // Event handler for combo boxes
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
@@ -301,7 +329,6 @@ public class GeneralUI extends Application {
                     System.out.println("Unknown file loaded");
                     return;
             }
-
             // refresh heatmap and markers
             displayData();
         }
@@ -314,7 +341,7 @@ public class GeneralUI extends Application {
             // Get trend data
             List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
-            // Update the graph data
+
             pollutionGraph.loadData(years, pollutionLevels);
         }
     }
@@ -325,7 +352,7 @@ public class GeneralUI extends Application {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
-            System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+            //System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
 
             List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
 
@@ -333,10 +360,16 @@ public class GeneralUI extends Application {
                 stack.getChildren().removeIf(node -> node instanceof Shape);
                 stack.getChildren().addAll(markers);
             });
+
         }
     }
 
-
+    public void displayHighestPollutantLevels(ArrayList<DataPoint> data){
+        for (DataPoint dataPoints : data){
+            Label text = new Label("Pollutant Level: " + dataPoints.value() + "x = " + dataPoints.x() + "y = " + dataPoints.y() + "UGC: " + dataPoints.gridCode());
+            statsSideBar.getChildren().add(text);
+        }
+    }
 
     //used to launch the program
     public static void main(String[] args) {
