@@ -32,6 +32,7 @@ public class GeneralUI extends Application {
     private BorderPane stack = new BorderPane();
     private Graphs pollutionGraph = new Graphs();
     private VBox statsSideBar = new VBox(12);
+    private int minStatsSideBarNodes;
     
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -163,11 +164,11 @@ public class GeneralUI extends Application {
         additionalDropdownLabel.setVisible(false);
         
         //Listeners for the comboboxes
-        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
-        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
         
         // listener for the metric dropdown of "Average" 
-        statsdropdown2.setOnAction(_ -> {
+        statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
@@ -199,7 +200,7 @@ public class GeneralUI extends Application {
         statsLayout.setLeft(statsSideBar);
 
         //Listeners for the comboboxes
-        statsdropdown1.setOnAction(_ -> handleStatsComboBoxSelection(statsdropdown1));
+        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
 
         // bottom area: display coordinates
         Label statsFooter = new Label("Co-ordinates:");
@@ -233,6 +234,9 @@ public class GeneralUI extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
         primaryStage.show();
+        
+        //taking note of the minimum number of nodes on the stats side bar
+        minStatsSideBarNodes = numberOfNodes(statsSideBar);
         
         // Enable fullscreen AFTER switching scenes
         primaryStage.setFullScreen(true);
@@ -282,6 +286,7 @@ public class GeneralUI extends Application {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         String metric = dropdown3.getSelectionModel().getSelectedItem();
+        removeNodes();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
                 displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
@@ -354,6 +359,14 @@ public class GeneralUI extends Application {
     
     private int numberOfNodes(Pane pane){
         return pane.getChildren().size();
+    }
+    
+    private void removeNodes(){
+        if (statsSideBar.getChildren().size() > minStatsSideBarNodes){
+            for (int i=0; i <= 6; i++){
+                statsSideBar.getChildren().remove(-1);
+            }
+        }
     }
     
     //used to launch the program
