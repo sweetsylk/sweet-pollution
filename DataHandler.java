@@ -59,22 +59,8 @@ public class DataHandler {
      * 
      * @return An array list of the 10 dataPoints with the highest pollutant values
      */
-    public static ArrayList<DataPoint> getHighestPollutantLevel(String year, String pollutant) {
+    public static ArrayList<DataPoint> getHighestPollutantLevel(String filename) {
         ArrayList<DataPoint> highestPLs = new ArrayList<>();
-        String filename = "";
-        switch (pollutant) {
-                case "NO2":
-                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                    break;
-                case "PM2.5":
-                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                    break;
-                case "PM10":
-                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                    break;
-                default:
-                    System.out.println("Unknown file loaded");
-        }
         
         DataLoader loader = new DataLoader();
         DataSet dataSet = loader.loadDataFile(filename);

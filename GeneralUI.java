@@ -131,13 +131,13 @@ public class GeneralUI extends Application {
         statsLayout.getStyleClass().add("main-background");
         
         // create a sidebar for dropdowns in the stats tab, containing the UI vertically
-        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+        //statsSideBar.setPrefWidth(200);
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
@@ -277,7 +277,7 @@ public class GeneralUI extends Application {
         removeNodes();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
-                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
+                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(filename));
             }
         }
     }
@@ -341,6 +341,7 @@ public class GeneralUI extends Application {
         for (DataPoint dataPoints : data){
             Label text = new Label("Pollutant Level: " + dataPoints.value() + "x = " + dataPoints.x() + "y = " + dataPoints.y() + "UGC: " + dataPoints.gridCode());
             statsSideBar.getChildren().add(text);
+            System.out.println(numberOfNodes(statsSideBar));
         }
     }
     

@@ -18,10 +18,11 @@
     -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
     -fx-tab-max-height: 40px; /* Maximum height of the tabs */
     -fx-tab-min-height: 25px
+}
 
 /* Sidebar */
-.sidebar {
-    -fx-background-color: #C0C2C9; /* darker grey*/
+.sidebar{
+    -fx-background-color: #C0C2C9; /* darker grey */
     -fx-padding: 10px;
 }
 
