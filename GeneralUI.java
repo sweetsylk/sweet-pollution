@@ -160,14 +160,10 @@ public class GeneralUI extends Application {
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("Highest", "Average");
 
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
         Button trendsOverTimeButton = new Button("Trends over Time");
         
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         
         
@@ -176,7 +172,7 @@ public class GeneralUI extends Application {
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2,  trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
         // create and style the placeholder 
