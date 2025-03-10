@@ -46,10 +46,13 @@ public class GeneralUI extends Application {
         // create map and stats tabs
         Tab mapTab = new Tab("Map");
         Tab statsTab = new Tab("Stats");
+        
+        
 
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
+        
         
         
         // MAP TAB CREATION

@@ -13,6 +13,11 @@
     -fx-alignment: center;
 }
 
+/* TabPane */
+.tab- pane.tab-header-area{
+    -fx-alignment: center;
+}
+
 /* Sidebar */
 .sidebar {
     -fx-background-color: #C0C2C9;
