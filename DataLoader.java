@@ -23,7 +23,6 @@ public class DataLoader
      */
     public DataSet loadDataFile(String fileName) 
     {
-        System.out.println("Loading file " + fileName + "...");
         
         URL url = getClass().getResource(fileName);
 

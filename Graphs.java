@@ -2,6 +2,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Tooltip;
 import java.util.List;
 
 public class Graphs {
@@ -18,7 +20,11 @@ public class Graphs {
         series = new XYChart.Series<>();
         series.setName("Pollution Over Time");
 
+        chart.setCreateSymbols(true);
+        chart.setLegendVisible(false);
         chart.getData().add(series);
+
+        chart.setStyle("-fx-background-color: f5f5f5; -fx-border-color: black");
     }
 
     /**
@@ -30,9 +36,37 @@ public class Graphs {
         series.getData().clear();
 
         for (int i = 0; i < years.size(); i++) {
-            series.getData().add(new XYChart.Data<>(years.get(i), pollutionLevels.get(i)));
+            XYChart.Data<Number, Number> dataPoint = new XYChart.Data<>(years.get(i), pollutionLevels.get(i));
+
+            series.getData().add(dataPoint);
+            generateTooltips();
         }
     }
+
+    private void generateTooltips() {
+
+            for (XYChart.Data<Number, Number> data : series.getData()) {
+                Node node = data.getNode();
+                if (node != null) {
+                    Tooltip tooltip = new Tooltip(
+                            String.format("Year: %d\nPollution: %.2f µg/m³",
+                                    data.getXValue().intValue(),
+                                    data.getYValue().doubleValue())
+                    );
+                    Tooltip.install(node, tooltip);
+
+                    node.setOnMouseClicked(event -> {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Pollution Level");
+                        alert.setHeaderText("Year " + data.getXValue().intValue());
+                        alert.setContentText(String.format("Pollution Level: %.2f", data.getYValue().doubleValue()));
+                        alert.showAndWait();
+
+                    });
+                }
+            }
+        };
+
 
     public Node getGraph() {
         return chart;

@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,16 +9,10 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-import javafx.scene.Cursor;
 import java.util.List;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.LineChart;
-import javafx.collections.*;
-import javafx.scene.Node;
+
 
 
 
@@ -96,19 +89,8 @@ public class GeneralUI extends Application {
 
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
-        
-        
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
 
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-
-        
-        // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
@@ -174,7 +156,7 @@ public class GeneralUI extends Application {
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
         Button trendsOverTimeButton = new Button("Trends over Time");
-        
+
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
@@ -190,6 +172,10 @@ public class GeneralUI extends Application {
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
+        //Listeners for the comboboxes
+        statsdropdown1.setOnAction(event -> handleStatsComboBoxSelection(statsdropdown1, statsdropdown2));
+        statsdropdown2.setOnAction(event -> handleStatsComboBoxSelection(statsdropdown1, statsdropdown2));
+
         // bottom area: display coordinates
         Label statsFooter = new Label("Co-ordinates:");
         statsFooter.getStyleClass().add("coordinates");
@@ -202,9 +188,8 @@ public class GeneralUI extends Application {
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
 
-        // place buttons on the left side of stats layout
-        
-        
+
+
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
@@ -231,20 +216,6 @@ public class GeneralUI extends Application {
     }
 
 
-
-    private Node statisticsChart() {
-        NumberAxis xAxis = new NumberAxis();
-        NumberAxis yAxis = new NumberAxis();
-        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
-
-        ObservableList<XYChart.Data<Number, Number>> dataList = FXCollections.observableArrayList();
-        XYChart.Series<Number, Number> series = new XYChart.Series<>("Trends", dataList);
-
-        chart.getData().add(series);
-        chart.setTitle("Pollution Levels");
-
-        return chart;
-    }
 
 
 
@@ -295,7 +266,7 @@ public class GeneralUI extends Application {
 
 
     // Event handler for combo boxes
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2 ) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
@@ -317,16 +288,45 @@ public class GeneralUI extends Application {
 
             // refresh heatmap and markers
             displayData();
+        }
+    }
 
-            // update the graph
+    public void handleStatsComboBoxSelection(ComboBox<String> statsdropdown1, ComboBox<String> statsdropdown2) {
+        String year = statsdropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = statsdropdown2.getSelectionModel().getSelectedItem();
+
+        if (year != null && pollutant != null) {
+            String filename = "";
+
+            switch (pollutant) {
+                case "NO2":
+                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                    break;
+                case "PM2.5":
+                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                    break;
+                case "PM10":
+                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                    break;
+                default:
+                    System.out.println("Unknown file loaded");
+                    return;
+            }
+
+            // Load Data
             DataLoader loader = new DataLoader();
             DataSet data = loader.loadDataFile(filename);
+
+            // Get trend data
             List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
 
+            // Update the graph data
             pollutionGraph.loadData(years, pollutionLevels);
         }
     }
+
+
 
 
     public void displayData() {
@@ -338,10 +338,9 @@ public class GeneralUI extends Application {
 
             List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
 
-            Platform.runLater(() -> {
                 stack.getChildren().removeIf(node -> node instanceof Shape);
                 stack.getChildren().addAll(markers);
-            });
+            ;
         }
     }
 
