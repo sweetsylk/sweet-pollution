@@ -12,9 +12,10 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
+
 
 
 public class GeneralUI extends Application {
@@ -27,6 +28,7 @@ public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
     private Graphs pollutionGraph = new Graphs();
+    private VBox statsSideBar = new VBox(12);
     
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -41,9 +43,7 @@ public class GeneralUI extends Application {
         // prevent tabs from being closed
         mapTab.setClosable(false);
         statsTab.setClosable(false);
-        
-        
-        
+
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
@@ -68,6 +68,8 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+        
+        
 
         // create a single toggle button for the grid
         ToggleButton mapGridOn = new ToggleButton("Map Grid");
@@ -86,6 +88,7 @@ public class GeneralUI extends Application {
             }
         });
 
+        
         ToggleButton heatMap = new ToggleButton("Heat Map");
 
         dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
@@ -96,11 +99,12 @@ public class GeneralUI extends Application {
 
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
+
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
         
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+        
+
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
 
         mapLayout.setLeft(mapSideBar);
 
@@ -127,17 +131,19 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
-        
-        
-    
+
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("main-background");
-
-        // create an temporarily empty sidebar for the stats tab
+        
+        // create a sidebar for dropdowns in the stats tab, containing the UI vertically
         VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
+        statsSideBar.setAlignment(Pos.TOP_CENTER);
+        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         statsSideBar.setPrefWidth(200);
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
@@ -155,7 +161,11 @@ public class GeneralUI extends Application {
         additionalDropdown.getItems().addAll("Area", "Period");
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
-
+        
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        
         // listener for the metric dropdown of "Average" 
         statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
@@ -163,24 +173,14 @@ public class GeneralUI extends Application {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
                 additionalDropdownLabel.setVisible(true);
             } else {
+                handleMetricBoxSelection(dropdown1, dropdown2, statsdropdown2);
                 additionalDropdown.setVisible(false); // hide when "Average" is not selected
                 additionalDropdownLabel.setVisible(false);
             }
         });
 
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
-
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-
-
-        statsSideBar.setPrefWidth(150);
-        statsSideBar.setAlignment(Pos.TOP_CENTER);
-        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
@@ -199,14 +199,13 @@ public class GeneralUI extends Application {
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
 
-
-
         // FINALISING SCENE
         tabPane.getTabs().addAll(mapTab, statsTab);
 
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 1600, 1400);
         
+        //tabPane
         //connect external css file
         mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
 
@@ -242,12 +241,10 @@ public class GeneralUI extends Application {
     }
 
 
-
     private void heatMapToggle(ActionEvent actionEvent) {
         heatMapOn = !heatMapOn;
         displayData();
     }
-    
 
 
     // displays map grid
@@ -273,16 +270,25 @@ public class GeneralUI extends Application {
             }
         }
     }
-
-
+    
     // removes map grid
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
 
-
+    public void handleMetricBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3){
+        String year = dropdown1.getSelectionModel().getSelectedItem();
+        String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        String metric = dropdown3.getSelectionModel().getSelectedItem();
+        if (year != null && pollutant != null && metric != null){
+            if (metric.equals("Highest")){
+                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
+            }
+        }
+    }
     // Event handler for combo boxes
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
+
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
@@ -301,9 +307,9 @@ public class GeneralUI extends Application {
                     System.out.println("Unknown file loaded");
                     return;
             }
-
-            // refresh heatmap and markers
+         // refresh heatmap and markers
             displayData();
+            handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
         }
     }
 
@@ -314,7 +320,7 @@ public class GeneralUI extends Application {
             // Get trend data
             List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
-            // Update the graph data
+
             pollutionGraph.loadData(years, pollutionLevels);
         }
     }
@@ -325,7 +331,7 @@ public class GeneralUI extends Application {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
-            System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
+            //System.out.println("Dataset Loaded with " + dataSet.getData().size() + " data points.");
 
             List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
 
@@ -333,10 +339,16 @@ public class GeneralUI extends Application {
                 stack.getChildren().removeIf(node -> node instanceof Shape);
                 stack.getChildren().addAll(markers);
             });
+
         }
     }
 
-
+    public void displayHighestPollutantLevels(ArrayList<DataPoint> data){
+        for (DataPoint dataPoints : data){
+            Label text = new Label("Pollutant Level: " + dataPoints.value() + "x = " + dataPoints.x() + "y = " + dataPoints.y() + "UGC: " + dataPoints.gridCode());
+            statsSideBar.getChildren().add(text);
+        }
+    }
 
     //used to launch the program
     public static void main(String[] args) {

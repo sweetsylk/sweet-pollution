@@ -27,8 +27,8 @@ public class HeatmapAndMarkerGenerator     {
 
         List<Node> markers = new ArrayList<>();
 
-        System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
-        System.out.println("Total Data Points: " + data.getData().size());
+        // System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
+        // System.out.println("Total Data Points: " + data.getData().size());
 
         int validPoints = 0;
 
@@ -58,7 +58,7 @@ public class HeatmapAndMarkerGenerator     {
 
         }
 
-        System.out.println("Valid Data Points Used: " + validPoints);
+        //System.out.println("Valid Data Points Used: " + validPoints);
 
         return markers;
 

@@ -21,9 +21,8 @@ public class DataLoader
      * 
      * @return A DataSet object holding the complete dataset
      */
-    public DataSet loadDataFile(String fileName) 
-    {
-        
+    public DataSet loadDataFile(String fileName){ 
+
         URL url = getClass().getResource(fileName);
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(url.toURI()).getAbsolutePath()))) {
@@ -48,18 +47,18 @@ public class DataLoader
                 try {
                     dataSet.addData(values);
                 } catch (NumberFormatException e) {
-                    System.out.println("Skipping invalid row: " + line);
+                    //System.out.println("Skipping invalid row: " + line);
                 }
             }
-            System.out.println("Loading file... done.");
             return dataSet;
         }        
         catch(IOException | URISyntaxException e) {
-            System.out.println("Could not read file " + fileName);
+            //System.out.println("Could not read file " + fileName);
             e.printStackTrace();
             return null;
         }
     }
+    
     
     /**
      * Read one piece of information out of the header of the data file.
@@ -72,11 +71,12 @@ public class DataLoader
      * @return The data from the next header line of the file currently being read.
      */
     private String readDataHeader(BufferedReader br)
-        throws java.io.IOException
-    {
-        String line = br.readLine();
-        String[] values = line.split(COMMA_DELIMITER);
-        return values[0];
-    }
+            throws java.io.IOException
+        {
+            String line = br.readLine();
+            String[] values = line.split(COMMA_DELIMITER);
+            return values[0];
+        }
+    
 
 }
