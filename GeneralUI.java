@@ -22,8 +22,6 @@ import javafx.collections.*;
 import javafx.scene.Node;
 
 public class GeneralUI extends Application {
-    // These are the minimum and maximum values for the northing and eastings coordinates
-
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
@@ -153,15 +151,14 @@ public class GeneralUI extends Application {
         statsSideBar.setPrefWidth(200);
         
         // first dropdown box, for choosing the year
-        Label statsdropdown1Label = new Label("Year:");
+        Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
-        statsdropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+        statsdropdown1.getItems().addAll("NO2", "PM10", "PM2.5");
         
-        // second dropdown box, for choosing the pollutant
-        Label statsdropdown2Label = new Label("Pollutant:");
+        //second dropdown box, for highest or average 
+        Label statsdropdown2Label = new Label("Metric:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
-        statsdropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-
+        statsdropdown2.getItems().addAll("Highest", "Average");
 
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
@@ -179,7 +176,7 @@ public class GeneralUI extends Application {
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
-        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1,statsdropdown2Label,statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
+        statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, averagePollutionButton, highestPollutionButton, trendsOverTimeButton);
         statsLayout.setLeft(statsSideBar);
 
         // create and style the placeholder 
