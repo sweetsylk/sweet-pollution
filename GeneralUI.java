@@ -68,11 +68,16 @@ public class GeneralUI extends Application {
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
 
-
         //buttons to turn the grid on and off for the map
         ToggleButton mapGridOn = new ToggleButton("map grid on ");
         ToggleButton mapGridOff = new ToggleButton("map grid off ");
         
+        // create a toggle group of toggle buttons
+        ToggleGroup gridToggleGroup = new ToggleGroup();
+
+        // add buttons to the group, so only one can be set at a time
+        mapGridOn.setToggleGroup(gridToggleGroup);
+        mapGridOff.setToggleGroup(gridToggleGroup);
 
         ToggleButton heatMap = new ToggleButton("Heat Map");
 
