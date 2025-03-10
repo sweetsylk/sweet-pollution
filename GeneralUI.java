@@ -12,21 +12,18 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
-
 import java.util.List;
-
 import java.util.ArrayList;
-
 import java.util.Objects;
 
 
 
 public class GeneralUI extends Application {
-
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
     private static String filename = "";
+    private boolean gridMapOn = false;
     private boolean heatMapOn = false;
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
@@ -34,24 +31,13 @@ public class GeneralUI extends Application {
 
     private VBox statsSideBar = new VBox(12);
 
+
+    private int minStatsSideBarNodes;
+
     
     // load and display the map image
     public void start(Stage primaryStage) {
         // INITIALISATION
-        
-        //Welcome Page not added to the start scene
-        Label projectTitleLabel = new Label("Pollution Solution \nby Ayesha, Irfan, Ridwan and Khem");
-        projectTitleLabel.setId("projectTitleLabel");
-        Label instructionsLabel = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-        instructionsLabel.setId("instructionsLabel");
-        Button continueBtn = new Button("Continue");
-        continueBtn.setId("continueBtn");
-        StackPane topWelcomePane = new StackPane(projectTitleLabel);
-        StackPane centerWelcomePane = new StackPane(instructionsLabel);
-        StackPane bottomWelcomePane = new StackPane(continueBtn);
-        BorderPane WelcomePane = new BorderPane(centerWelcomePane, topWelcomePane, null, bottomWelcomePane, null);
-        WelcomePane.getStyleClass().add("main-background");
-        
         // create a tab pane for switching between pages
         TabPane tabPane = new TabPane(); 
 
@@ -69,7 +55,6 @@ public class GeneralUI extends Application {
         mapLayout.getStyleClass().add("main-background");
 
         // create a sidebar for dropdowns in the map tab, containing the UI vertically
-        
         VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
         mapSideBar.setPrefWidth(150);
@@ -88,10 +73,6 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
-
-        //buttons to turn the grid on and off for the map
-        ToggleButton mapGridOn = new ToggleButton("map grid on ");
-        ToggleButton mapGridOff = new ToggleButton("map grid off ");
         
         // create a toggle group of toggle buttons
         ToggleGroup gridToggleGroup = new ToggleGroup();
@@ -102,23 +83,45 @@ public class GeneralUI extends Application {
         mapGridOn.setToggleGroup(gridToggleGroup);
         mapGridOff.setToggleGroup(gridToggleGroup);
 
+
+        // create a single toggle button for the grid
+        ToggleButton mapGridOn = new ToggleButton("Map Grid");
+
+
+        // set default state as off
+        mapGridOn.setSelected(false);
+
+        // event handler for toggling the button
+        mapGridOn.setOnAction(event -> {
+            gridMapToggle();
+            if (gridMapIsOn() == true) {
+                gridOn(null);  // grid ON effect
+            } else {
+                gridOff(null); // when toggled off, call grid OFF effect
+            }
+        });
+
+        
         ToggleButton heatMap = new ToggleButton("Heat Map");
 
         dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        mapGridOff.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
 
 
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
 
-    
-        
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
+
         // add the dropdown boxes to the sidebar 
+
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
         
+        
+
+        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
 
         mapLayout.setLeft(mapSideBar);
 
@@ -138,8 +141,6 @@ public class GeneralUI extends Application {
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
         stack.getChildren().add(grid);
-        mapGridOn.setOnAction(this::gridOn);
-        mapGridOff.setOnAction(this::gridOff);
         heatMap.setOnAction(this::heatMapToggle);
 
         // place the image in the center of the map layout
@@ -151,10 +152,15 @@ public class GeneralUI extends Application {
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("main-background");
-
-        // create an temporarily empty sidebar for the stats tab
+        
+        // create a sidebar for dropdowns in the stats tab, containing the UI vertically
+        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
+        statsSideBar.setAlignment(Pos.TOP_CENTER);
+        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         statsSideBar.setPrefWidth(200);
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
@@ -195,23 +201,16 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
 
+
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
         Button trendsOverTimeButton = new Button("Trends over Time");
         
         
         //assigning fixed width and binding to stats side bar
+
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        averagePollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        highestPollutionButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-        trendsOverTimeButton.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-
-
-        statsSideBar.setPrefWidth(150);
-        statsSideBar.setAlignment(Pos.TOP_CENTER);
-        statsSideBar.prefHeightProperty().bind(stack.heightProperty());
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
         
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
@@ -235,6 +234,7 @@ public class GeneralUI extends Application {
 
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 1600, 1400);
+        
         //tabPane
         //connect external css file
         mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
@@ -247,15 +247,38 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
         
+        //taking note of the minimum number of nodes on the stats side bar
+        minStatsSideBarNodes = numberOfNodes(statsSideBar);
+        
         // Enable fullscreen AFTER switching scenes
         primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
     }
 
+    
+    public boolean gridMapIsOn()
+    {
+        return gridMapOn;
+    }
+
+
+
+    private void gridMapToggle() {
+        gridMapOn = !gridMapOn;
+    }
+
+
+    public boolean heatMapIsOn()
+    {
+        return heatMapOn;
+    }
+
+
     private void heatMapToggle(ActionEvent actionEvent) {
         heatMapOn = !heatMapOn;
         displayData();
     }
+
 
     // displays map grid
     private void gridOn(ActionEvent event) {
@@ -280,11 +303,6 @@ public class GeneralUI extends Application {
             }
         }
     }
-
-    public boolean heatMapIsOn()
-    {
-        return heatMapOn;
-    }
     
     // removes map grid
     private void gridOff(ActionEvent event) {
@@ -295,6 +313,7 @@ public class GeneralUI extends Application {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         String metric = dropdown3.getSelectionModel().getSelectedItem();
+        removeNodes();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
                 displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
@@ -365,7 +384,19 @@ public class GeneralUI extends Application {
             statsSideBar.getChildren().add(text);
         }
     }
-
+    
+    private int numberOfNodes(Pane pane){
+        return pane.getChildren().size();
+    }
+    
+    private void removeNodes(){
+        if (statsSideBar.getChildren().size() > minStatsSideBarNodes){
+            for (int i=0; i <= 6; i++){
+                statsSideBar.getChildren().remove(-1);
+            }
+        }
+    }
+    
     //used to launch the program
     public static void main(String[] args) {
         launch(args);
