@@ -119,12 +119,8 @@ public class GeneralUI extends Application {
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, mapGridOff, heatMap);
-        
 
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
-
+    
         
         // add the dropdown boxes to the sidebar 
         //Listeners for the comboboxes
@@ -184,7 +180,11 @@ public class GeneralUI extends Application {
         additionalDropdown.getItems().addAll("Area", "Period");
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
-
+        
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        
         // listener for the metric dropdown of "Average" 
         statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
@@ -192,7 +192,7 @@ public class GeneralUI extends Application {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
                 additionalDropdownLabel.setVisible(true);
             } else {
-                handleMetricBoxSelection(dropdown1, dropdown2, selectedMetric);
+                handleMetricBoxSelection(dropdown1, dropdown2, statsdropdown2);
                 additionalDropdown.setVisible(false); // hide when "Average" is not selected
                 additionalDropdownLabel.setVisible(false);
             }
@@ -299,9 +299,10 @@ public class GeneralUI extends Application {
     grid.getChildren().clear(); // Completely removes all grid elements
     }
 
-    public void handleMetricBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, String metric){
+    public void handleMetricBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3){
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        String metric = dropdown3.getSelectionModel().getSelectedItem();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
                 displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
@@ -309,7 +310,7 @@ public class GeneralUI extends Application {
         }
     }
     // Event handler for combo boxes
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
 
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
@@ -330,7 +331,9 @@ public class GeneralUI extends Application {
                     return;
             }
             // refresh heatmap and markers
+             // refresh heatmap and markers
             displayData();
+            handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
         }
     }
 
