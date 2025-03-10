@@ -63,7 +63,7 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
-    -fx-border-radius: 20px; /* slighly ovular shape of button */
+    -fx-border-radius: 20px; /* slighly ovular edges of button */
 }
 
 .continue-button:hover {
