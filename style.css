@@ -4,14 +4,6 @@
     -fx-background-color: #F0F0F0; /* light grey */
 }
                                          
-/* Coordinates */
-.coordinates {
-    -fx-padding: 10px;
-    -fx-background-color: #C0C0C0; /* silver */
-    -fx-font-size: 12px;
-    -fx-text-fill: #505050;
-    -fx-alignment: center;
-}
 
 /* Sidebar */
 .sidebar {
@@ -36,27 +28,40 @@
     -fx-padding: 20px;
 }
 
-/* Secondary Background */
-.secondary-background {
-    -fx-background-color: #F0F0F0; /* light grey */
-}
 
-#projectTitleLabel {
-    -fx-font-size: 56px;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
+/* Welcome Title */
+.welcome-title {
+    -fx-font-size: 36px;
     -fx-font-weight: bold;
+    -fx-fill: #303030; /* dark grey */
 }
 
-#instructionsLabel {
-    -fx-font-size: 20px;
-    -fx-alignment: center;
+/* Welcome Subtitle */
+.welcome-subtitle {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-fill: #505050; /* medium grey */
+}
+
+/* Welcome Text */
+.welcome-text {
+    -fx-font-size: 14px;
+    -fx-fill: #606060; /* lighter grey */
     -fx-text-alignment: center;
+    -fx-padding: 10px;
 }
 
-#continueBtn {
-    -fx-alignment: center;
-    -fx-font-size: 30px;
-    -fx-background-color: #1087ef
+/* Continue Button */
+.continue-button {
+    -fx-background-color: #8B0000; /* dark red */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 20px; /* slighly ovular shape of button */
+}
+
+.continue-button:hover {
+    -fx-background-color: #B22222; /* light red */
 }
 

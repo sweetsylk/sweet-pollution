@@ -16,6 +16,5 @@ public class LocationHandler {
         DataLoader loader = new DataLoader();
 
         DataSet dataSet = loader.loadDataFile(fileName);
-        System.out.println(dataSet);
     }
 }

@@ -47,13 +47,13 @@ public class DataLoader
                 try {
                     dataSet.addData(values);
                 } catch (NumberFormatException e) {
-                    System.out.println("Skipping invalid row: " + line);
+                    //System.out.println("Skipping invalid row: " + line);
                 }
             }
             return dataSet;
         }        
         catch(IOException | URISyntaxException e) {
-            System.out.println("Could not read file " + fileName);
+            //System.out.println("Could not read file " + fileName);
             e.printStackTrace();
             return null;
         }
