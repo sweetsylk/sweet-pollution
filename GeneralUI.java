@@ -15,11 +15,6 @@ import javafx.event.ActionEvent;
 
 import java.util.List;
 
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.LineChart;
-import javafx.collections.*;
-import javafx.scene.Node;
 import java.util.ArrayList;
 
 import java.util.Objects;
@@ -182,11 +177,11 @@ public class GeneralUI extends Application {
         additionalDropdownLabel.setVisible(false);
         
         //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown1.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown2.setOnAction(_ -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
         
         // listener for the metric dropdown of "Average" 
-        statsdropdown2.setOnAction(e -> {
+        statsdropdown2.setOnAction(_ -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
             if ("Average".equals(selectedMetric)) {
                 additionalDropdown.setVisible(true); // show when "Average" is selected
@@ -220,7 +215,7 @@ public class GeneralUI extends Application {
         statsLayout.setLeft(statsSideBar);
 
         //Listeners for the comboboxes
-        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
+        statsdropdown1.setOnAction(_ -> handleStatsComboBoxSelection(statsdropdown1));
 
         // bottom area: display coordinates
         Label statsFooter = new Label("Co-ordinates:");
