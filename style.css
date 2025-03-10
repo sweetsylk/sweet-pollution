@@ -4,17 +4,25 @@
     -fx-background-color: #F0F0F0; /* light grey */
 }
                                          
+/* Coordinates */
+.coordinates {
+    -fx-padding: 10px;
+    -fx-background-color: #C0C0C0; /* silver */
+    -fx-font-size: 12px;
+    -fx-text-fill: #505050;
+    -fx-alignment: center;
+}
 
 /* Sidebar */
 .sidebar {
-    -fx-background-color: #C0C2C9;
+    -fx-background-color: #C0C2C9; /* darker grey*/
     -fx-padding: 10px;
 }
 
 /* Buttons */    
 /*for future implementation of buttons */
 .button {
-    -fx-background-color: #E0E0E0; 
+    -fx-background-color: #E0E0E0; /* medium-light grey
     -fx-border-radius: 5px;
     -fx-font-weight: bold;
 }

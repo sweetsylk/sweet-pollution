@@ -22,8 +22,7 @@ public class WelcomeScreen extends Application {
         subtitle.getStyleClass().add("welcome-subtitle");
 
         // create description text
-        Text description = new Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-                                  + "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        Text description = new Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
         description.getStyleClass().add("welcome-text");
 
         // create continue button to switch scene when pressed
@@ -44,7 +43,7 @@ public class WelcomeScreen extends Application {
         welcomeScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         // set up and display the stage
-        primaryStage.setTitle("Pollution Solution - Welcome");
+        primaryStage.setTitle("Welcome - Pollution Solution");
         primaryStage.setScene(welcomeScene);
         primaryStage.setResizable(true);
         primaryStage.show();

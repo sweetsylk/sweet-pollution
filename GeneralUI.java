@@ -215,8 +215,8 @@ public class GeneralUI extends Application {
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
-        // enable automatic set the title of the application
-        primaryStage.setTitle("Pollution Application");
+        // set the title of the application
+        primaryStage.setTitle("Pollution Solution");
         
         // display primaryStage
         primaryStage.setScene(mainScene);
