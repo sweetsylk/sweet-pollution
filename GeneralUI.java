@@ -72,8 +72,6 @@ public class GeneralUI extends Application {
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
 
-
-
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -107,11 +105,6 @@ public class GeneralUI extends Application {
         dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
         dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
 
-
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-        dropdown2.setOnAction(event -> handleComboBoxSelection(dropdown1, dropdown2));
-
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -125,8 +118,6 @@ public class GeneralUI extends Application {
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
-
-
 
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
@@ -175,8 +166,8 @@ public class GeneralUI extends Application {
         tabPane.getTabs().addAll(mapTab, statsTab);
 
         // create the primary scene within the tab pane
-        Scene mainScene = new Scene(tabPane, 1600, 1400);
-        //WelcomePane
+        Scene mainScene = new Scene(WelcomePane, 1600, 1400);
+        //tabPane
         //connect external css file
         mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -189,11 +180,6 @@ public class GeneralUI extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
     }
-    public boolean heatMapIsOn()
-    {
-        return heatMapOn;
-    }
-
 
     private void heatMapToggle(ActionEvent actionEvent) {
         if (heatMapOn)
@@ -233,7 +219,11 @@ public class GeneralUI extends Application {
         }
     }
 
-
+    public boolean heatMapIsOn()
+    {
+        return heatMapOn;
+    }
+    
     // removes map grid
     private void gridOff(ActionEvent event) {
     grid.getChildren().clear(); // Completely removes all grid elements
@@ -262,8 +252,6 @@ public class GeneralUI extends Application {
             }
 
             displayData();
-
-
             }
         }
 
@@ -282,8 +270,8 @@ public class GeneralUI extends Application {
                 stack.getChildren().removeIf(node -> node instanceof Shape); // Clear previous markers
                 stack.getChildren().addAll(markers); // Add new markers
             });
-        }
 
+    }
         }
     //used to launch the program
     public static void main(String[] args) {
