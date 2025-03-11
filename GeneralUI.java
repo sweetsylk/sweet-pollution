@@ -185,6 +185,9 @@ public class GeneralUI extends Application {
 
         // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
+        
+        syncPollutantSelection(dropdown2, statsdropdown1); // sync pollutant in map to stats
+        syncPollutantSelection(statsdropdown1, dropdown2); // sync pollutant in stats to map
 
         
         
@@ -351,6 +354,16 @@ public class GeneralUI extends Application {
                 statsSideBar.getChildren().remove(-1);
             }
         }
+    }
+    
+    // create a shared pollutant selection listener to make sure both tabs have same pollutant type 
+    private void syncPollutantSelection(ComboBox<String> source, ComboBox<String> target) {
+    source.setOnAction(event -> {
+            String selectedPollutant = source.getSelectionModel().getSelectedItem();
+            if (selectedPollutant != null && !selectedPollutant.equals(target.getSelectionModel().getSelectedItem())) {
+                target.getSelectionModel().select(selectedPollutant);  // sync selection
+            }
+    });
     }
     
     //used to launch the program
