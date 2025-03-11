@@ -97,7 +97,7 @@ public class GeneralUI extends Application {
 
         
         // add the dropdown boxes to the sidebar, containing the UI vertically 
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
+        mapSideBar.getChildren().addAll(dropdown2Label, dropdown2, dropdown1Label, dropdown1, mapGridOn, heatMap);
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
