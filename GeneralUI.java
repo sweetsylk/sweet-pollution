@@ -361,7 +361,7 @@ public class GeneralUI extends Application {
     source.setOnAction(event -> {
             String selectedPollutant = source.getSelectionModel().getSelectedItem();
             if (selectedPollutant != null && !selectedPollutant.equals(target.getSelectionModel().getSelectedItem())) {
-                target.getSelectionModel().select(selectedPollutant);  // sync selection
+                target.getSelectionModel().select(selectedPollutant);  // sync selection by choosing same option
             }
     });
     }
