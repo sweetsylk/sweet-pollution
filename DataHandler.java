@@ -90,21 +90,7 @@ public class DataHandler {
         
         for (int year = 2018; year <= 2023; year++)
         {
-            String filename;
-            switch (pollutant)
-            {   case "NO2":
-                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                    break;
-                case "PM2.5":
-                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                    break;
-                case "PM10":
-                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                    break;
-                default:
-                    System.out.println("Unknown file loaded");
-                    continue;
-            }
+            String filename = generateFilename(pollutant, String.valueOf(year));
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
             List<DataPoint> data = dataSet.getData();
