@@ -228,8 +228,11 @@ public class GeneralUI extends Application {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
 =======
 >>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
         //creating buttons for stats display 
@@ -363,6 +366,7 @@ public class GeneralUI extends Application {
 
         if (year != null && pollutant != null) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
             switch (pollutant) {
@@ -381,6 +385,8 @@ public class GeneralUI extends Application {
             }
             // refresh heatmap and markers
             displayData();
+=======
+>>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
 =======
 >>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
