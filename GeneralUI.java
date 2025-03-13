@@ -226,6 +226,9 @@ public class GeneralUI extends Application {
         dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
+
+
+
         //creating buttons for stats display 
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
@@ -356,6 +359,7 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
+
 
             switch (pollutant) {
                 case "NO2":
