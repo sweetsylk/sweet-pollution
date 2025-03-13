@@ -69,9 +69,11 @@ public class GeneralUI extends Application {
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
+
         
         
         //CREATION OF DROPDOWN BOXES FOR SIDEBAR    
+        
         
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
@@ -82,6 +84,7 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+
         //modifying the display of the comboboxes
         dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
@@ -100,6 +103,7 @@ public class GeneralUI extends Application {
         
         // set default state for map grid as off
         mapGridOn.setSelected(false);
+
         // event handler for toggling the button for the map grid
         mapGridOn.setOnAction(e -> {
             gridMapToggle();
@@ -170,9 +174,7 @@ public class GeneralUI extends Application {
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;        
         
         
         
@@ -198,11 +200,12 @@ public class GeneralUI extends Application {
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
         
-        
-        
+
         //Listeners for the comboboxes
         dropdown1.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
+
+        
         
 
         // listener for the metric dropdown of "Average" 
@@ -268,7 +271,7 @@ public class GeneralUI extends Application {
         // set the title of the application
         primaryStage.setTitle("Pollution Solution");
         
-        
+
         // set up primaryStage mainScene
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
@@ -369,7 +372,6 @@ public class GeneralUI extends Application {
                     return;
             }
             // refresh heatmap and markers
-
             displayData();
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
         }
