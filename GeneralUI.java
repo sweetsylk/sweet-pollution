@@ -220,7 +220,8 @@ public class GeneralUI extends Application {
                 additionalDropdownLabel.setVisible(false);
             }
         });
-
+        
+        
         //Listeners for the comboboxes
         dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
