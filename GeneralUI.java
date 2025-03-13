@@ -227,14 +227,8 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
-=======
->>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
         //creating buttons for stats display 
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
@@ -365,30 +359,6 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-            switch (pollutant) {
-                case "NO2":
-                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                    break;
-                case "PM2.5":
-                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                    break;
-                case "PM10":
-                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                    break;
-                default:
-                    System.out.println("Unknown file loaded");
-                    return;
-            }
-            // refresh heatmap and markers
-            displayData();
-=======
->>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
-=======
->>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
             displayData();
         }
