@@ -24,7 +24,13 @@ public class DataLoader
     public DataSet loadDataFile(String fileName){ 
 
         URL url = getClass().getResource(fileName);
-
+        
+        if (url == null) {
+            System.out.println("Could not find file " + fileName);
+            return null;
+        }
+        
+        
         try (BufferedReader br = new BufferedReader(new FileReader(new File(url.toURI()).getAbsolutePath()))) {
             // the first four lines of the file hold special information; read them in:
             String pollutant = readDataHeader(br);
@@ -47,13 +53,13 @@ public class DataLoader
                 try {
                     dataSet.addData(values);
                 } catch (NumberFormatException e) {
-                    //System.out.println("Skipping invalid row: " + line);
+                    System.out.println("Skipping invalid row: " + line);
                 }
             }
             return dataSet;
         }        
         catch(IOException | URISyntaxException e) {
-            //System.out.println("Could not read file " + fileName);
+            System.out.println("Could not read file " + fileName);
             e.printStackTrace();
             return null;
         }
