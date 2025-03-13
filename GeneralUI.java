@@ -287,23 +287,10 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-        switch (pollutant) {
-            case "NO2":
-                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                break;
-            case "PM2.5":
-                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                break;
-            case "PM10":
-                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                break;
-            default:
-                System.out.println("Unknown file loaded");
-                return;
-        }
+         String filename = DataHandler.generateFilename(pollutant, year); 
          // refresh heatmap and markers
-            displayData();
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
+            displayData();
         }
     }
 
