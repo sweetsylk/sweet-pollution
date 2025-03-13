@@ -227,8 +227,11 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
         //creating buttons for stats display 
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
@@ -359,6 +362,7 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
+<<<<<<< HEAD
 
 
             switch (pollutant) {
@@ -377,6 +381,8 @@ public class GeneralUI extends Application {
             }
             // refresh heatmap and markers
             displayData();
+=======
+>>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
             displayData();
         }

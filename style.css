@@ -19,6 +19,10 @@
     -fx-tab-max-height: 40px; /* Maximum height of the tabs */
     -fx-tab-min-height: 25px  /* Minimum height of the tabs */
 }    
+<<<<<<< HEAD
+=======
+
+>>>>>>> b88f1bf0252967d9b26f714808abcee522d83351
 .border-pane{
     -fx-border-color: #336699;
     /*-fx-border-padding: 35;*/
