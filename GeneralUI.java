@@ -285,7 +285,7 @@ public class GeneralUI extends Application {
         // Enable fullscreen AFTER switching scenes
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
-        //primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
     }
 
