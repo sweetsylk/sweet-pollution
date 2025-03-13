@@ -4,6 +4,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
+
 import java.util.List;
 
 public class Graphs {
@@ -35,13 +36,27 @@ public class Graphs {
     public void loadData(List<Integer> years, List<Double> pollutionLevels) {
         series.getData().clear();
 
+        if (pollutionLevels.isEmpty()) {
+            return;
+        }
+
+        double minPollution = pollutionLevels.stream().min(Double::compare).orElse(0.0);
+        double maxPollution = pollutionLevels.stream().max(Double::compare).orElse(100.0);
+
+        // Adjust y-axis dynamically
+        yAxis.setAutoRanging(false); // Disable automatic scaling
+        yAxis.setLowerBound(0);
+        yAxis.setUpperBound(15);
+        yAxis.setTickUnit(0.25);
+
         for (int i = 0; i < years.size(); i++) {
             XYChart.Data<Number, Number> dataPoint = new XYChart.Data<>(years.get(i), pollutionLevels.get(i));
-
             series.getData().add(dataPoint);
-            generateTooltips();
         }
+
+        generateTooltips();
     }
+
 
     private void generateTooltips() {
 
@@ -65,7 +80,7 @@ public class Graphs {
                     });
                 }
             }
-        };
+        }
 
 
     public Node getGraph() {

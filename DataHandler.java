@@ -1,19 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Comparator;
 
 public class DataHandler {
 
-    public static List<Double> getPollutantTrends(String pollutant) {
+    public static List<Double> getAveragePollutantTrends(String pollutant) {
         List<Double> trend = new ArrayList<>();
 
-        for (int year = 2018; year <= 2023; year++)
-        {
+        for (int year = 2018; year <= 2023; year++) {
             String filename;
-            switch (pollutant)
-            {
+            switch (pollutant) {
                 case "NO2":
                     filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
                     break;
@@ -24,54 +20,65 @@ public class DataHandler {
                     filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
                     break;
                 default:
-                    System.out.println("Unknown file loaded");
+                    System.out.println("Unknown pollutant selected.");
                     continue;
             }
 
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
-            trend.add(getAveragePollutantLevel(dataSet)); // Now loads correct dataset
+            if (dataSet != null && !dataSet.getData().isEmpty()) {
+                trend.add(getAveragePollutantLevel(dataSet));
+            } else {
+                trend.add(0.0); // Add zero if no data available
+            }
         }
-
         return trend;
     }
 
+    public static List<DataPoint> getHighestPollutantLevels(String pollutant) {
+        List<DataPoint> highestPLs = new ArrayList<>();
+
+        for (int year = 2018; year <= 2023; year++) {
+            String filename;
+            switch (pollutant) {
+                case "NO2":
+                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                    break;
+                case "PM2.5":
+                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                    break;
+                case "PM10":
+                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                    break;
+                default:
+                    System.out.println("Unknown pollutant selected.");
+                    continue;
+            }
+
+            DataLoader loader = new DataLoader();
+            DataSet dataSet = loader.loadDataFile(filename);
+
+            if (dataSet != null && !dataSet.getData().isEmpty()) {
+                highestPLs.addAll(getHighestPollutantLevel(dataSet));
+            }
+        }
+
+        return highestPLs;
+    }
 
     public static double getAveragePollutantLevel(DataSet data) {
         double total = 0.0;
-
-        for (DataPoint point : data.getData())
-        {
+        for (DataPoint point : data.getData()) {
             total += point.value();
         }
-        double average = 0;
-        if (!data.getData().isEmpty())
-        {
-            average = total / data.getData().size();
-        }
-
-        return average;
+        return data.getData().isEmpty() ? 0 : total / data.getData().size();
     }
-    
-    /** 
-     * 
-     * 
-     * @return An array list of the 10 dataPoints with the highest pollutant values
-     */
-    public static ArrayList<DataPoint> getHighestPollutantLevel(String filename) {
-        ArrayList<DataPoint> highestPLs = new ArrayList<>();
-        
-        DataLoader loader = new DataLoader();
-        DataSet dataSet = loader.loadDataFile(filename);
-        List<DataPoint> data = dataSet.getData();
-        
-        data.sort(Comparator.comparingDouble(DataPoint::value).reversed());
-        
-        for(int i=0; i<=10; i++){
-            highestPLs.add(data.get(i));
-        }
-        
-        return highestPLs;
+
+    public static List<DataPoint> getHighestPollutantLevel(DataSet data) {
+        List<DataPoint> sortedData = new ArrayList<>(data.getData());
+        sortedData.sort(Comparator.comparingDouble(DataPoint::value).reversed());
+
+        return sortedData.subList(0, Math.min(10, sortedData.size())); // Prevents out-of-bounds
     }
 }
