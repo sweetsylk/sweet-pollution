@@ -28,8 +28,12 @@ public class GeneralUI extends Application {
     private GridPane grid = new GridPane();
     private BorderPane stack = new BorderPane();
     private Graphs pollutionGraph = new Graphs();
+
     private VBox statsSideBar = new VBox(12);
+
+
     private int minStatsSideBarNodes;
+
     
     // load and display the map image
     public void start(Stage primaryStage) {
@@ -45,20 +49,32 @@ public class GeneralUI extends Application {
         mapTab.setClosable(false);
         statsTab.setClosable(false);
 
+        
+        
         // MAP TAB CREATION
         // creating the borderpane
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
+        
+        //CREATION OF MAP SIDEBAR 
+        
         // create a sidebar for dropdowns in the map tab, containing the UI vertically
         VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
+        
+        //setting mapside bar's display preferences
         mapSideBar.setPrefWidth(150);
         mapSideBar.setAlignment(Pos.TOP_CENTER);
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
 
+        
+        
+        //CREATION OF DROPDOWN BOXES FOR SIDEBAR    
+        
+        
         // first dropdown box, for choosing the year
         Label dropdown1Label = new Label("Year:");
         ComboBox<String> dropdown1 = new ComboBox<>();
@@ -68,15 +84,27 @@ public class GeneralUI extends Application {
         Label dropdown2Label = new Label("Pollutant:");
         ComboBox<String> dropdown2 = new ComboBox<>();
         dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+
+        //modifying the display of the comboboxes
+        dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+
         
+        //CREATION OF TOGGLE BUTTONS FOR MAP GRID AND HEAT MAP
+        
+        // create a toggle group of toggle buttons
+        ToggleGroup gridToggleGroup = new ToggleGroup();
+        
+        //MAPGRID
         // create a single toggle button for the grid
         ToggleButton mapGridOn = new ToggleButton("Map Grid");
-
-
-        // set default state as off
+        
+        mapGridOn.setToggleGroup(gridToggleGroup);
+        
+        // set default state for map grid as off
         mapGridOn.setSelected(false);
 
-        // event handler for toggling the button
+        // event handler for toggling the button for the map grid
         mapGridOn.setOnAction(e -> {
             gridMapToggle();
             if (gridMapIsOn() == true) {
@@ -87,19 +115,26 @@ public class GeneralUI extends Application {
         });
 
         
+        
+        //HEATMAP        
+        //Create sinlge toggle button for the heatmap 
         ToggleButton heatMap = new ToggleButton("Heat Map");
-
-        dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        
+        //modifying the display of the map grid and heatmap
         mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-
+        //made heatbutton usable
+        heatMap.setOnAction(this::heatMapToggle);
 
         
+        
+        //MAPSIDEBAR
         // add the dropdown boxes to the sidebar, containing the UI vertically 
         mapSideBar.getChildren().addAll(dropdown2Label, dropdown2, dropdown1Label, dropdown1, mapGridOn, heatMap);
         mapLayout.setLeft(mapSideBar);
-
+    
+        
+        //LONDON IMAGE
         // load and display the map image
         Image londonImage = new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()); // this is to prevent null exceptions
         ImageView londonImageView = new ImageView(londonImage);
@@ -112,40 +147,51 @@ public class GeneralUI extends Application {
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
+        
 
+        
+        //NEW PANE TO FIT MULTIPLE DISPLAYS ON CENTER BORDER PANE
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
         stack.getChildren().add(grid);
-        heatMap.setOnAction(this::heatMapToggle);
-
+        
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
-
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
+        
+        
+        
 
         // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("main-background");
         
+        
+        //STATS SIDE BAR CREATION
         // create a sidebar for dropdowns in the stats tab, containing the UI vertically
+        //modifying display of sidebar
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        //statsSideBar.setPrefWidth(200);
+        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));;        
+        
+        
+        
+        //CREATION OF STATS DROPDOWN BOXES
         
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
         ComboBox<String> statsdropdown1 = new ComboBox<>();
         statsdropdown1.getItems().addAll("NO2", "PM10", "PM2.5");
         
+        
         //second dropdown box, for highest or average 
         Label statsdropdown2Label = new Label("Metric:");
         ComboBox<String> statsdropdown2 = new ComboBox<>();
         statsdropdown2.getItems().addAll("Highest", "Average");
+        
+        
         
         // dropdown for metirc depending on "Average" option if pressed (hidden by default)
         Label additionalDropdownLabel = new Label("View By:");
@@ -154,10 +200,14 @@ public class GeneralUI extends Application {
         additionalDropdown.setVisible(false); // initially hidden
         additionalDropdownLabel.setVisible(false);
         
+
         //Listeners for the comboboxes
         dropdown1.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
         dropdown2.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
+
         
+        
+
         // listener for the metric dropdown of "Average" 
         statsdropdown2.setOnAction(e -> {
             String selectedMetric = statsdropdown2.getSelectionModel().getSelectedItem();
@@ -170,13 +220,31 @@ public class GeneralUI extends Application {
                 additionalDropdownLabel.setVisible(false);
             }
         });
+        
+        
+        //Listeners for the comboboxes
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
+
+
+
+        //creating buttons for stats display 
+        Button averagePollutionButton = new Button("Average");
+        Button highestPollutionButton = new Button("Highest");
+        Button trendsOverTimeButton = new Button("Trends over Time");
+        
+        
+        //assigning fixed width and binding to stats side bar
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         
+        
+        //adding functioning buttons and labels to stats side bar
         statsSideBar.getChildren().addAll(statsdropdown1Label, statsdropdown1, statsdropdown2Label, statsdropdown2, additionalDropdownLabel, additionalDropdown);
         statsLayout.setLeft(statsSideBar);
 
+        
         //Listeners for the comboboxes
         statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1));
 
@@ -198,22 +266,26 @@ public class GeneralUI extends Application {
         // create the primary scene within the tab pane
         Scene mainScene = new Scene(tabPane, 800, 600);
         
-        //tabPane
+        
         //connect external css file
         mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
 
         // set the title of the application
         primaryStage.setTitle("Pollution Solution");
         
+
         // set up primaryStage mainScene
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
+
         
         //taking note of the minimum number of nodes on the stats side bar
         minStatsSideBarNodes = numberOfNodes(statsSideBar);
         
         // Enable fullscreen AFTER switching scenes
-        primaryStage.setFullScreen(true);
+        primaryStage.setResizable(true);
+        primaryStage.centerOnScreen();
+        //primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
     }
 
@@ -287,23 +359,10 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-        switch (pollutant) {
-            case "NO2":
-                filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-                break;
-            case "PM2.5":
-                filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-                break;
-            case "PM10":
-                filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-                break;
-            default:
-                System.out.println("Unknown file loaded");
-                return;
-        }
-         // refresh heatmap and markers
-            displayData();
+            String filename = DataHandler.generateFilename(pollutant, year);
+            
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
+            displayData();
         }
     }
 
