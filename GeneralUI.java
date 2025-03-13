@@ -170,6 +170,8 @@ public class GeneralUI extends Application {
                 additionalDropdownLabel.setVisible(false);
             }
         });
+        
+        
 
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
@@ -287,8 +289,8 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-        switch (pollutant) {
-            case "NO2":
+        switch (pollutant)
+        {   case "NO2":
                 filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
                 break;
             case "PM2.5":
@@ -302,8 +304,8 @@ public class GeneralUI extends Application {
                 return;
         }
          // refresh heatmap and markers
-            displayData();
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
+            displayData();
         }
     }
 

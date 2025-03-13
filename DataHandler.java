@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Comparator;
+import java.util.Optional;
 
 public class DataHandler {
 
@@ -13,8 +14,7 @@ public class DataHandler {
         {
             String filename;
             switch (pollutant)
-            {
-                case "NO2":
+            {   case "NO2":
                     filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
                     break;
                 case "PM2.5":
@@ -55,8 +55,7 @@ public class DataHandler {
     }
     
     /** 
-     * 
-     * 
+     * Get the ten highest pollutant values
      * @return An array list of the 10 dataPoints with the highest pollutant values
      */
     public static ArrayList<DataPoint> getHighestPollutantLevel(String filename) {
@@ -73,5 +72,40 @@ public class DataHandler {
         }
         
         return highestPLs;
+    }
+    
+    public static double getAveragePollutantLevelForArea(String pollutant, int UGC){    
+        double total = 0.0;
+        int numberOfYears = 0;
+        
+        for (int year = 2018; year <= 2023; year++)
+        {
+            String filename;
+            switch (pollutant)
+            {   case "NO2":
+                    filename = String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                    break;
+                case "PM2.5":
+                    filename = String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                    break;
+                case "PM10":
+                    filename = String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                    break;
+                default:
+                    System.out.println("Unknown file loaded");
+                    continue;
+            }
+            DataLoader loader = new DataLoader();
+            DataSet dataSet = loader.loadDataFile(filename);
+            List<DataPoint> data = dataSet.getData();
+            
+            Optional<DataPoint> result = data.stream().filter(dataPoint -> dataPoint.gridCode() == UGC).findFirst();
+            if (result.isPresent()){
+                total += result.get().value();
+                numberOfYears += 1;
+            }
+        }
+        double average = total / numberOfYears;
+        return average;
     }
 }
