@@ -80,12 +80,14 @@ public class GeneralUI extends Application {
 
         // add buttons to the group, so only one can be set at a time
 
-        mapGridOn.setToggleGroup(gridToggleGroup);
-        mapGridOff.setToggleGroup(gridToggleGroup);
+        
 
 
         // create a single toggle button for the grid
         ToggleButton mapGridOn = new ToggleButton("Map Grid");
+        
+        mapGridOn.setToggleGroup(gridToggleGroup);
+        
 
 
         // set default state as off
@@ -115,14 +117,6 @@ public class GeneralUI extends Application {
 
         mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
 
-        // add the dropdown boxes to the sidebar 
-
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
-        
-        
-
-        mapSideBar.getChildren().addAll(dropdown1Label, dropdown1, dropdown2Label, dropdown2, mapGridOn, heatMap);
-
         mapLayout.setLeft(mapSideBar);
 
         // load and display the map image
@@ -137,6 +131,7 @@ public class GeneralUI extends Application {
         // map image scales with window
         londonImageView.fitWidthProperty().bind(stack.widthProperty());
         londonImageView.fitHeightProperty().bind(stack.heightProperty());
+        
 
         // use a stack pane to fit grid map onto image
         stack.getChildren().add(londonImageView);
@@ -154,13 +149,11 @@ public class GeneralUI extends Application {
         statsLayout.getStyleClass().add("main-background");
         
         // create a sidebar for dropdowns in the stats tab, containing the UI vertically
-        VBox statsSideBar = new VBox(12);
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        statsSideBar.setPrefWidth(200);
-        statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
+        //statsSideBar.setPrefWidth(200);
         
         // first dropdown box, for choosing the year
         Label statsdropdown1Label = new Label("Pollutant:");
@@ -245,13 +238,15 @@ public class GeneralUI extends Application {
         // display primaryStage
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
-        primaryStage.show();
+        
         
         //taking note of the minimum number of nodes on the stats side bar
         minStatsSideBarNodes = numberOfNodes(statsSideBar);
         
         // Enable fullscreen AFTER switching scenes
-        primaryStage.setFullScreen(true);
+        primaryStage.setResizable(true);
+        primaryStage.centerOnScreen();
+        //primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
     }
 
@@ -316,7 +311,7 @@ public class GeneralUI extends Application {
         removeNodes();
         if (year != null && pollutant != null && metric != null){
             if (metric.equals("Highest")){
-                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(year, pollutant));
+                displayHighestPollutantLevels(DataHandler.getHighestPollutantLevel(filename));
             }
         }
     }
@@ -382,6 +377,7 @@ public class GeneralUI extends Application {
         for (DataPoint dataPoints : data){
             Label text = new Label("Pollutant Level: " + dataPoints.value() + "x = " + dataPoints.x() + "y = " + dataPoints.y() + "UGC: " + dataPoints.gridCode());
             statsSideBar.getChildren().add(text);
+            System.out.println(numberOfNodes(statsSideBar));
         }
     }
     

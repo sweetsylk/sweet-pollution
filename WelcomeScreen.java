@@ -28,19 +28,23 @@ public class WelcomeScreen extends Application {
         // create continue button to switch scene when pressed
         Button continueButton = new Button("Continue");
         continueButton.getStyleClass().add("continue-button");
-
+        
+        Button instructionsButton = new Button("Instructions");
+        instructionsButton.getStyleClass().add("continue-button");
+        
+        
         // when clicked, switch to the main page (GeneralUI)
         continueButton.setOnAction(e -> {
 
 
             GeneralUI mainApp = new GeneralUI(); //instantiate the general UI class
-
-
+            
+            
             mainApp.start(primaryStage); // switch scene to main page   
         });
 
         // add all elements to layout vertically
-        welcomeLayout.getChildren().addAll(title, subtitle, description, continueButton);
+        welcomeLayout.getChildren().addAll(title, subtitle, description, continueButton, instructionsButton);
 
         // create scene for welcome screen
         Scene welcomeScene = new Scene(welcomeLayout, 800, 600);
