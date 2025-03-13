@@ -290,11 +290,18 @@ public class GeneralUI extends Application {
 
 
     private void heatMapToggle(ActionEvent actionEvent) {
-        heatMapOn = !heatMapOn;
-        if (filename != null) {
-            displayData(filename);
+        if (filename == null || filename.isEmpty()) {
+            System.out.println("No dataset selected for heatmap!");
+            return;
         }
+
+        heatMapOn = !heatMapOn;  // Toggle the heatmap state
+
+        // 🔹 Ensure data updates correctly
+        displayData(filename);
     }
+
+
 
 
     // displays map grid
@@ -342,23 +349,23 @@ public class GeneralUI extends Application {
 
     // Event handler for combo boxes
     public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
-
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
-            String filename = DataHandler.generateFilename(pollutant, year);
+            filename = DataHandler.generateFilename(pollutant, year);
+
             displayData(filename);
         }
     }
-
 
     public void displayData(String filename) {
         if (!filename.isEmpty()) {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
 
-            List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapIsOn(), dataSet);
+            // Generate heatmap or marker-based visualization
+            List<Node> markers = HeatmapAndMarkerGenerator.loadData(heatMapOn, dataSet);
 
             Platform.runLater(() -> {
                 stack.getChildren().removeIf(node -> node instanceof Shape);
@@ -366,6 +373,7 @@ public class GeneralUI extends Application {
             });
         }
     }
+
 
     public void displayHighestPollutantLevels(ArrayList<Double> data) {
         for (Double value : data) {
