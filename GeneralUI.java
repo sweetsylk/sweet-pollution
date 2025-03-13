@@ -357,6 +357,8 @@ public class GeneralUI extends Application {
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
+            String filename = DataHandler.generateFilename(pollutant, year);
+            
             handleMetricBoxSelection(dropdown1, dropdown2, dropdown3);
             displayData();
         }
