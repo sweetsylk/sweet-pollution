@@ -18,16 +18,18 @@
     -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
     -fx-tab-max-height: 40px; /* Maximum height of the tabs */
     -fx-tab-min-height: 25px  /* Minimum height of the tabs */
-    
+}    
 .border-pane{
     -fx-border-color: #336699;
     /*-fx-border-padding: 35;*/
     -fx-border-style: solid;
+    -fx-tab-min-height: 25px
+
 }
 
 /* Sidebar */
-.sidebar {
-    -fx-background-color: #C0C2C9; /* darker grey*/
+.sidebar{
+    -fx-background-color: #C0C2C9; /* darker grey */
     -fx-padding: 10px;
 }
 
@@ -68,7 +70,7 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
-    -fx-border-radius: 20px; /* slighly ovular shape of button */
+    -fx-border-radius: 20px; /* slighly ovular edges of button */
 }
 
 .continue-button:hover {
