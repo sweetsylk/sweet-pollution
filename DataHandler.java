@@ -24,9 +24,12 @@ public class DataHandler {
         return (ArrayList<Double>) trend;
     }
 
-    // Gets the highest pollutant trend over years
-    public static ArrayList<Double> getHighestPollutantTrends(String pollutant) {
-        List<Double> trend = new ArrayList<>();
+    /**
+     * Finds the data points with the ten highest pollutant levels through all the years
+     * @return a list of the ten data points with the highest pollutant levels
+     */
+    public static ArrayList<DataPoint> getHighestPollutantTrends(String pollutant) {
+        ArrayList<DataPoint> trend = new ArrayList<>();
 
         for (int year_index = 2018; year_index <= 2023; year_index++) {
             String year = String.valueOf(year_index);
@@ -37,14 +40,28 @@ public class DataHandler {
 
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
-            ArrayList<Double> highestPollutantData = getHighestPollutantLevel(dataSet);
-
+            ArrayList<DataPoint> highestPollutantData = getHighestPollutantLevel(dataSet);
             if (!highestPollutantData.isEmpty()) {
-                trend.add(highestPollutantData.get(0)); // Store the highest value
+                if (trend.size() < 10){
+                    for (int i = 0; trend.size() + i < 10; i++){
+                        trend.add(highestPollutantData.get(i));
+                    }
+                }
+                else{
+                    for(int i = 0; i <= 10; i++){
+                        if (trend.get(i).value() < highestPollutantData.get(i).value()){
+                            trend.set(i, highestPollutantData.get(i));
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }                
             }
+            trend.sort(Comparator.comparingDouble(DataPoint::value).reversed());
         }
 
-        return (ArrayList<Double>) trend;
+        return trend;
     }
 
     // Generates the correct filename for a given pollutant and year
@@ -70,22 +87,32 @@ public class DataHandler {
 
         return data.getData().isEmpty() ? 0 : total / data.getData().size();
     }
+    
+    /**
+     * Gets the average pollutant level of all the locations in a single year
+     * @return the average pollutant level of every location for that year
+     */
+    public static double getAveragePollutantLevelByPeriod(String pollutant, String year){
+        String filename = generateFilename(pollutant, String.valueOf(year));
+        DataLoader loader = new DataLoader();
+        DataSet dataSet = loader.loadDataFile(filename);
+        return getAveragePollutantLevel(dataSet);
+    }
 
     /**
-     * Get the ten highest pollutant values
+     * Gets the data points with the highest 10 pollutant levels 
      * @return A list of the 10 highest pollutant values
      */
-    public static ArrayList<Double> getHighestPollutantLevel(DataSet dataset) {
-        ArrayList<Double> highestPLs = new ArrayList<>();
+    public static ArrayList<DataPoint> getHighestPollutantLevel(DataSet dataset) {
+        ArrayList<DataPoint> highestPLs = new ArrayList<>();
 
         List<DataPoint> data = dataset.getData();
         data.sort(Comparator.comparingDouble(DataPoint::value).reversed());
-
-        int maxElements = Math.min(10, data.size());
-        for (int i = 0; i < maxElements; i++) {
-            highestPLs.add(data.get(i).value());
+       
+        
+        for (int i = 0; i < 10; i++) {
+            highestPLs.add(data.get(i));
         }
-
         return highestPLs;
     }
 
@@ -107,6 +134,6 @@ public class DataHandler {
             }
         }
 
-        return numberOfYears == 0 ? 0.0 : total / numberOfYears;
+        return numberOfYears == 0 ? 0.0 :total / numberOfYears;
     }
 }
