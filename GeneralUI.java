@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -193,8 +196,8 @@ public class GeneralUI extends Application {
 
 
         //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(statsdropdown1, statsdropdown2, statsdropdown2));
+        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
+        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2));
 
 
         // listener for the metric dropdown of "Average"
@@ -211,15 +214,10 @@ public class GeneralUI extends Application {
         });
 
 
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
+        Button fetchLiveDataButton = new Button("Fetch Real-Time Pollution Data");
+        fetchLiveDataButton.setOnAction(e -> fetchRealTimeData());
+        statsSideBar.getChildren().add(fetchLiveDataButton);
 
-
-        //creating buttons for stats display
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
-        Button trendsOverTimeButton = new Button("Trends over Time");
 
 
         //assigning fixed width and binding to stats side bar
@@ -339,7 +337,7 @@ public class GeneralUI extends Application {
         if (pollutant != null && metric != null) {
             if (metric.equals("Highest")) {
                 displayHighestPollutantLevels(new ArrayList<>(DataHandler.getHighestPollutantTrends(pollutant)));
-            } else {
+            } else if (metric.equals("Average"))  {
                 List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
                 List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
                 pollutionGraph.loadData(years, pollutionLevels);
@@ -348,7 +346,7 @@ public class GeneralUI extends Application {
     }
 
     // Event handler for combo boxes
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
+    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
 
@@ -404,6 +402,36 @@ public class GeneralUI extends Application {
             }
         });
     }
+
+    private void fetchRealTimeData() {
+        Platform.runLater(() -> {
+            JSONArray pollutionData = APIHandler.fetchAirPollutionData();
+            if (pollutionData == null) {
+                System.out.println("⚠Failed to fetch data.");
+                return;
+            }
+
+            statsSideBar.getChildren().clear(); // Clear previous results
+
+            for (int i = 0; i < pollutionData.length(); i++) {
+                JSONObject cityData = pollutionData.getJSONObject(i);
+                String location = cityData.getString("location");
+                JSONArray measurements = cityData.getJSONArray("measurements");
+
+                for (int j = 0; j < measurements.length(); j++) {
+                    JSONObject measurement = measurements.getJSONObject(j);
+                    String pollutant = measurement.getString("parameter").toUpperCase();
+                    double value = measurement.getDouble("value");
+                    String unit = measurement.getString("unit");
+
+                    // Display the data in the sidebar
+                    Label label = new Label(String.format("%s - %s: %.2f %s", location, pollutant, value, unit));
+                    statsSideBar.getChildren().add(label);
+                }
+            }
+        });
+    }
+
 
     //used to launch the program
     public static void main(String[] args) {

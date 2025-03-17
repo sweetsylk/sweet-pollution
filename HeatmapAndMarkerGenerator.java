@@ -1,4 +1,6 @@
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
@@ -27,10 +29,6 @@ public class HeatmapAndMarkerGenerator     {
 
         List<Node> markers = new ArrayList<>();
 
-        // System.out.println("Checking dataset: " + data.getPollutant() + " " + data.getYear());
-        // System.out.println("Total Data Points: " + data.getData().size());
-
-        int validPoints = 0;
 
         for (DataPoint point : data.getData()) {
             double easting = point.x();
@@ -87,9 +85,22 @@ public class HeatmapAndMarkerGenerator     {
     public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
         // Tooltip for pollution data
         Tooltip tooltip = new Tooltip(
-                String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ",
-                        data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(),point.y(), point.gridCode()));
+                String.format("%s (%s) \nPollution: %.2f %s \nX: %d\nY: %d\n GridCode: %d",
+                        data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode())
+        );
         Tooltip.install(marker, tooltip);
+
+
+        marker.setOnMouseClicked((MouseEvent event) -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pollution Data");
+            alert.setHeaderText("Pollution Details for Selected Location");
+            alert.setContentText(
+                    String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d",
+                            data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode())
+            );
+            alert.showAndWait();
+        });
     }
     public static void generateCircle(double x, double y, double pollution, List <Node> markers, DataPoint point, DataSet data, boolean heatMap)
     {
