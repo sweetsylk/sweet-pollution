@@ -32,11 +32,14 @@ public class GeneralUI extends Application {
     private VBox statsSideBar = new VBox(12);
 
 
-    private int minStatsSideBarNodes;
+    private boolean statsDataDisplaying;
+    private boolean averageDisplaying;
 
 
     // load and display the map image
     public void start(Stage primaryStage) {
+        statsDataDisplaying = false;
+        
         // INITIALISATION
         // create a tab pane for switching between pages
         TabPane tabPane = new TabPane();
@@ -167,7 +170,7 @@ public class GeneralUI extends Application {
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        ;
+        
 
 
         //CREATION OF STATS DROPDOWN BOXES
@@ -207,7 +210,7 @@ public class GeneralUI extends Application {
                 additionalDropdown.setVisible(false); // hide when "Average" is not selected
                 additionalDropdownLabel.setVisible(false);
             }
-            handleStatsComboBoxSelection(statsdropdown1, statsdropdown2);
+            handleStatsComboBoxSelection(statsdropdown1, dropdown1, statsdropdown2, additionalDropdown);
         });
 
 
@@ -233,8 +236,10 @@ public class GeneralUI extends Application {
 
 
         //Listeners for the comboboxes
-        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1, statsdropdown2));
-
+        statsdropdown1.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1, dropdown1, statsdropdown2, additionalDropdown));
+        
+        
+        additionalDropdown.setOnAction(e -> handleStatsComboBoxSelection(statsdropdown1, dropdown1, statsdropdown2, additionalDropdown));
         // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
 
@@ -265,7 +270,6 @@ public class GeneralUI extends Application {
 
 
         //taking note of the minimum number of nodes on the stats side bar
-        minStatsSideBarNodes = numberOfNodes(statsSideBar);
 
         // Enable fullscreen AFTER switching scenes
         primaryStage.setResizable(true);
@@ -283,12 +287,16 @@ public class GeneralUI extends Application {
         gridMapOn = !gridMapOn;
     }
 
-
+    /**
+     * returns weather the heat map is on or off
+     */
     public boolean heatMapIsOn() {
         return heatMapOn;
     }
 
-
+    /**
+     * Turns the heatmap on and off
+     */
     private void heatMapToggle(ActionEvent actionEvent) {
         if (filename == null || filename.isEmpty()) {
             System.out.println("No dataset selected for heatmap!");
@@ -304,7 +312,9 @@ public class GeneralUI extends Application {
 
 
 
-    // displays map grid
+    /**
+     * displays map grid
+     */
     private void gridOn(ActionEvent event) {
         grid.getChildren().clear();
 
@@ -328,27 +338,52 @@ public class GeneralUI extends Application {
         }
     }
 
-    // removes map grid
+    /**
+     * removes the map grid
+     */
     private void gridOff(ActionEvent event) {
         grid.getChildren().clear(); // Completely removes all grid elements
     }
-
-    public void handleStatsComboBoxSelection(ComboBox<String> statsdropdown1, ComboBox<String> statsdropdown2) {
-        String pollutant = statsdropdown1.getSelectionModel().getSelectedItem();
+    
+    /**
+     * Handles the events for each combo box when something has been selected from one of them
+     */
+    public void handleStatsComboBoxSelection(ComboBox<String> pollutantDropDown, ComboBox<String> yearDropDown, ComboBox<String> statsdropdown2, ComboBox<String> additionalDropdown) {
+        String pollutant = pollutantDropDown.getSelectionModel().getSelectedItem();
+        String year = yearDropDown.getSelectionModel().getSelectedItem();
         String metric = statsdropdown2.getSelectionModel().getSelectedItem();
-        if (pollutant != null && metric != null) {
+        String measure = additionalDropdown.getSelectionModel().getSelectedItem();
+        if (pollutant != null && metric != null && year != null) {
             if (metric.equals("Highest")) {
                 displayHighestPollutantLevels(new ArrayList<>(DataHandler.getHighestPollutantTrends(pollutant)));
             } else {
                 List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
                 List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
                 pollutionGraph.loadData(years, pollutionLevels);
+                System.out.println(measure);
+                if ("period".equals(measure)){
+                    displayAveragePollutantLevels(DataHandler.getAveragePollutantLevelByPeriod(pollutant, year), year, pollutant);
+                }
             }
         }
     }
-
+    
+    /**
+     * Creates labels for the average pollutant level and displays it
+     */
+    private void displayAveragePollutantLevels(double value, String year, String pollutant)
+    {   
+        if(statsDataDisplaying){
+            removeNodes();
+        }
+        Label text = new Label("Average " + pollutant + " level for " + year + ": " + value);
+        statsSideBar.getChildren().add(text);
+        statsDataDisplaying = true;
+        averageDisplaying = true;
+    }
+    
     // Event handler for combo boxes
-    public void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
+    private void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
         String metric = dropdown3.getSelectionModel().getSelectedItem();
@@ -361,7 +396,10 @@ public class GeneralUI extends Application {
             displayData(filename);
         }
     }
-
+    
+    /**
+     * Displays the markers on the map
+     */
     public void displayData(String filename) {
         if (!filename.isEmpty()) {
             DataLoader loader = new DataLoader();
@@ -377,28 +415,44 @@ public class GeneralUI extends Application {
         }
     }
 
-
-    public void displayHighestPollutantLevels(ArrayList<Double> data) {
-        for (Double value : data) {
-            Label text = new Label("Pollutant Level: " + value);
+    /**
+     * Created labels to display the data the ten highest pollutant levels
+     */
+    private void displayHighestPollutantLevels(ArrayList<DataPoint> data) {
+        if(statsDataDisplaying){
+            removeNodes();
+        }
+        for (DataPoint dataPoint : data) {
+            Label text = new Label("Pollutant Level: " + dataPoint.value() + " Unique Grid Code: " + dataPoint.gridCode());
             statsSideBar.getChildren().add(text);
-            System.out.println(numberOfNodes(statsSideBar));
         };
+        statsDataDisplaying = true;
+        averageDisplaying = false;
     }
-
-    private int numberOfNodes(Pane pane) {
-        return pane.getChildren().size();
-    }
-
+    
+    /**
+     * Removes nodes from the stats sidebar when changing between displaying different metrics of data
+     * The amount of nodes needed to be removed are based on the nodes that previously displayed 
+     */
     private void removeNodes() {
-        if (statsSideBar.getChildren().size() > minStatsSideBarNodes) {
-            for (int i = 0; i <= 6; i++) {
-                statsSideBar.getChildren().remove(-1);
+        int paneSize = statsSideBar.getChildren().size();
+        int numToRemove = 0;
+        if (averageDisplaying){
+            numToRemove = 1;
+        }
+        else{
+            numToRemove = 10;
+        }
+        if (paneSize > numToRemove) {
+            for (int i = 0; i <= numToRemove; i++) {
+                statsSideBar.getChildren().remove(paneSize - 1 - i);
             }
         }
     }
 
-    // create a shared pollutant selection listener to make sure both tabs have same pollutant type
+    /**
+     * create a shared pollutant selection listener to make sure both pollutant combo boxes have same pollutant type
+     */
     private void syncPollutantSelection(ComboBox<String> source, ComboBox<String> target) {
         source.setOnAction(event -> {
             String selectedPollutant = source.getSelectionModel().getSelectedItem();
