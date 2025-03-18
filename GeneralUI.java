@@ -222,7 +222,6 @@ public class GeneralUI extends Application {
         //creating buttons for stats display
         Button averagePollutionButton = new Button("Average");
         Button highestPollutionButton = new Button("Highest");
-        Button trendsOverTimeButton = new Button("Trends over Time");
 
 
         //assigning fixed width and binding to stats side bar
