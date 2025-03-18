@@ -219,11 +219,6 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
 
-        //creating buttons for stats display
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
-
-
         //assigning fixed width and binding to stats side bar
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
