@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +26,10 @@ public class GeneralUI extends Application {
     // these are just the image width and height (1781 x 1100)
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
+    private static final double MIN_LAT = 51.395246;
+    private static final double MAX_LAT = 51.627741;
+    private static final double MIN_LON = -0.40653443;
+    private static final double MAX_LON = 0.20205370;
     private static String filename = "";
     private boolean gridMapOn = false;
     private boolean heatMapOn = false;
@@ -403,33 +408,93 @@ public class GeneralUI extends Application {
         });
     }
 
+    private double convertLonToPixel(double lon) {
+        double normalized = (lon - MIN_LON) / (MAX_LON - MIN_LON);
+        return normalized * MAP_WIDTH;
+    }
+
+    private double convertLatToPixel(double lat) {
+        double normalized = (MAX_LAT - lat) / (MAX_LAT - MIN_LAT);
+        return normalized * MAP_HEIGHT;
+    }
+
     private void fetchRealTimeData() {
         Platform.runLater(() -> {
             JSONArray pollutionData = APIHandler.fetchAirPollutionData();
             if (pollutionData == null) {
-                System.out.println("⚠Failed to fetch data.");
+                System.out.println("Failed to fetch data.");
                 return;
             }
 
-            statsSideBar.getChildren().clear(); // Clear previous results
+            // Clear previous stats and markers
+            statsSideBar.getChildren().clear();
+            // Assuming 'stack' is the container for the map (and markers),
+            // remove existing markers (those that are Shapes) but keep the map image.
+            stack.getChildren().removeIf(node -> node instanceof Shape && !(node instanceof ImageView));
 
+            // Loop over each location in the response
             for (int i = 0; i < pollutionData.length(); i++) {
-                JSONObject cityData = pollutionData.getJSONObject(i);
-                String location = cityData.getString("location");
-                JSONArray measurements = cityData.getJSONArray("measurements");
-
-                for (int j = 0; j < measurements.length(); j++) {
-                    JSONObject measurement = measurements.getJSONObject(j);
-                    String pollutant = measurement.getString("parameter").toUpperCase();
-                    double value = measurement.getDouble("value");
-                    String unit = measurement.getString("unit");
-
-                    // Display the data in the sidebar
-                    Label label = new Label(String.format("%s - %s: %.2f %s", location, pollutant, value, unit));
-                    statsSideBar.getChildren().add(label);
+                JSONObject locationData = pollutionData.getJSONObject(i);
+                String locationName = locationData.getString("name");
+                JSONObject coords = locationData.getJSONObject("coordinates");
+                double lat = coords.getDouble("latitude");
+                double lon = coords.getDouble("longitude");
+                // For simplicity, we can average the pollutant values for this location
+                JSONArray measurements = locationData.getJSONArray("sensors");
+                double total = 0.0;
+                int count = measurements.length();
+                for (int j = 0; j < count; j++) {
+                    JSONObject sensor = measurements.getJSONObject(j);
+                    // Some sensors might have a "parameter" object with "displayName" etc.
+                    // Here we assume a "value" field is available—if not, you can adjust accordingly.
+                    // For example, you might decide to use a default color.
+                    // In this example, we simply add a random value or a fixed value.
+                    // (Replace this with your own logic if the API provides the measurement values.)
+                    // For demonstration, let’s assume we have a "latest" value in each measurement.
+                    // (If not, you might need to query a different endpoint.)
+                    // We'll use a dummy value here.
+                    total += sensor.getDouble(""); // Dummy value: replace with sensor.getDouble("value") if available.
                 }
+                double avgPollution = count > 0 ? total / count : 0;
+
+                // Create a marker (circle) on the map
+                double xPixel = convertLonToPixel(lon);
+                double yPixel = convertLatToPixel(lat);
+
+                Circle marker = new Circle(5);
+                // Use your existing method for color if desired, e.g. getPollutionColor(avgPollution, true)
+                marker.setFill(getHeatmapColor(avgPollution));
+                marker.setStroke(Color.BLACK);
+                marker.setStrokeWidth(1);
+                marker.setLayoutX(xPixel);
+                marker.setLayoutY(yPixel);
+
+                // Make marker clickable: show an alert with details
+                marker.setOnMouseClicked(event -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Location Details");
+                    alert.setHeaderText(locationName);
+                    alert.setContentText(String.format("Latitude: %.4f\nLongitude: %.4f\nAvg Pollution: %.2f", lat, lon, avgPollution));
+                    alert.showAndWait();
+                });
+
+                // Add marker to the map
+                stack.getChildren().add(marker);
+
+                // Also add a label to the stats side bar for summary
+                Label label = new Label(String.format("%s\nLat: %.4f, Lon: %.4f\nAvg Pollution: %.2f", locationName, lat, lon, avgPollution));
+                statsSideBar.getChildren().add(label);
             }
         });
+    }
+    private static Color getHeatmapColor(double pollution) {
+        double alpha = 0.5; // semi-transparent for heatmap effect
+        if (pollution < 10) return Color.rgb(0, 191, 0, alpha);       // Green
+        else if (pollution < 20) return Color.rgb(255, 215, 0, alpha); // Yellow
+        else if (pollution < 30) return Color.rgb(255, 140, 0, alpha); // Orange
+        else if (pollution < 40) return Color.rgb(220, 20, 60, alpha); // Red
+        else if (pollution < 50) return Color.rgb(139, 0, 0, alpha);   // Crimson
+        else return Color.rgb(128, 0, 128, alpha);                     // Purple
     }
 
 

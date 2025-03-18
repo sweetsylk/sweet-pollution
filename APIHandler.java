@@ -8,7 +8,7 @@ import org.json.JSONObject;
 public class APIHandler {
 
     // Updated endpoint for OpenAQ measurements for London (v2).
-    private static final String API_URL = "https://api.openaq.org/v2/measurements?city=London&limit=5&parameter=no2,pm10,pm25";
+    private static final String API_URL = "https://api.openaq.org/v3/locations?bbox=-0.40653443,51.395246,0.20205370,51.627741&limit=100";
     private static final String API_KEY = "b761039efe38ef19516f67876743392777d4a895c2416e81dd9441cdddacab9b";
 
     public static JSONArray fetchAirPollutionData() {
@@ -17,7 +17,6 @@ public class APIHandler {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
-            // Set your API key in the header (adjust the header name if needed)
             conn.setRequestProperty("x-api-key", API_KEY);
 
             int responseCode = conn.getResponseCode();
