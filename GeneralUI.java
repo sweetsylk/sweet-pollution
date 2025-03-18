@@ -453,7 +453,7 @@ public class GeneralUI extends Application {
                     // For demonstration, let’s assume we have a "latest" value in each measurement.
                     // (If not, you might need to query a different endpoint.)
                     // We'll use a dummy value here.
-                    total += sensor.getDouble(""); // Dummy value: replace with sensor.getDouble("value") if available.
+                    total += 20; // Dummy value: replace with sensor.getDouble("value") if available.
                 }
                 double avgPollution = count > 0 ? total / count : 0;
 
