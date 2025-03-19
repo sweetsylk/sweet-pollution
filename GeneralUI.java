@@ -409,86 +409,104 @@ public class GeneralUI extends Application {
     }
 
     private double convertLonToPixel(double lon) {
+        lon += 0.0001;
         double normalized = (lon - MIN_LON) / (MAX_LON - MIN_LON);
         return normalized * MAP_WIDTH;
     }
 
     private double convertLatToPixel(double lat) {
+        lat += 0.0001;
         double normalized = (MAX_LAT - lat) / (MAX_LAT - MIN_LAT);
         return normalized * MAP_HEIGHT;
     }
 
+    /**
+     * This method calls the fetchairpollution data method from the APIhandler to get the data of locations
+     * then it checks for sensor IDS which store unique measurements
+     * then it makes the point and stuff
+     * this will need to be refactored to have better design qualities
+     */
     private void fetchRealTimeData() {
         Platform.runLater(() -> {
-            JSONArray pollutionData = APIHandler.fetchAirPollutionData();
-            if (pollutionData == null) {
-                System.out.println("Failed to fetch data.");
+            // Fetch location data (this is used to then get the sensor)
+            JSONArray locationsData = APIHandler.fetchAirPollutionData();
+            if (locationsData == null) {
+                System.out.println("Failed to fetch location data.");
                 return;
             }
 
             // Clear previous stats and markers
             statsSideBar.getChildren().clear();
-            // Assuming 'stack' is the container for the map (and markers),
-            // remove existing markers (those that are Shapes) but keep the map image.
             stack.getChildren().removeIf(node -> node instanceof Shape && !(node instanceof ImageView));
 
-            // Loop over each location in the response
-            for (int i = 0; i < pollutionData.length(); i++) {
-                JSONObject locationData = pollutionData.getJSONObject(i);
+            // Loop over each location
+            for (int i = 0; i < locationsData.length(); i++) {
+                JSONObject locationData = locationsData.getJSONObject(i);
                 String locationName = locationData.getString("name");
                 JSONObject coords = locationData.getJSONObject("coordinates");
                 double lat = coords.getDouble("latitude");
                 double lon = coords.getDouble("longitude");
-                // For simplicity, we can average the pollutant values for this location
-                JSONArray measurements = locationData.getJSONArray("sensors");
-                double total = 0.0;
-                int count = measurements.length();
-                for (int j = 0; j < count; j++) {
-                    JSONObject sensor = measurements.getJSONObject(j);
-                    // Some sensors might have a "parameter" object with "displayName" etc.
-                    // Here we assume a "value" field is available—if not, you can adjust accordingly.
-                    // For example, you might decide to use a default color.
-                    // In this example, we simply add a random value or a fixed value.
-                    // (Replace this with your own logic if the API provides the measurement values.)
-                    // For demonstration, let’s assume we have a "latest" value in each measurement.
-                    // (If not, you might need to query a different endpoint.)
-                    // We'll use a dummy value here.
-                    total += sensor.getDouble(""); // Dummy value: replace with sensor.getDouble("value") if available.
+
+                // This just deals with no2 sensors
+                JSONArray sensors = locationData.getJSONArray("sensors");
+                for (int j = 0; j < sensors.length(); j++) {
+                    JSONObject sensor = sensors.getJSONObject(j);
+                    JSONObject parameter = sensor.getJSONObject("parameter");
+                    if ("no2".equalsIgnoreCase(parameter.getString("name"))) {
+                        int sensorId = sensor.getInt("id");
+
+                        // Fetch latest measurement for this NO₂ sensor via the measurements endpoint
+                        JSONObject latestMeasurement = APIHandler.fetchLatestMeasurement(sensorId);
+                        if (latestMeasurement != null) {
+                            double no2Value = latestMeasurement.getDouble("value");
+                            // getting the date of the measurement
+                            JSONObject period = latestMeasurement.getJSONObject("period");
+                            JSONObject datetimeFrom = period.getJSONObject("datetimeFrom");
+                            String measurementTime = datetimeFrom.getString("utc");
+
+                            // Step 4: Update the UI
+                            double xPixel = convertLonToPixel(lon);
+                            double yPixel = convertLatToPixel(lat);
+
+                            Circle marker = new Circle(5);
+                            marker.setFill(getHeatmapColor(no2Value));
+                            marker.setStroke(Color.BLACK);
+                            marker.setStrokeWidth(1);
+                            marker.setLayoutX(xPixel);
+                            marker.setLayoutY(yPixel);
+
+                            marker.setOnMouseClicked(event -> {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Location Details");
+                                alert.setHeaderText(locationName);
+                                alert.setContentText(String.format(
+                                        "Latitude: %.4f\nLongitude: %.4f\nNO₂ Level: %.2f µg/m³\nMeasured at: %s",
+                                        lat, lon, no2Value, measurementTime));
+                                alert.showAndWait();
+                            });
+
+                            stack.getChildren().add(marker);
+
+                            Label label = new Label(String.format(
+                                    "%s\nLat: %.4f, Lon: %.4f\nNO₂ Level: %.2f µg/m³\nMeasured at: %s",
+                                    locationName, lat, lon, no2Value, measurementTime));
+                            statsSideBar.getChildren().add(label);
+                        } else {
+                            System.out.println("No measurement data for sensor ID: " + sensorId);
+                        }
+                    }
                 }
-                double avgPollution = count > 0 ? total / count : 0;
-
-                // Create a marker (circle) on the map
-                double xPixel = convertLonToPixel(lon);
-                double yPixel = convertLatToPixel(lat);
-
-                Circle marker = new Circle(5);
-                // Use your existing method for color if desired, e.g. getPollutionColor(avgPollution, true)
-                marker.setFill(getHeatmapColor(avgPollution));
-                marker.setStroke(Color.BLACK);
-                marker.setStrokeWidth(1);
-                marker.setLayoutX(xPixel);
-                marker.setLayoutY(yPixel);
-
-                // Make marker clickable: show an alert with details
-                marker.setOnMouseClicked(event -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Location Details");
-                    alert.setHeaderText(locationName);
-                    alert.setContentText(String.format("Latitude: %.4f\nLongitude: %.4f\nAvg Pollution: %.2f", lat, lon, avgPollution));
-                    alert.showAndWait();
-                });
-
-                // Add marker to the map
-                stack.getChildren().add(marker);
-
-                // Also add a label to the stats side bar for summary
-                Label label = new Label(String.format("%s\nLat: %.4f, Lon: %.4f\nAvg Pollution: %.2f", locationName, lat, lon, avgPollution));
-                statsSideBar.getChildren().add(label);
             }
         });
     }
+
+    /**
+     * This just gets the heatmap color for the points (will be redundant)
+     * @param pollution the pollution data
+     * @return Color a color for the point
+     */
     private static Color getHeatmapColor(double pollution) {
-        double alpha = 0.5; // semi-transparent for heatmap effect
+        double alpha = 0.5;
         if (pollution < 10) return Color.rgb(0, 191, 0, alpha);       // Green
         else if (pollution < 20) return Color.rgb(255, 215, 0, alpha); // Yellow
         else if (pollution < 30) return Color.rgb(255, 140, 0, alpha); // Orange
