@@ -23,7 +23,7 @@ public class APIHandler {
             conn.setRequestProperty("x-api-key", API_KEY);
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                System.out.println("⚠ API Request Failed: HTTP " + responseCode);
+                System.out.println("API Request Failed: HTTP " + responseCode);
                 return null;
             } else {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -57,7 +57,7 @@ public class APIHandler {
             conn.setRequestProperty("Accept", "application/json");
             int responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                System.out.println("⚠ API call failed with response code " + responseCode + " for location ID: " + locationData.getLocationId());
+                System.out.println("API call failed with response code " + responseCode + " for location ID: " + locationData.getLocationId());
                 return null;
             }
 
