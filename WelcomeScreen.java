@@ -22,7 +22,7 @@ public class WelcomeScreen extends Application {
         subtitle.getStyleClass().add("welcome-subtitle");
 
         // create description text
-        Text description = new Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        Text description = new Text("Our Solution – Empowering Communities with Data-Driven Insights to Track and Analyze Pollution Trends,\n Understand Environmental Impact, and Make Informed Decisions for a Smarter, Healthier Future!");
         description.getStyleClass().add("welcome-text");
 
         // create continue button to switch scene when pressed
@@ -36,7 +36,6 @@ public class WelcomeScreen extends Application {
         // when clicked, switch to the main page (GeneralUI)
         continueButton.setOnAction(e -> {
             GeneralUI mainApp = new GeneralUI(); //instantiate the general UI class
-
             mainApp.start(primaryStage); // switch scene to main page   
         });
 

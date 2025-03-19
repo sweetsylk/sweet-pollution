@@ -219,12 +219,6 @@ public class GeneralUI extends Application {
         dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown1, dropdown2, statsdropdown2));
 
 
-        //creating buttons for stats display
-        Button averagePollutionButton = new Button("Average");
-        Button highestPollutionButton = new Button("Highest");
-        Button trendsOverTimeButton = new Button("Trends over Time");
-
-
         //assigning fixed width and binding to stats side bar
         statsdropdown1.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsdropdown2.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
@@ -274,7 +268,7 @@ public class GeneralUI extends Application {
         // Enable fullscreen AFTER switching scenes
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
-        //primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
         primaryStage.show(); // Show the new window
     }
 
@@ -305,7 +299,7 @@ public class GeneralUI extends Application {
 
         heatMapOn = !heatMapOn;  // Toggle the heatmap state
 
-        // 🔹 Ensure data updates correctly
+        //Ensure data updates correctly
         displayData(filename);
     }
 
@@ -386,10 +380,13 @@ public class GeneralUI extends Application {
     private void handleComboBoxSelection(ComboBox<String> dropdown1, ComboBox<String> dropdown2, ComboBox<String> dropdown3) {
         String year = dropdown1.getSelectionModel().getSelectedItem();
         String pollutant = dropdown2.getSelectionModel().getSelectedItem();
+        String metric = dropdown3.getSelectionModel().getSelectedItem();
 
         if (year != null && pollutant != null) {
             filename = DataHandler.generateFilename(pollutant, year);
-
+            // if (metric != null){
+                // handleStatsComboBoxSelection(ComboBox<String> statsdropdown1, )
+            // }
             displayData(filename);
         }
     }
