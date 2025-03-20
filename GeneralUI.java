@@ -436,6 +436,11 @@ public class GeneralUI extends Application {
     private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
         HeatmapAndMarkerGenerator.filterPollutionPoints(stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
     }
+    
+    // check which boxes are checked and apply the filtering to the pollution markers
+    private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
+        HeatmapAndMarkerGenerator.filterPollutionPoints(stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
+    }
 
     //used to launch the program
     public static void main(String[] args) {
