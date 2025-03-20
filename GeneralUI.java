@@ -38,9 +38,10 @@ public class GeneralUI extends Application {
 
     // load and display the map image
     public void start(Stage primaryStage) {
-        statsDataDisplaying = false;
-        
         // INITIALISATION
+        
+        statsDataDisplaying = false; //no data displays at the start in the stats section
+        
         // create a tab pane for switching between pages
         TabPane tabPane = new TabPane();
 
