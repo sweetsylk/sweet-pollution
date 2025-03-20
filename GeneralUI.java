@@ -297,8 +297,6 @@ public class GeneralUI extends Application {
     }
 
 
-
-
     /**
      * displays map grid
      */
@@ -447,6 +445,6 @@ public class GeneralUI extends Application {
 
     //used to launch the program
     public static void main(String[] args) {
-        launch(args);
+        launch(args); 
     }
 }
