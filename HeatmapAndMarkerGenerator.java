@@ -17,6 +17,7 @@ public class HeatmapAndMarkerGenerator {
     private static final double MIN_NORTHING = 168504.0;
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
+    private static int currentGridCode;
 
     public HeatmapAndMarkerGenerator() {
     }
@@ -56,6 +57,7 @@ public class HeatmapAndMarkerGenerator {
     }
 
     public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
+        // Tooltip for pollution data
         Tooltip tooltip = new Tooltip(String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
         Tooltip.install(marker, tooltip);
         marker.setOnMouseClicked((event) -> {
@@ -64,9 +66,15 @@ public class HeatmapAndMarkerGenerator {
             alert.setHeaderText("Pollution Details for Selected Location");
             alert.setContentText(String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
             alert.showAndWait();
+            currentGridCode = point.gridCode();
         });
     }
-
+    
+    public static int getGridCode()
+    {
+        return currentGridCode;
+    }
+    
     public static void displayCircle(double x, double y, double pollution, List<Node> markers, DataPoint point, DataSet data, boolean heatMap) {
         Circle marker = new Circle(5.0);
         marker.setFill(getPollutionColor(pollution, heatMap));
@@ -104,12 +112,14 @@ public class HeatmapAndMarkerGenerator {
         });
         markers.add(marker);
     }
-
+    
+    // converts easting to an x coordinate
     private static double convertEastingToPixel(double easting) {
         double normalized = (easting - 510394.0) / 42903.0;
         return normalized * 1781.0;
     }
-
+    
+    // converts the northing to a y coordinate
     private static double convertNorthingToPixel(double northing) {
         double normalized = (193305.0 - northing) / 24801.0;
         return normalized * 1100.0;
@@ -120,7 +130,7 @@ public class HeatmapAndMarkerGenerator {
         double normalized = (lon + 0.40653443) / 0.60858813;
         return normalized * 1781.0;
     }
-
+    
     private static double convertLatToPixel(double lat) {
         lat += 1.0E-4;
         double normalized = (51.627741 - lat) / 0.23249500000000012;
@@ -141,7 +151,8 @@ public class HeatmapAndMarkerGenerator {
             return pollution < 50.0 ? Color.rgb(139, 0, 0, alpha) : Color.rgb(128, 0, 128, alpha);
         }
     }
-
+    
+    // filters pollution points based on selected colors
     public static void filterPollutionPoints(List<Node> markers, boolean green, boolean yellow, boolean orange, boolean red, boolean crimson, boolean purple) {
         Iterator<Node> iterator = markers.iterator();
 
