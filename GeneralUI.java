@@ -104,12 +104,7 @@ public class GeneralUI extends Application {
         Button applyFilter = new Button("Apply Filter");
         
         // all pollution levels are visible by default
-        greenCheck.setSelected(true);
-        yellowCheck.setSelected(true);
-        orangeCheck.setSelected(true);
-        redCheck.setSelected(true);
-        crimsonCheck.setSelected(true);
-        purpleCheck.setSelected(true);
+        tickPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);
 
         applyFilter.setOnAction(e -> applyPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck));
         
@@ -212,8 +207,10 @@ public class GeneralUI extends Application {
 
 
         //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown2));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown2));
+        dropdown1.setOnAction(e -> {handleComboBoxSelection(dropdown2, dropdown1, statsdropdown2);
+            tickPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);});
+        dropdown2.setOnAction(e -> {handleComboBoxSelection(dropdown2, dropdown1, statsdropdown2);
+            tickPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);});
 
 
         // listener for the metric dropdown of "Average"
@@ -435,6 +432,16 @@ public class GeneralUI extends Application {
     // check which boxes are checked and apply the filtering to the pollution markers
     private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
         HeatmapAndMarkerGenerator.filterPollutionPoints(stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
+    }
+    
+    //set all checkboxes as ticked
+    private void tickPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck){
+        greenCheck.setSelected(true);
+        yellowCheck.setSelected(true);
+        orangeCheck.setSelected(true);
+        redCheck.setSelected(true);
+        crimsonCheck.setSelected(true);
+        purpleCheck.setSelected(true);
     }
 
     //used to launch the program
