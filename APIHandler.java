@@ -21,7 +21,7 @@ public class APIHandler {
         conn.setRequestProperty("x-api-key", API_KEY);
         int responseCode = conn.getResponseCode();
         if (responseCode != 200) {
-            System.out.println("⚠ API Request Failed: HTTP " + responseCode);
+            System.out.println("API Request Failed: HTTP " + responseCode);
             return null;
         } else {
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -39,26 +39,6 @@ public class APIHandler {
         }
     }
 
-    public static JSONObject fetchLatestMeasurement(LocationData locationData, String pollutant)
-    {
-        JSONObject latestMeasurement = null;
-        try {
-
-            if (pollutant != null) {
-                latestMeasurement = APIHandler.fetchLatestMeasurementByLocation(locationData, pollutant);
-
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException interruptedException) {
-            throw new RuntimeException(interruptedException);
-        }
-        return latestMeasurement;
-    }
     public static JSONObject fetchLatestMeasurementByLocation(LocationData locationData, String pollutant) throws Exception {
         String pollutantCleaned = pollutant.toLowerCase().replaceAll("[^a-z0-9]", ""); // This just makes the input strictly alphanumeric
 
@@ -70,7 +50,7 @@ public class APIHandler {
         conn.setRequestProperty("Accept", "application/json");
         int responseCode = conn.getResponseCode();
         if (responseCode != 200) {
-            System.out.println("⚠ API call failed with response code " + responseCode + " for location ID: " + locationData.getLocationId());
+            System.out.println("API call failed with response code " + responseCode + " for location ID: " + locationData.getLocationId());
             return null;
         }
 

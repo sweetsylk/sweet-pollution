@@ -16,7 +16,7 @@ public class LocationData {
         JSONObject coords = locationJson.getJSONObject("coordinates");
         this.latitude = coords.getDouble("latitude");
         this.longitude = coords.getDouble("longitude");
-        this.sensorIdToParameter = new HashMap();
+        this.sensorIdToParameter = new HashMap<>();
         JSONArray sensors = locationJson.getJSONArray("sensors");
 
         for(int i = 0; i < sensors.length(); ++i) {
