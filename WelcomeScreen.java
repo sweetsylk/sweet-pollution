@@ -5,6 +5,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class WelcomeScreen extends Application {
     public void start(Stage primaryStage) {
@@ -27,10 +29,10 @@ public class WelcomeScreen extends Application {
 
         // create continue button to switch scene when pressed
         Button continueButton = new Button("Continue");
-        continueButton.getStyleClass().add("continue-button");
+        continueButton.getStyleClass().add("welcome-button");
         
         Button instructionsButton = new Button("Instructions");
-        instructionsButton.getStyleClass().add("continue-button");
+        instructionsButton.getStyleClass().add("welcome-button");
         
         
         // when clicked, switch to the main page (GeneralUI)
@@ -38,7 +40,11 @@ public class WelcomeScreen extends Application {
             GeneralUI mainApp = new GeneralUI(); //instantiate the general UI class
             mainApp.start(primaryStage); // switch scene to main page   
         });
+        
+        // open instructions popup when clicked
+        instructionsButton.setOnAction(e -> showInstructions());
 
+        // switch to main UI
         // add all elements to layout vertically
         welcomeLayout.getChildren().addAll(title, subtitle, description, continueButton, instructionsButton);
 
@@ -53,7 +59,37 @@ public class WelcomeScreen extends Application {
         primaryStage.show();
     }
     
-    //launch the program
+    // method to show instructions alert popup
+    private void showInstructions() {
+        Alert alert = new Alert(AlertType.INFORMATION); // information type alert
+        alert.setTitle("How to Use Pollution Solution"); // title of popup
+        alert.setHeaderText(null); //no header to popup
+        
+        // instructions on how to use program
+        alert.setContentText(
+                "1. Select Data:\n" +
+                "   • Choose a pollutant (NO2, PM10, PM2.5) and year (2018-2023).\n" +
+                "2. Explore the Map:\n" +
+                "   • Hover over points to view pollution data.\n" +
+                "   • Click a point to set it as the active location.\n" +
+                "3. Filter Data:\n" +
+                "   • Use checkboxes to show/hide pollution levels, then click 'Apply Filter'.\n" +
+                "4. Toggle Options:\n" +
+                "   • Map Grid: Adds a reference grid.\n" +
+                "   • Heat Map: Converts points into a heatmap.\n" +
+                "5. View Statistics:\n" +
+                "   • The Stats Tab provides insights into pollution trends over time.\n" +
+                "   • Select a pollutant and year to generate a line graph.\n" +
+                "   • 'Highest' – Shows top 10 pollution levels.\n" +
+                "   • 'Average' – Allows 'By Area' (point’s avg) or 'By Period' (yearly avg).\n" +
+                "6. Interact with the Graph:\n" +
+                "   • Hover over or click data points to view exact values."
+        );
+
+        alert.showAndWait(); // wait for user to close alert 
+    }
+    
+    // used to launch the program
     public static void main(String[] args) {
         launch(args);
     }
