@@ -25,7 +25,7 @@ public class HeatmapAndMarkerGenerator     {
 
 
     // Load pollution data and return a list of Circle markers
-    public static List<Node> loadData(Boolean heatMap, DataSet data) {
+    public static List<Node> generateMarkers(Boolean heatMap, DataSet data) {
 
         List<Node> markers = new ArrayList<>();
 
@@ -49,14 +49,13 @@ public class HeatmapAndMarkerGenerator     {
                 generateRectangle(xPixel, yPixel, pollution,markers, point, data, heatMap);
             }
             else {
-                generateCircle(xPixel, yPixel, pollution,markers, point, data, heatMap);
+                displayCircle(xPixel, yPixel, pollution,markers, point, data, heatMap);
             }
 
 
 
         }
 
-        //System.out.println("Valid Data Points Used: " + validPoints);
 
         return markers;
 
@@ -75,14 +74,14 @@ public class HeatmapAndMarkerGenerator     {
         // Set correct X and Y positions
         marker.setLayoutX(x);
         marker.setLayoutY(y);
-        generateToolPoint(point, marker, data, pollution);
+        displayToolPoint(point, marker, data, pollution);
         markers.add(marker);
 
 
 
 
     }
-    public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
+    public static void displayToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
         // Tooltip for pollution data
         Tooltip tooltip = new Tooltip(
                 String.format("%s (%s) \nPollution: %.2f %s \nX: %d\nY: %d\n GridCode: %d",
@@ -102,7 +101,7 @@ public class HeatmapAndMarkerGenerator     {
             alert.showAndWait();
         });
     }
-    public static void generateCircle(double x, double y, double pollution, List <Node> markers, DataPoint point, DataSet data, boolean heatMap)
+    public static void displayCircle(double x, double y, double pollution, List <Node> markers, DataPoint point, DataSet data, boolean heatMap)
     {
         // Create pollution marker
         Circle marker = new Circle(5);
@@ -116,11 +115,38 @@ public class HeatmapAndMarkerGenerator     {
         marker.setLayoutX(x);
         marker.setLayoutY(y);
 
-        generateToolPoint(point, marker, data, pollution);
+        displayToolPoint(point, marker, data, pollution);
 
         markers.add(marker);
 
 
+    }
+
+    public static List<Circle> generateApiPoints(double longitude, double latitude, String pollutant, double value, String measurementTime, String locationName)
+    {
+        List<Circle> markers = new ArrayList<>();
+        displayApiPoints(longitude, latitude, pollutant, value, measurementTime, locationName, markers);
+        return markers;
+
+    }
+    public static void displayApiPoints(double longitude, double latitude,String pollutant, double value, String measurementTime, String locationName, List<Circle> markers)
+    {
+        Double xPixel = convertLonToPixel(longitude);
+        Double yPixel = convertLatToPixel(latitude);
+        Circle marker = new Circle(7.5);
+        marker.setFill(getPollutionColor(value, false));
+        marker.setStroke(Color.BLACK);
+        marker.setStrokeWidth(1.0);
+        marker.setLayoutX(xPixel);
+        marker.setLayoutY(yPixel);
+        marker.setOnMouseClicked((event) -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Location Details");
+            alert.setHeaderText(locationName);
+            alert.setContentText(String.format("Latitude: %.4f\nLongitude: %.4f\n%s Level: %.2f µg/m³\nMeasured at: %s", latitude, longitude, pollutant, value, measurementTime));
+            alert.showAndWait();
+        });
+        markers.add(marker);
     }
 
 
@@ -136,6 +162,17 @@ public class HeatmapAndMarkerGenerator     {
         return normalized * MAP_HEIGHT;
     }
 
+    private static double convertLonToPixel(double lon) {
+        lon += 1.0E-4;
+        double normalized = (lon + 0.40653443) / 0.60858813;
+        return normalized * 1781.0;
+    }
+
+    private static double convertLatToPixel(double lat) {
+        lat += 1.0E-4;
+        double normalized = (51.627741 - lat) / 0.23249500000000012;
+        return normalized * 1100.0;
+    }
 
     private static Color getPollutionColor(double pollution, boolean heatMap) {
         double alpha = heatMap ? 0.05 : 1; // heatmap is a more transparent color
