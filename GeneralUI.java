@@ -88,8 +88,31 @@ public class GeneralUI extends Application {
         //modifying the display of the comboboxes
         dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        
+        // title for filter section in sidebar
+        Label filterLabel = new Label("Filter by Pollution Level:");
 
+        // create checkboxes for each pollution level
+        CheckBox greenCheck = new CheckBox("Low (Green)");
+        CheckBox yellowCheck = new CheckBox("Moderate (Yellow)");
+        CheckBox orangeCheck = new CheckBox("High (Orange)");
+        CheckBox redCheck = new CheckBox("Very High (Red)");
+        CheckBox crimsonCheck = new CheckBox("Severe (Crimson)");
+        CheckBox purpleCheck = new CheckBox("Hazardous (Purple)");
+        
+        // button to manually apply the filter (not strictly needed, but can be useful)
+        Button applyFilter = new Button("Apply Filter");
+        
+        // all pollution levels are visible by default
+        greenCheck.setSelected(true);
+        yellowCheck.setSelected(true);
+        orangeCheck.setSelected(true);
+        redCheck.setSelected(true);
+        crimsonCheck.setSelected(true);
+        purpleCheck.setSelected(true);
 
+        applyFilter.setOnAction(e -> applyPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck));
+        
         //CREATION OF TOGGLE BUTTONS FOR MAP GRID AND HEAT MAP
 
         // create a toggle group of toggle buttons
@@ -124,11 +147,11 @@ public class GeneralUI extends Application {
         heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         //made heatbutton usable
         heatMap.setOnAction(this::heatMapToggle);
-
+        
 
         //MAPSIDEBAR
         // add the dropdown boxes to the sidebar, containing the UI vertically
-        mapSideBar.getChildren().addAll(dropdown2Label, dropdown2, dropdown1Label, dropdown1, mapGridOn, heatMap);
+        mapSideBar.getChildren().addAll(dropdown2Label, dropdown2, dropdown1Label, dropdown1, mapGridOn, heatMap, filterLabel, greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck, applyFilter);
         mapLayout.setLeft(mapSideBar);
 
 
@@ -154,6 +177,7 @@ public class GeneralUI extends Application {
 
         // place the image in the center of the map layout
         mapLayout.setCenter(stack);
+        
         // assign the completed layout to the map tab
         mapTab.setContent(mapLayout);
 
@@ -406,6 +430,11 @@ public class GeneralUI extends Application {
                 statsSideBar.getChildren().remove(paneSize - 1 - i);
             }
         }
+    }
+    
+    // check which boxes are checked and apply the filtering to the pollution markers
+    private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
+        HeatmapAndMarkerGenerator.filterPollutionPoints(stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
     }
 
     //used to launch the program

@@ -84,7 +84,7 @@ public class HeatmapAndMarkerGenerator     {
 
 
     }
-    public static void generateToolPoint(DataPoint point, Node marker, DataSet data, double pollution) {
+    public static void generateToolPoint(DataPoint point, Node marker,  DataSet data, double pollution) {
         // Tooltip for pollution data
         Tooltip tooltip = new Tooltip(
                 String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ",
@@ -136,7 +136,31 @@ public class HeatmapAndMarkerGenerator     {
         else if (pollution < 50) return Color.rgb(139, 0, 0, alpha);   // Crimson
         else return Color.rgb(128, 0, 128, alpha);                     // Purple
     }
+    
+    // filters pollution points based on selected colors
+    public static void filterPollutionPoints(List<Node> markers, boolean green, boolean yellow, boolean orange, boolean red, boolean crimson, boolean purple) {
+        for (Node marker : markers) {
+            Color color = null;
 
+            // check if marker is a circle
+            if (marker instanceof Circle) {
+                Circle circle = (Circle) marker;
+                color = (Color) circle.getFill();
+            }
+        
+            if (color != null) {
+                // check if the color matches a selected filter
+                boolean shouldBeVisible =
+                        (green && color.equals(Color.rgb(0, 191, 0))) ||        // green
+                        (yellow && color.equals(Color.rgb(255, 215, 0))) ||      // yellow
+                        (orange && color.equals(Color.rgb(255, 140, 0))) ||      // orange
+                        (red && color.equals(Color.rgb(220, 20, 60))) ||         // red
+                        (crimson && color.equals(Color.rgb(139, 0, 0))) ||       // crimson
+                        (purple && color.equals(Color.rgb(128, 0, 128)));        // purple
 
+                marker.setVisible(shouldBeVisible); // show or hide marker
+            }
+        }
+    }
 }
 
