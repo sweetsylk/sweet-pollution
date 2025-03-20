@@ -7,13 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -253,29 +247,39 @@ public class GeneralUI extends Application {
     private void fetchRealTimeData(ComboBox<String> dropdown) {
         Platform.runLater(() -> {
             String pollutant = dropdown.getSelectionModel().getSelectedItem();
-            List<LocationData> locations = APIHandler.loadAllLocationData();
-            this.stack.getChildren().removeIf((node) -> node instanceof Shape);
+            if (dropdown.getValue() != null) {
+                List<LocationData> locations = APIHandler.loadAllLocationData();
+                this.stack.getChildren().removeIf((node) -> node instanceof Shape);
 
 
-            for (LocationData locationData : locations) {
+                for (LocationData locationData : locations) {
 
-               JSONObject latestMeasurement = APIHandler.fetchLatestMeasurement(locationData, pollutant);
+                    JSONObject latestMeasurement = APIHandler.fetchLatestMeasurement(locationData, pollutant);
 
-                if (latestMeasurement != null) {
-                    double value = latestMeasurement.getDouble("value");
-                    String measurementTime = latestMeasurement.getJSONObject("datetime").getString("utc");
-                    if (!measurementTime.startsWith("2025")) {
-                        continue;
+                    if (latestMeasurement != null) {
+                        double value = latestMeasurement.getDouble("value");
+                        String measurementTime = latestMeasurement.getJSONObject("datetime").getString("utc");
+                        if (!measurementTime.startsWith("2025")) {
+                            continue;
+                        }
+                        double longitude = locationData.getLongitude();
+                        double latitude = locationData.getLatitude();
+                        String locationName = locationData.getLocationName();
+                        List<Circle> markers = HeatmapAndMarkerGenerator.generateApiPoints(longitude, latitude, pollutant, value, measurementTime, locationName);
+                        this.stack.getChildren().addAll(markers);
                     }
-                    double longitude = locationData.getLongitude();
-                    double latitude = locationData.getLatitude();
-                    String locationName = locationData.getLocationName();
-                    List<Circle> markers =  HeatmapAndMarkerGenerator.generateApiPoints(longitude, latitude, pollutant, value, measurementTime, locationName);
-                    this.stack.getChildren().removeIf((node) -> node instanceof Shape);
-                    this.stack.getChildren().addAll(markers);
                 }
-            }
 
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Issue");
+                alert.setHeaderText("Pollutant missing");
+                alert.setContentText("Select a Pollutant please");
+                alert.showAndWait();
+
+            }
         });
     }
 
