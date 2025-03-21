@@ -23,8 +23,6 @@ public class Graphs {
         chart.setCreateSymbols(true);
         chart.setLegendVisible(false);
         chart.getData().add(series);
-
-        chart.setStyle("-fx-background-color: f5f5f5; -fx-border-color: black");
     }
 
     /**

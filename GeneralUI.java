@@ -168,6 +168,7 @@ public class GeneralUI extends Application {
         mapLayout.setLeft(mapSideBar);
 
 
+
         //LONDON IMAGE
         // load and display the map image
         Image londonImage = new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()); // this is to prevent null exceptions
@@ -249,7 +250,19 @@ public class GeneralUI extends Application {
 
 
         //connect external css file
-        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dark-style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
+
+        Button toggleDarkMode = new Button("Toggle Dark Mode");
+        toggleDarkMode.setOnAction(e -> {
+            if (mainScene.getStylesheets().contains(getClass().getResource("style.css").toExternalForm())) {
+                mainScene.getStylesheets().remove(getClass().getResource("style.css").toExternalForm());
+                mainScene.getStylesheets().add(getClass().getResource("dark-style.css").toExternalForm());
+            } else {
+                mainScene.getStylesheets().remove(getClass().getResource("dark-style.css").toExternalForm());
+                mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            }
+        });
+        mapSideBar.getChildren().add(toggleDarkMode);
 
         // set the title of the application
         primaryStage.setTitle("Pollution Solution");
