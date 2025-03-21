@@ -4,9 +4,15 @@
     -fx-text-fill: #ffefef;
 }
 
+/* The background colour behind the tab labels themselves */
+.tab-pane .tab-header-background {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #303030;
+    -fx-border-width: 0 0 2px 0;
+}
 
 .tab-pane {
-    /* Overall background behind tabs */
+    /* tab pane colouring */
     -fx-background-color: #1a1a1a;
     -fx-border-color: #303030;
 }
@@ -118,11 +124,20 @@
 }
 
 /* ComboBox displayed text area */
+
+/* Normal (enabled) text */
 .combo-box .text-field {
-    -fx-background-color: #2a2a2a;
-    -fx-text-fill: #e0e0e0;
-    -fx-border-color: transparent;
+    -fx-text-fill: white;  /* selected text color */
+    -fx-prompt-text-fill: #999999; /* “hint” text color if using promptText */
 }
+
+/* Disabled ComboBox text */
+.combo-box:disabled .text-field,
+.combo-box .text-field:disabled {
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
 
 /* ComboBox dropdown popup */
 .combo-box-popup .list-view {
@@ -134,7 +149,7 @@
 
 .combo-box-popup .list-cell {
     -fx-background-color: #2a2a2a;
-    -fx-text-fill: #e0e0e0;
+    -fx-text-fill: #ffffff;
 }
 
 .combo-box-popup .list-cell:hover {
