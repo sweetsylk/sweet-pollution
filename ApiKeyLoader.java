@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ApiKeyLoader {
-    private static final String API_KEY;
+    private static String API_KEY;
 
     public ApiKeyLoader() {
     }
@@ -41,4 +41,6 @@ public class ApiKeyLoader {
 
         API_KEY = key.trim();
     }
+
 }
+
