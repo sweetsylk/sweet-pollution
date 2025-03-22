@@ -13,7 +13,7 @@ public class APIHandler {
     public APIHandler() {
     }
 
-    public static JSONArray fetchAirPollutionData() throws Exception {
+    public static JSONArray fetchLocationData() throws Exception {
         URL url = new URL("https://api.openaq.org/v3/locations?bbox=-0.40653443,51.395246,0.20205370,51.627741&limit=100");
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setRequestMethod("GET");
@@ -88,7 +88,7 @@ public class APIHandler {
     public static List<LocationData> loadAllLocationData() {
         JSONArray locationsArray;
         try {
-            locationsArray = fetchAirPollutionData();
+            locationsArray = fetchLocationData();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
