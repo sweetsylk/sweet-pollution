@@ -16,7 +16,7 @@ public class ApiKeyLoader {
     static {
         String key;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(".env"));
+            BufferedReader reader = new BufferedReader(new FileReader("key.txt"));
 
             try {
                 key = reader.readLine();

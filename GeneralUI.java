@@ -389,7 +389,7 @@ public class GeneralUI extends Application {
         System.out.println(average);
         Label text;
         if(average == 0.0){
-          text = new Label("Please select a datapoint on the map");
+          text = new Label("Please click a datapoint on the map before selecting dropdown");
         }
         else{
             text = new Label("Average " + pollutant + " level for " + gridCode + ": " + average);
