@@ -114,16 +114,13 @@ public class GeneralUI extends Application {
         // button to manually apply the filter (not strictly needed, but can be useful)
         Button applyFilter = new Button("Apply Filter");
         
-        // all pollution levels are visible by default
-        greenCheck.setSelected(true);
-        yellowCheck.setSelected(true);
-        orangeCheck.setSelected(true);
-        redCheck.setSelected(true);
-        crimsonCheck.setSelected(true);
-        purpleCheck.setSelected(true);
-
-        applyFilter.setOnAction(e -> applyPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck));
+         // all pollution levels are visible by default
+        checkPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);
         
+        //when filter button is pressed activate filter 
+        applyFilter.setOnAction(e -> applyPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck));
+  
+ 
         //CREATION OF TOGGLE BUTTONS FOR MAP GRID AND HEAT MAP
 
         // create a toggle group of toggle buttons
@@ -219,9 +216,11 @@ public class GeneralUI extends Application {
         statsdropdown.getItems().addAll("Highest", "Average by Period", "Average by Area");
 
 
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown));
+        //Listeners for the comboboxes, also resets checkboxes everytime map dropdown boxes altered
+        dropdown1.setOnAction(e -> {handleComboBoxSelection(dropdown2, dropdown1, statsdropdown);
+                                    checkPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);});
+        dropdown2.setOnAction(e -> {handleComboBoxSelection(dropdown2, dropdown1, statsdropdown);
+                                    checkPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck);});
 
 
         // listener for the metric dropdown of "Average"
@@ -472,6 +471,16 @@ public class GeneralUI extends Application {
     // check which boxes are checked and apply the filtering to the pollution markers
     private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
         HeatmapAndMarkerGenerator.filterPollutionPoints(this.stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
+    }
+    
+    //automatically fill in all filter checkboxes 
+    private void checkPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
+        greenCheck.setSelected(true);
+        yellowCheck.setSelected(true);
+        orangeCheck.setSelected(true);
+        redCheck.setSelected(true);
+        crimsonCheck.setSelected(true);
+        purpleCheck.setSelected(true);
     }
 
     private void fetchRealTimeData(ComboBox<String> dropdown) {
