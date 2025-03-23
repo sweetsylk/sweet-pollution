@@ -30,6 +30,11 @@ public class APIHandler {
         apiKey = customKey;
     }
 
+    /**
+     * This method fetches all of the locations within London via the end point of url
+     * @return JSONArray containing JSONObjects that are each locations in London
+     * @throws Exception
+     */
     public static JSONArray fetchLocationData() throws Exception {
         URL url = new URL("https://api.openaq.org/v3/locations?bbox=-0.40653443,51.395246,0.20205370,51.627741&limit=100");
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -59,6 +64,13 @@ public class APIHandler {
         }
     }
 
+    /**
+     * This returns the latest measurement for a given location and pollution via a get request to the OpenAQ latest end point
+     * @param locationData the location data for the locatiom
+     * @param pollutant the pollutant selected in the combo box
+     * @return JsonObject of the latest measurement data for the given pollutant
+     * @throws Exception ()
+     */
     public static JSONObject fetchLatestMeasurementByLocation(LocationData locationData, String pollutant) throws Exception {
         String pollutantCleaned = pollutant.toLowerCase().replaceAll("[^a-z0-9]", ""); // This just makes the input strictly alphanumeric
 
@@ -105,6 +117,10 @@ public class APIHandler {
         return null;
     }
 
+    /**
+     * Tbis makes a list of all the locationdata objects and then stores the response from fetchLocationData() in them
+     * @return list of all the locationdata objects corresponding to the locations in london
+     */
     public static List<LocationData> loadAllLocationData() {
         JSONArray locationsArray;
         try {
