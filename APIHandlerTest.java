@@ -36,7 +36,7 @@ class APIHandlerTest {
     Just tests for if the fetchLocationData() method returns anything at all
      */
     @Test
-    void testFetchLocationData_Success() throws Exception {
+    public void testFetchLocationData_Success() throws Exception {
         APIHandler handler = new APIHandler();
         JSONArray results = handler.fetchLocationData();
         assertNotNull(results);
@@ -47,10 +47,11 @@ class APIHandlerTest {
      * Tests the fetchLocationData method and compares it against a validated curl response in the json file "everylocation" in the test folder.
      */
     @Test
-    void testFetchLocationData_AgainstExpectedJson() throws Exception {
+    public void testFetchLocationData_AgainstExpectedJson() throws Exception {
         APIHandler handler = new APIHandler();
         // 1. Get the actual JSON from the live API call.
         JSONArray actualJsonArray = handler.fetchLocationData();
+        assert actualJsonArray != null;
         JSONObject actual = actualJsonArray.getJSONObject(0);
 
 
@@ -73,7 +74,7 @@ class APIHandlerTest {
      * Tests the loadAllLocationData method and asserts it returns a non-empty list of LocationData.
      */
     @Test
-    void testLoadAllLocationData_Success() throws Exception{
+    public void testLoadAllLocationData_Success() {
         APIHandler handler = new APIHandler();
         List<LocationData> locations = handler.loadAllLocationData();
         assertNotNull(locations);
@@ -86,7 +87,7 @@ class APIHandlerTest {
      * We are just checking if the sensors match in the API response and the validated curl response
      */
     @Test
-    void testFetchLatestMeasurementByLocation_AgainstExpectedJson() throws Exception {
+    public void testFetchLatestMeasurementByLocation_AgainstExpectedJson() throws Exception {
         APIHandler handler = new APIHandler();
         JSONObject allLocations = new JSONObject(loadJsonFromFile("/test/everylocation.json"));
         JSONArray locationArray = allLocations.getJSONArray("results");
@@ -109,14 +110,11 @@ class APIHandlerTest {
      * This test should assert that the method returns null when the server returns a 404 error.
      */
     @Test
-    void testFetchLatestMeasurementByLocation_NonExistentId() throws Exception {
+    public void testFetchLatestMeasurementByLocation_NonExistentId() throws Exception {
         APIHandler handler = new APIHandler();
-        // Setup: Create a bogus location ID that doesn't exist in the API
         JSONObject locationJson = new JSONObject();
         locationJson.put("id", 999999999);  // Very large, presumably invalid ID
-        // Add "name"
-        locationJson.put("name", "Bogus Location");
-        // Add "coordinates" - minimal but valid
+        locationJson.put("name", "somalia");
         JSONObject coords = new JSONObject();
         coords.put("latitude", 51.5);
         coords.put("longitude", -0.1);
@@ -124,10 +122,9 @@ class APIHandlerTest {
         // Add "sensors"
         locationJson.put("sensors", new JSONArray());
 
-        // Now the constructor won't fail on missing fields
         LocationData locationData = new LocationData(locationJson);
 
-        // Act: This should lead to a 404 from the server, so your method returns null
+        // This should lead to a 404 from the server, returning null
         JSONObject result = handler.fetchLatestMeasurementByLocation(locationData, "pm25");
 
         // Assert: Since responseCode != 200, we expect null
@@ -139,7 +136,7 @@ class APIHandlerTest {
      * This test should assert that the method returns null when the sensor ID is not found in the location data.
      */
     @Test
-    void testFetchLatestMeasurementByLocation_UnknownSensor() throws Exception {
+    public void testFetchLatestMeasurementByLocation_UnknownSensor() throws Exception {
         APIHandler handler = new APIHandler();
         // Suppose you have a real location ID that does exist in OpenAQ
         // but artificially omit the sensor ID from the map so it can’t match.
@@ -151,18 +148,14 @@ class APIHandlerTest {
         coords.put("longitude", -0.1);
         locationJson.put("coordinates", coords);
 
-        // For demonstration, define sensors = empty array -> no sensor ID map
-        locationJson.put("sensors", new JSONArray());
 
-        // Build the object
+        locationJson.put("sensors", new JSONArray());
         LocationData locationData = new LocationData(locationJson);
 
-        // Act
         // We know location 146 might return data with sensorId=someNumber,
         // but if that ID isn't in our locationData's map, we skip it.
         JSONObject measurement = handler.fetchLatestMeasurementByLocation(locationData, "pm25");
 
-        // Assert
         // Because the ID in the real data won't match anything in our map, we get null
         assertNull(measurement, "Expected null if the sensor ID isn't in our map");
     }
@@ -174,10 +167,10 @@ class APIHandlerTest {
      * this test uses a fake key to actually ensure an invalid api key is being used for the testing
      */
     @Test
-    void testFetchLocationData_InvalidKey() throws Exception {
+    public void testFetchLocationData_InvalidKey() throws Exception {
         APIHandler handler = new APIHandler("fake ass key");
         JSONArray result = handler.fetchLocationData();
-        // Expect a 401 or 403, so the code returns null
+        // Expect a 401 , so the code returns null
         assertNull(result, "With an invalid key, we expect null or an error response");
     }
 

@@ -474,8 +474,6 @@ public class GeneralUI extends Application {
             if (dropdown.getValue() != null) {
                 APIHandler handler = new APIHandler(); // instance used to make sure the correct apikey is passed through
                 List<LocationData> locations = handler.loadAllLocationData();
-                locations = locations.subList(0, Math.min(locations.size(), 50)); // Limit to 50 requests to stay within api request limit
-
                 this.stack.getChildren().removeIf((node) -> node instanceof Shape);
 
                 for (LocationData locationData : locations) {
