@@ -19,6 +19,7 @@
 *.zip
 *.tar.gz
 *.rar
+.env
 # these are the files that contain the api keys
 key.txt
 .env
