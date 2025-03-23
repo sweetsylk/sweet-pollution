@@ -10,18 +10,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-/*
-This class is for drawing on the points/heatmaps onto the map
-it provides methods for making the points/rectangles for the maps and also some others like picking pollution colours
+/**
+ * This class is for drawing on the points/heatmaps onto the map
+ * it provides methods for making the points/rectangles for the maps and also some others like picking pollution colours
+ * @author Irfan Hussein
+ * @version 1.0
  */
 public class HeatmapAndMarkerGenerator {
     private static final double MAX_EASTING = 553297.0;
     private static final double MIN_EASTING = 510394.0;
     private static final double MAX_NORTHING = 193305.0;
     private static final double MIN_NORTHING = 168504.0;
+    private static final double MAX_LATTITUDE = 51.627741;
+    private static final double MIN_LATTITUDE = 51.395246;
+    private static final double MIN_LONGITUDE = -0.40653443;
+    private static final double MAX_LONGITUDE = 0.229848496;
+
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
-    private static int currentGridCode;
+
 
     public HeatmapAndMarkerGenerator() {
     }
@@ -109,19 +116,15 @@ public class HeatmapAndMarkerGenerator {
         Tooltip tooltip = new Tooltip(String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
         Tooltip.install(marker, tooltip);
         marker.setOnMouseClicked((e) -> {
+            double average = DataHandler.getAveragePollutantLevelForArea(data.getPollutant(), point.gridCode());
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Pollution Data");
             alert.setHeaderText("Pollution Details for Selected Location");
-            alert.setContentText(String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
+            alert.setContentText(String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d\nAverage Pollution over the years: %.2f", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode(), average));
             alert.showAndWait();
-            currentGridCode = point.gridCode();
         });
     }
-    
-    public static int getGridCode()
-    {
-        return currentGridCode;
-    }
+
 
 
     public static List<Circle> generateApiPoints(double longitude, double latitude, String pollutant, double value, String measurementTime, String locationName) {
@@ -165,7 +168,7 @@ public class HeatmapAndMarkerGenerator {
      * @return Xpixel the x pixel
      */
     private static double convertEastingToPixel(double easting) {
-        double normalized = (easting - 510394.0) / 42903.0;
+        double normalized = (easting - MIN_EASTING) / 42903.0;
         return normalized * MAP_WIDTH;
     }
 
@@ -175,7 +178,7 @@ public class HeatmapAndMarkerGenerator {
      * @return ypixel the y pixel
      */
     private static double convertNorthingToPixel(double northing) {
-        double normalized = (193305.0 - northing) / 24801.0;
+        double normalized = (MAX_NORTHING - northing) / 24801.0;
         return normalized * MAP_HEIGHT;
     }
 
@@ -185,9 +188,9 @@ public class HeatmapAndMarkerGenerator {
      * @return Xpixel the x pixel
      */
     private static double convertLonToPixel(double lon) {
-        lon += 1.0E-4;
-        double normalized = (lon + 0.40653443) / 0.60858813;
-        return normalized * MAP_WIDTH;
+        double normalized = (lon - MIN_LONGITUDE) / (MAX_LONGITUDE - MIN_LONGITUDE);
+        System.out.printf("longitude of %.2f mapped to %.2f\n", lon, (normalized * MAP_WIDTH));
+        return (normalized * MAP_WIDTH) - 25; // slight offset to make points accurate
     }
     /*
      * converts latitude to pixel to be placed onto the screen
@@ -195,9 +198,10 @@ public class HeatmapAndMarkerGenerator {
      * @return ypixel the y pixel
      */
     private static double convertLatToPixel(double lat) {
-        lat += 1.0E-4;
-        double normalized = (51.627741 - lat) / 0.23249500000000012;
-        return normalized * MAP_HEIGHT;
+        double normalized = (MAX_LATTITUDE - lat) / (MAX_LATTITUDE - MIN_LATTITUDE);
+        System.out.printf("latitude of %.2f mapped to %.2f\n", lat, (normalized * MAP_HEIGHT));
+
+        return (normalized * MAP_HEIGHT) - 60; // slight offset to make points accurate
     }
 
     /*

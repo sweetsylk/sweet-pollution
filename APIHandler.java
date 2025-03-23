@@ -13,6 +13,9 @@ import org.json.JSONObject;
  * This class provides methods to fetch all location data From London locations and also to retrieve most recent measurements for the needed pollutants for each location
  * It also includes a default constructor using the real API key, and an additional constructor for JUnit testing purposes.
  *
+ *
+ * @author Ridwan Adam
+ * @version 1.0
  */
 public class APIHandler {
     private static String apiKey;
@@ -22,7 +25,7 @@ public class APIHandler {
         apiKey = ApiKeyLoader.getApiKey();
     }
 
-    // Additional constructor used in JUNI test
+    // Additional constructor used in JUNIT test
     public APIHandler(String customKey) {
         apiKey = customKey;
     }

@@ -157,6 +157,9 @@
     -fx-text-fill: #ffffff;
 }
 
+.combo-box .list-cell {
+    -fx-text-fill: #ffffff
+}
 /* Checkboxes */
 .check-box {
     -fx-text-fill: #cccccc;

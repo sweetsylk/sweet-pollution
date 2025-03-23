@@ -8,6 +8,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * This is the welcome screen which the user is greeted with
+ * @author Khem-Talah
+ * @version 1.0
+ */
+
 public class WelcomeScreen extends Application {
     public void start(Stage primaryStage) {
         // create a layout for the welcome page, holding the UI vertically in the center
@@ -58,8 +64,10 @@ public class WelcomeScreen extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
     }
-    
-    // method to show instructions alert popup
+
+    /**
+     * Shows instructions when user presses the button
+     */
     private void showInstructions() {
         Alert alert = new Alert(AlertType.INFORMATION); // information type alert
         alert.setTitle("How to Use Pollution Solution"); // title of popup
