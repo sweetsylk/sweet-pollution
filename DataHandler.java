@@ -34,6 +34,18 @@ public class DataHandler {
             }
         };
     }
+
+    /**
+     * Loads a dataset from a given file using the DataLoader
+     * @param fileName the filename
+     * @return a DataSet object
+     */
+    public static DataSet loadDataSet(String fileName)
+    {
+        DataLoader loader = new DataLoader();
+        DataSet dataSet = loader.loadDataFile(fileName);
+        return dataSet;
+    }
     /**
      * Returns a list of the average pollution level for a pollutant every year
      * @param pollutant the pollutant

@@ -50,7 +50,7 @@ public class HeatmapAndMarkerGenerator {
                 double xPixel = convertEastingToPixel(easting);
                 double yPixel = convertNorthingToPixel(northing);
                 if (heatMap) {
-                    generateRectangle(xPixel, yPixel, pollution, markers, point, data);
+                    displayRectangle(xPixel, yPixel, pollution, markers, point, data);
                 } else {
                     displayCircle(xPixel, yPixel, pollution, markers, point, data);
                 }
@@ -92,7 +92,7 @@ public class HeatmapAndMarkerGenerator {
      * @param point the data point itself
      * @param data the dataset the data come from
      */
-    public static void generateRectangle(double x, double y, double pollution, List<Node> markers, DataPoint point, DataSet data) {
+    public static void displayRectangle(double x, double y, double pollution, List<Node> markers, DataPoint point, DataSet data) {
         Rectangle marker = new Rectangle();
         marker.setWidth(83.0);
         marker.setHeight(89.0);

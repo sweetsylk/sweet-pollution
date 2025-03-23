@@ -394,8 +394,8 @@ public class GeneralUI extends Application {
      */
     public void displayDataOntoMap(String filename) {
         if (!filename.isEmpty()) {
-            DataLoader loader = new DataLoader();
-            DataSet dataSet = loader.loadDataFile(filename);
+
+            DataSet dataSet = DataHandler.loadDataSet(filename);
             List<Node> markers = HeatmapAndMarkerGenerator.generateMarkers(heatMapIsOn(), dataSet);
             Platform.runLater(() -> {
                 this.stack.getChildren().removeIf((node) -> node instanceof Shape);
