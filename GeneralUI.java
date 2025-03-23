@@ -231,12 +231,12 @@ public class GeneralUI extends Application {
 
         yearDropdown.setOnAction(e -> {
             this.yearDropdown.getSelectionModel().select(yearDropdown.getSelectionModel().getSelectedItem());
-            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, statsDropdown);
+            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, this.statsDropdown);
         });
 
         pollutantDropdown.setOnAction(e -> {
             pollutantDropdown.getSelectionModel().select(pollutantDropdown.getSelectionModel().getSelectedItem());
-            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, statsDropdown);
+            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, this.statsDropdown);
         });
 
         statsSideBar.getChildren().addAll(statsDropdownLabel, statsDropdown, yearLabel, yearDropdown, pollutantLabel, pollutantDropdown);
