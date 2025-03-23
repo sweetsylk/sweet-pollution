@@ -189,7 +189,6 @@ public class HeatmapAndMarkerGenerator {
      */
     private static double convertLonToPixel(double lon) {
         double normalized = (lon - MIN_LONGITUDE) / (MAX_LONGITUDE - MIN_LONGITUDE);
-        System.out.printf("longitude of %.2f mapped to %.2f\n", lon, (normalized * MAP_WIDTH));
         return (normalized * MAP_WIDTH) - 25; // slight offset to make points accurate
     }
     /*
@@ -199,8 +198,6 @@ public class HeatmapAndMarkerGenerator {
      */
     private static double convertLatToPixel(double lat) {
         double normalized = (MAX_LATTITUDE - lat) / (MAX_LATTITUDE - MIN_LATTITUDE);
-        System.out.printf("latitude of %.2f mapped to %.2f\n", lat, (normalized * MAP_HEIGHT));
-
         return (normalized * MAP_HEIGHT) - 60; // slight offset to make points accurate
     }
 
