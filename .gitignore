@@ -19,6 +19,8 @@
 *.zip
 *.tar.gz
 *.rar
+# these are the files that contain the api keys
+key.txt
 .env
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
