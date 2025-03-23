@@ -32,8 +32,8 @@ public class Graphs {
 
     /**
      * This takes in the data and plots it onto the graph
-     * @param years
-     * @param pollutionLevels
+     * @param years the x axis (years)
+     * @param pollutionLevels the y axis (pollution levels)
      */
     public void loadData(List<Integer> years, List<Double> pollutionLevels) {
         series.getData().clear();
@@ -71,7 +71,7 @@ public class Graphs {
                     });
                 }
             }
-        };
+        }
 
 
     public Node getGraph() {

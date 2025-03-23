@@ -8,6 +8,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+import java.util.Objects;
+
 /**
  * This is the welcome screen which the user is greeted with
  * @author Khem-Talah
@@ -56,7 +58,7 @@ public class WelcomeScreen extends Application {
 
         // create scene for welcome screen
         Scene welcomeScene = new Scene(welcomeLayout, 800, 600);
-        welcomeScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        welcomeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
 
         // set up and display the stage
         primaryStage.setTitle("Welcome - Pollution Solution");
@@ -75,23 +77,24 @@ public class WelcomeScreen extends Application {
         
         // instructions on how to use program
         alert.setContentText(
-                "1. Select Data:\n" +
-                "   • Choose a pollutant (NO2, PM10, PM2.5) and year (2018-2023).\n" +
-                "2. Explore the Map:\n" +
-                "   • Hover over points to view pollution data.\n" +
-                "   • Click a point to set it as the active location.\n" +
-                "3. Filter Data:\n" +
-                "   • Use checkboxes to show/hide pollution levels, then click 'Apply Filter'.\n" +
-                "4. Toggle Options:\n" +
-                "   • Map Grid: Adds a reference grid.\n" +
-                "   • Heat Map: Converts points into a heatmap.\n" +
-                "5. View Statistics:\n" +
-                "   • The Stats Tab provides insights into pollution trends over time.\n" +
-                "   • Select a pollutant and year to generate a line graph.\n" +
-                "   • 'Highest' – Shows top 10 pollution levels.\n" +
-                "   • 'Average' – Allows 'By Area' (point’s avg) or 'By Period' (yearly avg).\n" +
-                "6. Interact with the Graph:\n" +
-                "   • Hover over or click data points to view exact values."
+                """
+                        1. Select Data:
+                           • Choose a pollutant (NO2, PM10, PM2.5) and year (2018-2023).
+                        2. Explore the Map:
+                           • Hover over points to view pollution data.
+                           • Click a point to set it as the active location.
+                        3. Filter Data:
+                           • Use checkboxes to show/hide pollution levels, then click 'Apply Filter'.
+                        4. Toggle Options:
+                           • Map Grid: Adds a reference grid.
+                           • Heat Map: Converts points into a heatmap.
+                        5. View Statistics:
+                           • The Stats Tab provides insights into pollution trends over time.
+                           • Select a pollutant and year to generate a line graph.
+                           • 'Highest' – Shows top 10 pollution levels.
+                           • 'Average' – Allows 'By Area' (point’s avg) or 'By Period' (yearly avg).
+                        6. Interact with the Graph:
+                           • Hover over or click data points to view exact values."""
         );
 
         alert.showAndWait(); // wait for user to close alert 

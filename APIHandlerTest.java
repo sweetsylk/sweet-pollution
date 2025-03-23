@@ -40,7 +40,7 @@ class APIHandlerTest {
         APIHandler handler = new APIHandler();
         JSONArray results = handler.fetchLocationData();
         assertNotNull(results);
-        assertTrue(results.length() > 0, "Expecting a result that is not null");
+        assertFalse(results.isEmpty(), "Expecting a result that is not null");
     }
 
     /*
@@ -100,6 +100,7 @@ class APIHandlerTest {
         JSONObject expectedJson = new JSONObject(expectedString);
         JSONArray expectedArray = expectedJson.getJSONArray("results");
         JSONObject expected = expectedArray.getJSONObject(0);
+        assert actualResultPM10 != null;
         assertEquals(expected.getInt("sensorsId"), actualResultPM10.getInt("sensorsId"));
 
         }

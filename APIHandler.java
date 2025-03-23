@@ -33,7 +33,6 @@ public class APIHandler {
     /**
      * This method fetches all of the locations within London via the end point of url
      * @return JSONArray containing JSONObjects that are each locations in London
-     * @throws Exception
      */
     public static JSONArray fetchLocationData() throws Exception {
         URL url = new URL("https://api.openaq.org/v3/locations?bbox=-0.40653443,51.395246,0.20205370,51.627741&limit=100");
