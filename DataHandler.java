@@ -1,14 +1,21 @@
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class contains helper methods to get certain features from data like averages or highest and also allows for dataset filenames to be made
+ */
 public class DataHandler {
     public DataHandler() {
     }
 
+    /**
+     * This returns a list of the average pollution level for a pollutant every year
+     * @param pollutant the pollutant
+     * @return the list of average pollution level for a given pollutant
+     */
     public static ArrayList getPollutantTrends(String pollutant) {
         ArrayList trend = new ArrayList();
 
@@ -25,6 +32,11 @@ public class DataHandler {
         return trend;
     }
 
+    /**
+     * Returns the highest pollution level for each year for a pollutant
+     * @param pollutant the pollutant
+     * @return the highest pollution level for each year for a pollutant
+     */
     public static ArrayList<DataPoint> getHighestPollutantTrends(String pollutant) {
         ArrayList<DataPoint> trend = new ArrayList<>();
 
@@ -53,30 +65,51 @@ public class DataHandler {
         return trend;
     }
 
+    /**
+     * this gives the file name needed to be loaded for a given year and pollutant
+     * @param pollutant the pollutant
+     * @param year the year
+     * @return the file name
+     */
     public static String generateFilename(String pollutant, String year) {
+        if (pollutant == null || year == null) {
+            return "";
+        }
 
-        return switch (pollutant) {
-            case "NO2" -> String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
-            case "PM2.5" -> String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
-            case "PM10" -> String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
-            default -> {
-                System.out.println("Error occurred");
-                yield "";
-            }
-        };
-    }
+            return switch (pollutant) {
+                case "NO2" -> String.format("UKAirPollutionData/%s/mapno2%s.csv", pollutant, year);
+                case "PM2.5" -> String.format("UKAirPollutionData/%s/mappm25%sg.csv", pollutant, year);
+                case "PM10" -> String.format("UKAirPollutionData/%s/mappm10%sg.csv", pollutant, year);
+                default -> {
+                    System.out.println("Error occurred");
+                    yield "";
+                }
+            };
+        }
 
+
+    /**
+     * This gives the average pollution level in each data set
+     * @param data the dataset
+     * @return the average pollution level
+     */
     public static double getAveragePollutantLevel(DataSet data) {
         double total = 0.0;
 
         DataPoint point;
-        for(Iterator<DataPoint> var3 = data.getData().iterator(); var3.hasNext(); total += point.value()) {
-            point = var3.next();
+        for(Iterator<DataPoint> iterator = data.getData().iterator(); iterator.hasNext(); total += point.value()) {
+            point = iterator.next();
         }
 
         return data.getData().isEmpty() ? 0.0 : total / (double)data.getData().size();
     }
 
+    /**
+     * Returns the average pollutant level for a given year
+     * @param pollutant the pollutant
+     * @param year the year
+     * @return the average
+     */
     public static double getAveragePollutantLevelByPeriod(String pollutant, String year) {
         String filename = generateFilename(pollutant, String.valueOf(year));
         DataLoader loader = new DataLoader();
@@ -84,6 +117,11 @@ public class DataHandler {
         return getAveragePollutantLevel(dataSet);
     }
 
+    /**
+     * Returns a list of the highest pollution level in a given year for a pollutant
+     * @param dataset the dataset
+     * @return the 10 highest pollution levels
+     */
     public static ArrayList getHighestPollutantLevel(DataSet dataset) {
         ArrayList highestPLs = new ArrayList();
         List<DataPoint> data = dataset.getData();
@@ -96,7 +134,13 @@ public class DataHandler {
         return highestPLs;
     }
 
-    public static double getAveragePollutantLevelForArea(String pollutant, int UGC) {
+    /**
+     * This gets you the average pollutation level for a given area
+     * @param pollutant the pollutant
+     * @param gridCode the location
+     * @return the average pollution level for a given gridcode
+     */
+    public static double getAveragePollutantLevelForArea(String pollutant, int gridCode) {
         double total = 0.0;
         int numberOfYears = 0;
 
@@ -105,7 +149,7 @@ public class DataHandler {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
             List<DataPoint> data = dataSet.getData();
-            Optional<DataPoint> result = data.stream().filter((dataPoint) -> dataPoint.gridCode() == UGC).findFirst();
+            Optional<DataPoint> result = data.stream().filter((dataPoint) -> dataPoint.gridCode() == gridCode).findFirst();
             if (result.isPresent()) {
                 total += result.get().value();
                 ++numberOfYears;

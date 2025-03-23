@@ -1,0 +1,8497 @@
+
+{
+  "meta": {
+    "name": "openaq-api",
+    "website": "/",
+    "page": 1,
+    "limit": 100,
+    "found": ">100"
+  },
+  "results": [
+    {
+      "id": 60,
+      "name": "Haringey - Haringey Town Hall",
+      "locality": "Haringey",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 88,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 206,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.599302,
+        "longitude": -0.068218
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.068218,
+        51.599302,
+        -0.068218,
+        51.599302
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 137,
+      "name": "Harrow - Stanmore",
+      "locality": "Harrow",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1304749,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 1304758,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 211,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.617327,
+        "longitude": -0.298775
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.298775,
+        51.617327,
+        -0.298775,
+        51.617327
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2023-08-14T09:00:00Z",
+        "local": "2023-08-14T10:00:00+01:00"
+      }
+    },
+    {
+      "id": 146,
+      "name": "Southwark - A2 Old Kent Road",
+      "locality": "Southwark",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 251,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 227,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 1304692,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4804994936467,
+        "longitude": -0.0595528932573422
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.0595528932573422,
+        51.4804994936467,
+        -0.0595528932573422,
+        51.4804994936467
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 147,
+      "name": "Greenwich - Eltham",
+      "locality": "Greenwich",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 233,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 253,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 1298329,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 228,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.45258,
+        "longitude": 0.070766
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        0.070766,
+        51.45258,
+        0.070766,
+        51.45258
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-02-01T11:00:00Z",
+        "local": "2016-02-01T11:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2024-05-30T08:00:00Z",
+        "local": "2024-05-30T09:00:00+01:00"
+      }
+    },
+    {
+      "id": 148,
+      "name": "London Bloomsbury - UKA00211",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 238,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 229,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 244,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 232,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        },
+        {
+          "id": 4933,
+          "name": "so2 µg/m³",
+          "parameter": {
+            "id": 6,
+            "name": "so2",
+            "units": "µg/m³",
+            "displayName": "SO₂ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.52228999923011,
+        "longitude": -0.12588900021133392
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.12588900021133392,
+        51.52228999923011,
+        -0.12588900021133392,
+        51.52228999923011
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 149,
+      "name": "Ealing - Horn Lane",
+      "locality": "Ealing",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1304579,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 230,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.518948,
+        "longitude": -0.265617
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.265617,
+        51.518948,
+        -0.265617,
+        51.518948
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 150,
+      "name": "London Haringey Priory Park South - UKA00568",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 231,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 260,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.58412799971813,
+        "longitude": -0.1252540000016108
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.1252540000016108,
+        51.58412799971813,
+        -0.1252540000016108,
+        51.58412799971813
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 151,
+      "name": "Tower Hamlets - Mile End Road",
+      "locality": "Tower Hamlets",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 234,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.5225294860844,
+        "longitude": -0.0421550991900347
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.0421550991900347,
+        51.5225294860844,
+        -0.0421550991900347,
+        51.5225294860844
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-02-05T17:00:00Z",
+        "local": "2016-02-05T17:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-02-04T13:00:00Z",
+        "local": "2025-02-04T13:00:00Z"
+      }
+    },
+    {
+      "id": 152,
+      "name": "Camden Kerbside - UKA00259",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 256,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 236,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 235,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.54420999974351,
+        "longitude": -0.17526899971392015
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.17526899971392015,
+        51.54420999974351,
+        -0.17526899971392015,
+        51.54420999974351
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 154,
+      "name": "London Marylebone Road - UKA00315",
+      "locality": "Westminster",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1304850,
+          "name": "co µg/m³",
+          "parameter": {
+            "id": 4,
+            "name": "co",
+            "units": "µg/m³",
+            "displayName": "CO mass"
+          }
+        },
+        {
+          "id": 241,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 243,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 245,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 246,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        },
+        {
+          "id": 4957,
+          "name": "so2 µg/m³",
+          "parameter": {
+            "id": 6,
+            "name": "so2",
+            "units": "µg/m³",
+            "displayName": "SO₂ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.52252999942243,
+        "longitude": -0.15461100008049963
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.15461100008049963,
+        51.52252999942243,
+        -0.15461100008049963,
+        51.52252999942243
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 155,
+      "name": "Kensington and Chelsea - North Ken",
+      "locality": "Kensington and Chelsea",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1304615,
+          "name": "co µg/m³",
+          "parameter": {
+            "id": 4,
+            "name": "co",
+            "units": "µg/m³",
+            "displayName": "CO mass"
+          }
+        },
+        {
+          "id": 242,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 247,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 248,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 249,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        },
+        {
+          "id": 4961,
+          "name": "so2 µg/m³",
+          "parameter": {
+            "id": 6,
+            "name": "so2",
+            "units": "µg/m³",
+            "displayName": "SO₂ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.5210467476039,
+        "longitude": -0.213492139585065
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.213492139585065,
+        51.5210467476039,
+        -0.213492139585065,
+        51.5210467476039
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 156,
+      "name": "London Teddington",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 169,
+        "name": "DEFRA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 250,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 252,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.42099,
+        "longitude": -0.339647
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.339647,
+        51.42099,
+        -0.339647,
+        51.42099
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2016-07-27T00:00:00Z",
+        "local": "2016-07-27T01:00:00+01:00"
+      }
+    },
+    {
+      "id": 157,
+      "name": "Bexley - Slade Green",
+      "locality": "Bexley",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 205,
+        "name": "London Air Quality Network"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 255,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 1304510,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 28911,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 254,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        },
+        {
+          "id": 1304502,
+          "name": "so2 µg/m³",
+          "parameter": {
+            "id": 6,
+            "name": "so2",
+            "units": "µg/m³",
+            "displayName": "SO₂ mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4659832746662,
+        "longitude": 0.184877126994369
+      },
+      "licenses": [
+        {
+          "id": 34,
+          "name": "UK OGL \"Open Government License\"",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-01-30",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        0.184877126994369,
+        51.4659832746662,
+        0.184877126994369,
+        51.4659832746662
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 158,
+      "name": "London Teddington Bushy Park - UKA00572",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 28891,
+          "name": "pm10 µg/m³",
+          "parameter": {
+            "id": 1,
+            "name": "pm10",
+            "units": "µg/m³",
+            "displayName": "PM10"
+          }
+        },
+        {
+          "id": 257,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.425285999344624,
+        "longitude": -0.3456059996846904
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.3456059996846904,
+        51.425285999344624,
+        -0.3456059996846904,
+        51.425285999344624
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T01:00:00Z",
+        "local": "2016-01-30T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 159,
+      "name": "London Westminster - UKA00435",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 4,
+        "name": "Unknown Governmental Organization"
+      },
+      "provider": {
+        "id": 70,
+        "name": "EEA"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 258,
+          "name": "no2 µg/m³",
+          "parameter": {
+            "id": 5,
+            "name": "no2",
+            "units": "µg/m³",
+            "displayName": "NO₂ mass"
+          }
+        },
+        {
+          "id": 3327179,
+          "name": "o3 µg/m³",
+          "parameter": {
+            "id": 3,
+            "name": "o3",
+            "units": "µg/m³",
+            "displayName": "O₃ mass"
+          }
+        },
+        {
+          "id": 28890,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4946699996591,
+        "longitude": -0.13193099964204494
+      },
+      "licenses": [
+        {
+          "id": 10,
+          "name": "ODC-BY",
+          "attribution": {
+            "name": "Unknown Governmental Organization",
+            "url": null
+          },
+          "dateFrom": "2016-11-17",
+          "dateTo": null
+        }
+      ],
+      "bounds": [
+        -0.13193099964204494,
+        51.4946699996591,
+        -0.13193099964204494,
+        51.4946699996591
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2016-01-30T02:00:00Z",
+        "local": "2016-01-30T02:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2025-03-17T22:00:00Z",
+        "local": "2025-03-17T22:00:00Z"
+      }
+    },
+    {
+      "id": 61486,
+      "name": "Google Street View Car",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 135,
+        "name": "london mobile"
+      },
+      "isMobile": true,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 446270,
+          "name": "co2 ppm",
+          "parameter": {
+            "id": 21,
+            "name": "co2",
+            "units": "ppm",
+            "displayName": "CO₂"
+          }
+        },
+        {
+          "id": 446271,
+          "name": "no ppm",
+          "parameter": {
+            "id": 35,
+            "name": "no",
+            "units": "ppm",
+            "displayName": "NO"
+          }
+        },
+        {
+          "id": 446277,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 446272,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 446268,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.503634709156785,
+        "longitude": -0.15036661820359595
+      },
+      "licenses": null,
+      "bounds": [
+        -0.15036661820359595,
+        51.503634709156785,
+        -0.15036661820359595,
+        51.503634709156785
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-08-17T10:11:41Z",
+        "local": "2018-08-17T11:11:41+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-10-31T16:14:51Z",
+        "local": "2019-10-31T16:14:51Z"
+      }
+    },
+    {
+      "id": 61487,
+      "name": "Google Street View Car",
+      "locality": "London",
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 135,
+        "name": "london mobile"
+      },
+      "isMobile": true,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 446269,
+          "name": "co2 ppm",
+          "parameter": {
+            "id": 21,
+            "name": "co2",
+            "units": "ppm",
+            "displayName": "CO₂"
+          }
+        },
+        {
+          "id": 446274,
+          "name": "no ppm",
+          "parameter": {
+            "id": 35,
+            "name": "no",
+            "units": "ppm",
+            "displayName": "NO"
+          }
+        },
+        {
+          "id": 446276,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 446273,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 446275,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.50225232682155,
+        "longitude": -0.16491291569562416
+      },
+      "licenses": null,
+      "bounds": [
+        -0.16491291569562416,
+        51.50225232682155,
+        -0.16491291569562416,
+        51.50225232682155
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-08-20T13:03:05Z",
+        "local": "2018-08-20T14:03:05+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-10-28T20:12:27Z",
+        "local": "2019-10-28T20:12:27Z"
+      }
+    },
+    {
+      "id": 223686,
+      "name": "Brook Drive",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295901,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.493213,
+        "longitude": -0.101559
+      },
+      "licenses": null,
+      "bounds": [
+        -0.101559,
+        51.493213,
+        -0.101559,
+        51.493213
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-24T21:00:00Z",
+        "local": "2018-10-24T22:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-03-15T02:00:00Z",
+        "local": "2019-03-15T02:00:00Z"
+      }
+    },
+    {
+      "id": 223687,
+      "name": "Black Horse Court",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295902,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295903,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.496482,
+        "longitude": -0.088226
+      },
+      "licenses": null,
+      "bounds": [
+        -0.088226,
+        51.496482,
+        -0.088226,
+        51.496482
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-12-13T18:00:00Z",
+        "local": "2018-12-13T18:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223688,
+      "name": "Greenhill Way",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295904,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295905,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295906,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.58092,
+        "longitude": -0.341502
+      },
+      "licenses": null,
+      "bounds": [
+        -0.341502,
+        51.58092,
+        -0.341502,
+        51.58092
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-23T12:00:00Z",
+        "local": "2018-10-23T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-08-12T02:00:00Z",
+        "local": "2019-08-12T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223689,
+      "name": "Holloway Bus Garage",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295909,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295907,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295910,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295908,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.561917,
+        "longitude": -0.132947
+      },
+      "licenses": null,
+      "bounds": [
+        -0.132947,
+        51.561917,
+        -0.132947,
+        51.561917
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-10T12:00:00Z",
+        "local": "2018-10-10T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-10-08T01:00:00Z",
+        "local": "2020-10-08T02:00:00+01:00"
+      }
+    },
+    {
+      "id": 223690,
+      "name": "Parkside",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295913,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295911,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295914,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295912,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.426126,
+        "longitude": -0.222013
+      },
+      "licenses": null,
+      "bounds": [
+        -0.222013,
+        51.426126,
+        -0.222013,
+        51.426126
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-06T14:00:00Z",
+        "local": "2019-02-06T14:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223691,
+      "name": "West Smithsfield",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295917,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295915,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295918,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295916,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.518921,
+        "longitude": -0.100905
+      },
+      "licenses": null,
+      "bounds": [
+        -0.100905,
+        51.518921,
+        -0.100905,
+        51.518921
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-11T11:00:00Z",
+        "local": "2018-10-11T12:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223692,
+      "name": "Brook Drive",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295921,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295919,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295922,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295920,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.493213,
+        "longitude": -0.101559
+      },
+      "licenses": null,
+      "bounds": [
+        -0.101559,
+        51.493213,
+        -0.101559,
+        51.493213
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-05-02T13:00:00Z",
+        "local": "2019-05-02T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223693,
+      "name": "Grahame Park Way",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295923,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295924,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.608918,
+        "longitude": -0.246172
+      },
+      "licenses": null,
+      "bounds": [
+        -0.246172,
+        51.608918,
+        -0.246172,
+        51.608918
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-07-09T13:00:00Z",
+        "local": "2019-07-09T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223694,
+      "name": "Cecilia Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295927,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295925,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295928,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295926,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.54989,
+        "longitude": -0.06836
+      },
+      "licenses": null,
+      "bounds": [
+        -0.06836,
+        51.54989,
+        -0.06836,
+        51.54989
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-30T17:00:00Z",
+        "local": "2018-10-30T17:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223695,
+      "name": "Chigwell Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295931,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295929,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295932,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295930,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.595229,
+        "longitude": 0.038207
+      },
+      "licenses": null,
+      "bounds": [
+        0.038207,
+        51.595229,
+        0.038207,
+        51.595229
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-11T12:00:00Z",
+        "local": "2018-10-11T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223696,
+      "name": "St John's Upper Holloway CE Primary School",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295935,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295933,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295936,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295934,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.5625154,
+        "longitude": -0.132866
+      },
+      "licenses": null,
+      "bounds": [
+        -0.132866,
+        51.5625154,
+        -0.132866,
+        51.5625154
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-07-17T13:00:00Z",
+        "local": "2019-07-17T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223697,
+      "name": "Commercial Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295937,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295938,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295939,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.518123,
+        "longitude": -0.074271
+      },
+      "licenses": null,
+      "bounds": [
+        -0.074271,
+        51.518123,
+        -0.074271,
+        51.518123
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-01T12:00:00Z",
+        "local": "2019-03-01T12:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-06-05T02:00:00Z",
+        "local": "2020-06-05T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223698,
+      "name": "Charing Cross Hospital",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295940,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295941,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295943,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295942,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.487354,
+        "longitude": -0.221561
+      },
+      "licenses": null,
+      "bounds": [
+        -0.221561,
+        51.487354,
+        -0.221561,
+        51.487354
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-01-06T16:00:00Z",
+        "local": "2020-01-06T16:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223699,
+      "name": "Stockwell Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295946,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295944,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295947,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295945,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.466706,
+        "longitude": -0.117473
+      },
+      "licenses": null,
+      "bounds": [
+        -0.117473,
+        51.466706,
+        -0.117473,
+        51.466706
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-04T14:00:00Z",
+        "local": "2018-10-04T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223700,
+      "name": "Garrett Lane",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295948,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.440399,
+        "longitude": -0.186775
+      },
+      "licenses": null,
+      "bounds": [
+        -0.186775,
+        51.440399,
+        -0.186775,
+        51.440399
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-29T18:00:00Z",
+        "local": "2018-10-29T18:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2018-11-26T02:00:00Z",
+        "local": "2018-11-26T02:00:00Z"
+      }
+    },
+    {
+      "id": 223702,
+      "name": "Durham Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295954,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295952,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295955,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295953,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.485597,
+        "longitude": -0.11909
+      },
+      "licenses": null,
+      "bounds": [
+        -0.11909,
+        51.485597,
+        -0.11909,
+        51.485597
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-25T12:00:00Z",
+        "local": "2018-10-25T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-19T09:00:00Z",
+        "local": "2020-11-19T09:00:00Z"
+      }
+    },
+    {
+      "id": 223703,
+      "name": "Caledonian Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295958,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295956,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295959,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295957,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.550067,
+        "longitude": -0.117987
+      },
+      "licenses": null,
+      "bounds": [
+        -0.117987,
+        51.550067,
+        -0.117987,
+        51.550067
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-25T07:00:00Z",
+        "local": "2018-10-25T08:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223704,
+      "name": "Devas Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295962,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295960,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295963,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295961,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.523099,
+        "longitude": -0.012704
+      },
+      "licenses": null,
+      "bounds": [
+        -0.012704,
+        51.523099,
+        -0.012704,
+        51.523099
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-17T11:00:00Z",
+        "local": "2018-10-17T12:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223705,
+      "name": "Churchill Gardens Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295964,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295965,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295967,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295966,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.486223,
+        "longitude": -0.14503
+      },
+      "licenses": null,
+      "bounds": [
+        -0.14503,
+        51.486223,
+        -0.14503,
+        51.486223
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T17:00:00Z",
+        "local": "2018-10-16T18:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-07-22T16:00:00Z",
+        "local": "2019-07-22T17:00:00+01:00"
+      }
+    },
+    {
+      "id": 223706,
+      "name": "Clifford Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295969,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295968,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295970,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.51092,
+        "longitude": -0.141896
+      },
+      "licenses": null,
+      "bounds": [
+        -0.141896,
+        51.51092,
+        -0.141896,
+        51.51092
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-28T01:00:00Z",
+        "local": "2019-02-28T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2019-04-10T02:00:00Z",
+        "local": "2019-04-10T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223707,
+      "name": "Hendon Way",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295973,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295971,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295974,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295972,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.571687,
+        "longitude": -0.210037
+      },
+      "licenses": null,
+      "bounds": [
+        -0.210037,
+        51.571687,
+        -0.210037,
+        51.571687
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-23T15:00:00Z",
+        "local": "2018-10-23T16:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223708,
+      "name": "Glaisher Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295975,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4831,
+        "longitude": -0.0188
+      },
+      "licenses": null,
+      "bounds": [
+        -0.0188,
+        51.4831,
+        -0.0188,
+        51.4831
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-24T12:00:00Z",
+        "local": "2018-10-24T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-03-08T02:00:00Z",
+        "local": "2019-03-08T02:00:00Z"
+      }
+    },
+    {
+      "id": 223709,
+      "name": "London Wall",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295978,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295976,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295979,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295977,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.516749,
+        "longitude": -0.085342
+      },
+      "licenses": null,
+      "bounds": [
+        -0.085342,
+        51.516749,
+        -0.085342,
+        51.516749
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-02T14:00:00Z",
+        "local": "2018-11-02T14:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-20T11:00:00Z",
+        "local": "2020-11-20T11:00:00Z"
+      }
+    },
+    {
+      "id": 223710,
+      "name": "Savernake Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295982,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295980,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295983,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295981,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.5554849,
+        "longitude": -0.1523385
+      },
+      "licenses": null,
+      "bounds": [
+        -0.1523385,
+        51.5554849,
+        -0.1523385,
+        51.5554849
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-04T18:00:00Z",
+        "local": "2018-10-04T19:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223711,
+      "name": "Fitzjohn Avenue",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295984,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.551247,
+        "longitude": -0.175939
+      },
+      "licenses": null,
+      "bounds": [
+        -0.175939,
+        51.551247,
+        -0.175939,
+        51.551247
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-02T01:00:00Z",
+        "local": "2018-11-02T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2019-02-08T12:00:00Z",
+        "local": "2019-02-08T12:00:00Z"
+      }
+    },
+    {
+      "id": 223712,
+      "name": "Holloway Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295985,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295986,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295987,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.555387,
+        "longitude": -0.116092
+      },
+      "licenses": null,
+      "bounds": [
+        -0.116092,
+        51.555387,
+        -0.116092,
+        51.555387
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-09-03T15:00:00Z",
+        "local": "2019-09-03T16:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-09-17T02:00:00Z",
+        "local": "2019-09-17T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223713,
+      "name": "Morpeth Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295990,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295988,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295991,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295989,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.527588,
+        "longitude": -0.047295
+      },
+      "licenses": null,
+      "bounds": [
+        -0.047295,
+        51.527588,
+        -0.047295,
+        51.527588
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T10:00:00Z",
+        "local": "2018-10-16T11:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223714,
+      "name": "Haimo Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1295994,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295992,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1295995,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1295993,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.455253,
+        "longitude": 0.040655
+      },
+      "licenses": null,
+      "bounds": [
+        0.040655,
+        51.455253,
+        0.040655,
+        51.455253
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T15:00:00Z",
+        "local": "2018-10-16T16:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223716,
+      "name": "Woolwich Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296001,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1295999,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296002,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296000,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.481228,
+        "longitude": 0.126787
+      },
+      "licenses": null,
+      "bounds": [
+        0.126787,
+        51.481228,
+        0.126787,
+        51.481228
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-22T16:00:00Z",
+        "local": "2018-10-22T17:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223717,
+      "name": "Dagnall Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296005,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296003,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296006,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296004,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4738,
+        "longitude": -0.157493
+      },
+      "licenses": null,
+      "bounds": [
+        -0.157493,
+        51.4738,
+        -0.157493,
+        51.4738
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T11:00:00Z",
+        "local": "2018-10-16T12:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223718,
+      "name": "Queen Margarets Grove",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296009,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296007,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296010,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296008,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.549215,
+        "longitude": -0.079761
+      },
+      "licenses": null,
+      "bounds": [
+        -0.079761,
+        51.549215,
+        -0.079761,
+        51.549215
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-10T10:00:00Z",
+        "local": "2018-10-10T11:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223719,
+      "name": "Black Horse Court",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296011,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.496482,
+        "longitude": -0.088226
+      },
+      "licenses": null,
+      "bounds": [
+        -0.088226,
+        51.496482,
+        -0.088226,
+        51.496482
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-12-13T19:00:00Z",
+        "local": "2018-12-13T19:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-06-05T02:00:00Z",
+        "local": "2020-06-05T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223720,
+      "name": "Kensington Church Walk",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296014,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296012,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296015,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296013,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.501862,
+        "longitude": -0.19241
+      },
+      "licenses": null,
+      "bounds": [
+        -0.19241,
+        51.501862,
+        -0.19241,
+        51.501862
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-07T16:00:00Z",
+        "local": "2019-03-07T16:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-10-24T22:00:00Z",
+        "local": "2020-10-24T23:00:00+01:00"
+      }
+    },
+    {
+      "id": 223721,
+      "name": "Hunslett Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296018,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296016,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296019,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296017,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.529308,
+        "longitude": -0.048721
+      },
+      "licenses": null,
+      "bounds": [
+        -0.048721,
+        51.529308,
+        -0.048721,
+        51.529308
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-22T16:00:00Z",
+        "local": "2018-11-22T16:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-10-30T11:00:00Z",
+        "local": "2020-10-30T11:00:00Z"
+      }
+    },
+    {
+      "id": 223722,
+      "name": "High Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296020,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296021,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296022,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.39905,
+        "longitude": -0.075379
+      },
+      "licenses": null,
+      "bounds": [
+        -0.075379,
+        51.39905,
+        -0.075379,
+        51.39905
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-15T01:00:00Z",
+        "local": "2018-11-15T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2019-01-08T02:00:00Z",
+        "local": "2019-01-08T02:00:00Z"
+      }
+    },
+    {
+      "id": 223723,
+      "name": "Albert Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296025,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296023,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296026,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296024,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.536271,
+        "longitude": -0.143525
+      },
+      "licenses": null,
+      "bounds": [
+        -0.143525,
+        51.536271,
+        -0.143525,
+        51.536271
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-03T21:00:00Z",
+        "local": "2018-10-03T22:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223724,
+      "name": "Cannon Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296029,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296027,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296030,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296028,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.511403,
+        "longitude": -0.089336
+      },
+      "licenses": null,
+      "bounds": [
+        -0.089336,
+        51.511403,
+        -0.089336,
+        51.511403
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-08-06T01:00:00Z",
+        "local": "2020-08-06T02:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223725,
+      "name": "Peckham Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296033,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296031,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296034,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296032,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.474326,
+        "longitude": -0.078151
+      },
+      "licenses": null,
+      "bounds": [
+        -0.078151,
+        51.474326,
+        -0.078151,
+        51.474326
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-19T12:00:00Z",
+        "local": "2018-10-19T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223726,
+      "name": "King William Walk",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296036,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296035,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296037,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.481858,
+        "longitude": -0.008609
+      },
+      "licenses": null,
+      "bounds": [
+        -0.008609,
+        51.481858,
+        -0.008609,
+        51.481858
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-09-20T11:00:00Z",
+        "local": "2018-09-20T12:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-01-08T02:00:00Z",
+        "local": "2019-01-08T02:00:00Z"
+      }
+    },
+    {
+      "id": 223727,
+      "name": "Ballance Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296040,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296038,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296041,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296039,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.5456,
+        "longitude": -0.03614
+      },
+      "licenses": null,
+      "bounds": [
+        -0.03614,
+        51.5456,
+        -0.03614,
+        51.5456
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-29T21:00:00Z",
+        "local": "2018-11-29T21:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223728,
+      "name": "Haverstock Hill",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296044,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296042,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296045,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296043,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.549012,
+        "longitude": -0.162351
+      },
+      "licenses": null,
+      "bounds": [
+        -0.162351,
+        51.549012,
+        -0.162351,
+        51.549012
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-02T01:00:00Z",
+        "local": "2018-11-02T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223729,
+      "name": "Oakdale Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296048,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296046,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296049,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296047,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.592485,
+        "longitude": 0.033284
+      },
+      "licenses": null,
+      "bounds": [
+        0.033284,
+        51.592485,
+        0.033284,
+        51.592485
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T01:00:00Z",
+        "local": "2018-10-16T02:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223730,
+      "name": "Ladbroke Grove",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296052,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296050,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296053,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296051,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.510768,
+        "longitude": -0.20529
+      },
+      "licenses": null,
+      "bounds": [
+        -0.20529,
+        51.510768,
+        -0.20529,
+        51.510768
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-01T02:00:00Z",
+        "local": "2018-11-01T02:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223731,
+      "name": "Wyndham Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296056,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296054,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296057,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296055,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.50061,
+        "longitude": -0.320726
+      },
+      "licenses": null,
+      "bounds": [
+        -0.320726,
+        51.50061,
+        -0.320726,
+        51.50061
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-17T12:00:00Z",
+        "local": "2018-10-17T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-30T22:00:00Z",
+        "local": "2020-11-30T22:00:00Z"
+      }
+    },
+    {
+      "id": 223732,
+      "name": "Richmond Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296058,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.54337,
+        "longitude": -0.057899
+      },
+      "licenses": null,
+      "bounds": [
+        -0.057899,
+        51.54337,
+        -0.057899,
+        51.54337
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-08T12:00:00Z",
+        "local": "2019-02-08T12:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2019-04-18T02:00:00Z",
+        "local": "2019-04-18T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223733,
+      "name": "Whitehall",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296061,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296059,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296062,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296060,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.504566,
+        "longitude": -0.126167
+      },
+      "licenses": null,
+      "bounds": [
+        -0.126167,
+        51.504566,
+        -0.126167,
+        51.504566
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-21T12:00:00Z",
+        "local": "2019-03-21T12:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-30T22:00:00Z",
+        "local": "2020-11-30T22:00:00Z"
+      }
+    },
+    {
+      "id": 223734,
+      "name": "High Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296064,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296063,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296065,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.551997,
+        "longitude": -0.299651
+      },
+      "licenses": null,
+      "bounds": [
+        -0.299651,
+        51.551997,
+        -0.299651,
+        51.551997
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-16T01:00:00Z",
+        "local": "2019-03-16T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223735,
+      "name": "National Physical Laboratory",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296067,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296066,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296068,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.42661,
+        "longitude": -0.345043
+      },
+      "licenses": null,
+      "bounds": [
+        -0.345043,
+        51.42661,
+        -0.345043,
+        51.42661
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T01:00:00Z",
+        "local": "2018-10-16T02:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-30T22:00:00Z",
+        "local": "2020-11-30T22:00:00Z"
+      }
+    },
+    {
+      "id": 223736,
+      "name": "Romford Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296069,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.554615,
+        "longitude": 0.058982
+      },
+      "licenses": null,
+      "bounds": [
+        0.058982,
+        51.554615,
+        0.058982,
+        51.554615
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-29T21:00:00Z",
+        "local": "2018-10-29T21:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2018-12-06T02:00:00Z",
+        "local": "2018-12-06T02:00:00Z"
+      }
+    },
+    {
+      "id": 223737,
+      "name": "Commercial Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296070,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.518123,
+        "longitude": -0.074271
+      },
+      "licenses": null,
+      "bounds": [
+        -0.074271,
+        51.518123,
+        -0.074271,
+        51.518123
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-28T11:00:00Z",
+        "local": "2019-02-28T11:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223738,
+      "name": "Columbia Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296073,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296071,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296074,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296072,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.528491,
+        "longitude": -0.074268
+      },
+      "licenses": null,
+      "bounds": [
+        -0.074268,
+        51.528491,
+        -0.074268,
+        51.528491
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-16T14:00:00Z",
+        "local": "2018-10-16T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-01T01:00:00Z",
+        "local": "2020-11-01T01:00:00Z"
+      }
+    },
+    {
+      "id": 223739,
+      "name": "Edgware Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296077,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296075,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296078,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296076,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.51419,
+        "longitude": -0.161979
+      },
+      "licenses": null,
+      "bounds": [
+        -0.161979,
+        51.51419,
+        -0.161979,
+        51.51419
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-01-22T15:00:00Z",
+        "local": "2019-01-22T15:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223740,
+      "name": "Shaftsbury Avenue",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296081,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296079,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296082,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296080,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.51207,
+        "longitude": -0.131959
+      },
+      "licenses": null,
+      "bounds": [
+        -0.131959,
+        51.51207,
+        -0.131959,
+        51.51207
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-14T12:00:00Z",
+        "local": "2019-02-14T12:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223741,
+      "name": "Park Lane",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296085,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296083,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296086,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296084,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.507988,
+        "longitude": -0.153446
+      },
+      "licenses": null,
+      "bounds": [
+        -0.153446,
+        51.507988,
+        -0.153446,
+        51.507988
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-01-22T17:00:00Z",
+        "local": "2019-01-22T17:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223742,
+      "name": "Farringdon Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296087,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.514743,
+        "longitude": -0.104526
+      },
+      "licenses": null,
+      "bounds": [
+        -0.104526,
+        51.514743,
+        -0.104526,
+        51.514743
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-18T08:00:00Z",
+        "local": "2019-03-18T08:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2019-05-31T02:00:00Z",
+        "local": "2019-05-31T03:00:00+01:00"
+      }
+    },
+    {
+      "id": 223744,
+      "name": "St James",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296094,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296092,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296095,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296093,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.474143,
+        "longitude": -0.038547
+      },
+      "licenses": null,
+      "bounds": [
+        -0.038547,
+        51.474143,
+        -0.038547,
+        51.474143
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-26T09:00:00Z",
+        "local": "2018-10-26T10:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223746,
+      "name": "Devonshire Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296102,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296100,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296103,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296101,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.488199,
+        "longitude": -0.255688
+      },
+      "licenses": null,
+      "bounds": [
+        -0.255688,
+        51.488199,
+        -0.255688,
+        51.488199
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-18T16:00:00Z",
+        "local": "2018-10-18T17:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223747,
+      "name": "Crowthorne Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296106,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296104,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296107,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296105,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.516554,
+        "longitude": -0.218503
+      },
+      "licenses": null,
+      "bounds": [
+        -0.218503,
+        51.516554,
+        -0.218503,
+        51.516554
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-05T10:00:00Z",
+        "local": "2018-10-05T11:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-20T09:00:00Z",
+        "local": "2020-11-20T09:00:00Z"
+      }
+    },
+    {
+      "id": 223748,
+      "name": "Cadogan Gardens",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296110,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296108,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296111,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296109,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.493217,
+        "longitude": -0.158772
+      },
+      "licenses": null,
+      "bounds": [
+        -0.158772,
+        51.493217,
+        -0.158772,
+        51.493217
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-09T11:00:00Z",
+        "local": "2018-10-09T12:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223749,
+      "name": "Beckenham Lane",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296113,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296112,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296114,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4073728,
+        "longitude": 0.0057789
+      },
+      "licenses": null,
+      "bounds": [
+        0.0057789,
+        51.4073728,
+        0.0057789,
+        51.4073728
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-07-03T13:00:00Z",
+        "local": "2019-07-03T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223750,
+      "name": "Geraldine Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296117,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296115,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296118,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296116,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.49562,
+        "longitude": -0.105412
+      },
+      "licenses": null,
+      "bounds": [
+        -0.105412,
+        51.49562,
+        -0.105412,
+        51.49562
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-14T16:00:00Z",
+        "local": "2019-02-14T16:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223751,
+      "name": "Church Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296120,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296119,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296121,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.4813,
+        "longitude": -0.00986
+      },
+      "licenses": null,
+      "bounds": [
+        -0.00986,
+        51.4813,
+        -0.00986,
+        51.4813
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-09-21T08:00:00Z",
+        "local": "2018-09-21T09:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223752,
+      "name": "Station Parade",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296122,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296123,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296125,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296124,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.539063,
+        "longitude": 0.080874
+      },
+      "licenses": null,
+      "bounds": [
+        0.080874,
+        51.539063,
+        0.080874,
+        51.539063
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-12T12:00:00Z",
+        "local": "2018-10-12T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-08-27T17:00:00Z",
+        "local": "2020-08-27T18:00:00+01:00"
+      }
+    },
+    {
+      "id": 223753,
+      "name": "Whipps Cross University Hospital",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296126,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296127,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.577305,
+        "longitude": 0.00283
+      },
+      "licenses": null,
+      "bounds": [
+        0.00283,
+        51.577305,
+        0.00283,
+        51.577305
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-01-06T16:00:00Z",
+        "local": "2020-01-06T16:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223754,
+      "name": "Marylebone",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296130,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296128,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296131,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296129,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.52304,
+        "longitude": -0.174732
+      },
+      "licenses": null,
+      "bounds": [
+        -0.174732,
+        51.52304,
+        -0.174732,
+        51.52304
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-02-13T15:00:00Z",
+        "local": "2019-02-13T15:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223755,
+      "name": "St Thomas's Hospital",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296132,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296133,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.499104,
+        "longitude": -0.11705
+      },
+      "licenses": null,
+      "bounds": [
+        -0.11705,
+        51.499104,
+        -0.11705,
+        51.499104
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-01-13T17:00:00Z",
+        "local": "2020-01-13T17:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223756,
+      "name": "Blackfriars Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296135,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296134,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296136,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.505529,
+        "longitude": -0.104345
+      },
+      "licenses": null,
+      "bounds": [
+        -0.104345,
+        51.505529,
+        -0.104345,
+        51.505529
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-02T12:00:00Z",
+        "local": "2018-10-02T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-02-29T10:00:00Z",
+        "local": "2020-02-29T10:00:00Z"
+      }
+    },
+    {
+      "id": 223757,
+      "name": "Mansford Street",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296139,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296137,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296140,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296138,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.528757,
+        "longitude": -0.061823
+      },
+      "licenses": null,
+      "bounds": [
+        -0.061823,
+        51.528757,
+        -0.061823,
+        51.528757
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-09-28T16:00:00Z",
+        "local": "2018-09-28T17:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223759,
+      "name": "North Middlesex University Hospital",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296146,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296145,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296147,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.6130738,
+        "longitude": -0.075493
+      },
+      "licenses": null,
+      "bounds": [
+        -0.075493,
+        51.6130738,
+        -0.075493,
+        51.6130738
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-03-31T14:00:00Z",
+        "local": "2020-03-31T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223760,
+      "name": "Parkside",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296148,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296149,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296150,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.426126,
+        "longitude": -0.222013
+      },
+      "licenses": null,
+      "bounds": [
+        -0.222013,
+        51.426126,
+        -0.222013,
+        51.426126
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-24T14:00:00Z",
+        "local": "2018-10-24T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2019-02-06T02:00:00Z",
+        "local": "2019-02-06T02:00:00Z"
+      }
+    },
+    {
+      "id": 223761,
+      "name": "Camberwell Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296153,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296151,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296154,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296152,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.475739,
+        "longitude": -0.093557
+      },
+      "licenses": null,
+      "bounds": [
+        -0.093557,
+        51.475739,
+        -0.093557,
+        51.475739
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-19T12:00:00Z",
+        "local": "2018-10-19T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223762,
+      "name": "Blomfontein Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296157,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296155,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296158,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296156,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.514071,
+        "longitude": -0.235418
+      },
+      "licenses": null,
+      "bounds": [
+        -0.235418,
+        51.514071,
+        -0.235418,
+        51.514071
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-11-02T01:00:00Z",
+        "local": "2018-11-02T01:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223763,
+      "name": "The Royal London Hospital",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296161,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296159,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296162,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296160,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.518778,
+        "longitude": -0.058917
+      },
+      "licenses": null,
+      "bounds": [
+        -0.058917,
+        51.518778,
+        -0.058917,
+        51.518778
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2020-02-25T13:00:00Z",
+        "local": "2020-02-25T13:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223764,
+      "name": "Upper Richmond Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296165,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296163,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296166,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296164,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.465116,
+        "longitude": -0.254736
+      },
+      "licenses": null,
+      "bounds": [
+        -0.254736,
+        51.465116,
+        -0.254736,
+        51.465116
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-12-17T13:00:00Z",
+        "local": "2018-12-17T13:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223765,
+      "name": "Woolwich Manor Way",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296167,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296168,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296169,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.515901,
+        "longitude": 0.060587
+      },
+      "licenses": null,
+      "bounds": [
+        0.060587,
+        51.515901,
+        0.060587,
+        51.515901
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-31T10:00:00Z",
+        "local": "2018-10-31T10:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2018-11-29T10:00:00Z",
+        "local": "2018-11-29T10:00:00Z"
+      }
+    },
+    {
+      "id": 223766,
+      "name": "Pemberton Gardens",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296172,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296170,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296173,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296171,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.562469,
+        "longitude": -0.132545
+      },
+      "licenses": null,
+      "bounds": [
+        -0.132545,
+        51.562469,
+        -0.132545,
+        51.562469
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-09-17T13:00:00Z",
+        "local": "2019-09-17T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223767,
+      "name": "Bank Junction",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296174,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296175,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296177,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296176,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.513206,
+        "longitude": -0.088786
+      },
+      "licenses": null,
+      "bounds": [
+        -0.088786,
+        51.513206,
+        -0.088786,
+        51.513206
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-04-24T14:00:00Z",
+        "local": "2019-04-24T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-01-17T15:00:00Z",
+        "local": "2020-01-17T15:00:00Z"
+      }
+    },
+    {
+      "id": 223768,
+      "name": "Whitecross",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296180,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296178,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296181,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296179,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.521451,
+        "longitude": -0.092771
+      },
+      "licenses": null,
+      "bounds": [
+        -0.092771,
+        51.521451,
+        -0.092771,
+        51.521451
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-11T14:00:00Z",
+        "local": "2018-10-11T15:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223769,
+      "name": "Cornwall Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296184,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296182,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296185,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296183,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.506643,
+        "longitude": -0.112107
+      },
+      "licenses": null,
+      "bounds": [
+        -0.112107,
+        51.506643,
+        -0.112107,
+        51.506643
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-03-13T12:00:00Z",
+        "local": "2019-03-13T12:00:00Z"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223770,
+      "name": "Roehampton Lane",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296188,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296186,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296189,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296187,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.455096,
+        "longitude": -0.243402
+      },
+      "licenses": null,
+      "bounds": [
+        -0.243402,
+        51.455096,
+        -0.243402,
+        51.455096
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-24T15:00:00Z",
+        "local": "2018-10-24T16:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-11-30T22:00:00Z",
+        "local": "2020-11-30T22:00:00Z"
+      }
+    },
+    {
+      "id": 223771,
+      "name": "Holloway Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296192,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296190,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296193,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296191,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.555387,
+        "longitude": -0.116092
+      },
+      "licenses": null,
+      "bounds": [
+        -0.116092,
+        51.555387,
+        -0.116092,
+        51.555387
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2019-04-11T13:00:00Z",
+        "local": "2019-04-11T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223772,
+      "name": "Drury Lane",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296196,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296194,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296197,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296195,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.513472,
+        "longitude": -0.119223
+      },
+      "licenses": null,
+      "bounds": [
+        -0.119223,
+        51.513472,
+        -0.119223,
+        51.513472
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-19T12:00:00Z",
+        "local": "2018-10-19T13:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    },
+    {
+      "id": 223773,
+      "name": "Pattison Road",
+      "locality": null,
+      "timezone": "Europe/London",
+      "country": {
+        "id": 79,
+        "code": "GB",
+        "name": "United Kingdom"
+      },
+      "owner": {
+        "id": 5,
+        "name": "Unknown Research Organization"
+      },
+      "provider": {
+        "id": 137,
+        "name": "london stationary"
+      },
+      "isMobile": false,
+      "isMonitor": true,
+      "instruments": [
+        {
+          "id": 2,
+          "name": "Government Monitor"
+        }
+      ],
+      "sensors": [
+        {
+          "id": 1296200,
+          "name": "no µg/m³",
+          "parameter": {
+            "id": 19843,
+            "name": "no",
+            "units": "µg/m³",
+            "displayName": "NO mass"
+          }
+        },
+        {
+          "id": 1296198,
+          "name": "no2 ppm",
+          "parameter": {
+            "id": 7,
+            "name": "no2",
+            "units": "ppm",
+            "displayName": "NO₂"
+          }
+        },
+        {
+          "id": 1296201,
+          "name": "nox µg/m³",
+          "parameter": {
+            "id": 27,
+            "name": "nox",
+            "units": "µg/m³",
+            "displayName": "NOx mass"
+          }
+        },
+        {
+          "id": 1296199,
+          "name": "pm25 µg/m³",
+          "parameter": {
+            "id": 2,
+            "name": "pm25",
+            "units": "µg/m³",
+            "displayName": "PM2.5"
+          }
+        }
+      ],
+      "coordinates": {
+        "latitude": 51.560877,
+        "longitude": -0.195749
+      },
+      "licenses": null,
+      "bounds": [
+        -0.195749,
+        51.560877,
+        -0.195749,
+        51.560877
+      ],
+      "distance": null,
+      "datetimeFirst": {
+        "utc": "2018-10-09T13:00:00Z",
+        "local": "2018-10-09T14:00:00+01:00"
+      },
+      "datetimeLast": {
+        "utc": "2020-12-01T00:00:00Z",
+        "local": "2020-12-01T00:00:00Z"
+      }
+    }
+  ]
+}

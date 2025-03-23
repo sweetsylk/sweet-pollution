@@ -1,79 +1,253 @@
-/* Main Background */
-
-.main-background {
-    -fx-background-color: #F0F0F0; /* light grey */
+/*  Background */
+.root .main-background, .content-area {
+    -fx-background-color: #f7f7f7;
+    -fx-text-fill: #1a1a1a;
 }
-                                         
-/* Coordinates */
+
+/* The background colour behind the tab labels themselves */
+.tab-pane .tab-header-background {
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.tab-pane {
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #cccccc;
+}
+
+/* The bar that holds the tabs */
+.tab-pane .tab-header-area {
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #4f79c6;
+    -fx-border-width: 0 0 2px 0;
+}
+
+/* Default/unselected tabs */
+.tab-pane .tab {
+    -fx-background-color: #f7f7f7;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: #333333;
+}
+
+/* Hover effect on tabs */
+.tab-pane .tab:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Selected tab */
+.tab-pane .tab:selected {
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #000000;
+    -fx-border-color: #4f79c6;
+    -fx-border-width: 0 0 3px 0;
+}
+
+/* Ensures that the tab label text picks up our styling */
+.tab-pane .tab-label {
+    -fx-text-fill: inherit;
+}
+
+/* Border Pane */
+.border-pane {
+    -fx-border-color: #4f79c6;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 12px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+/* Coordinates box */
 .coordinates {
     -fx-padding: 10px;
-    -fx-background-color: #C0C0C0; /* silver */
+    -fx-background-color: #e8e8e8;
     -fx-font-size: 12px;
-    -fx-text-fill: #505050;
+    -fx-text-fill: #333333;
     -fx-alignment: center;
 }
 
-.tab-pane{
-    -fx-tab-max-width: 150px; /* Maximum width of the tabs */
-    -fx-tab-min-width: 80px;  /* Minimum width of the tabs */
-    -fx-tab-max-height: 40px; /* Maximum height of the tabs */
-    -fx-tab-min-height: 25px  /* Minimum height of the tabs */
-}    
-
-.border-pane{
-    -fx-border-color: #336699;
-    /*-fx-border-padding: 35;*/
-    -fx-border-style: solid;
-    -fx-tab-min-height: 25px
-}
-
-
-/* Sidebar */
-.sidebar{
-    -fx-background-color: #C0C2C9; /* darker grey */
-    -fx-padding: 10px;
-}
-
-
-/* Content Area */
-.content-area {
-    -fx-background-color: #FFFFFF; /* black */
-    -fx-padding: 20px;
-}
-
-
-/* Welcome Title */
+/* Headings and text */
 .welcome-title {
     -fx-font-size: 36px;
     -fx-font-weight: bold;
-    -fx-fill: #303030; /* dark grey */
+    -fx-fill: #1a1a1a;
 }
-
-/* Welcome Subtitle */
 .welcome-subtitle {
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-fill: #505050; /* medium grey */
+    -fx-fill: #333333;
 }
-
-/* Welcome Text */
-.welcome-text {
+.welcome-text, .label {
     -fx-font-size: 14px;
-    -fx-fill: #606060; /* lighter grey */
-    -fx-text-alignment: center;
-    -fx-padding: 10px;
+    -fx-text-fill: #444444;
+    -fx-wrap-text: true;
 }
 
-/* Welcome Screen Button */
-.welcome-button {
-    -fx-background-color: #8B0000; /* dark red */
-    -fx-text-fill: white;
-    -fx-font-size: 16px;
+/* Buttons */
+.welcome-button, .button {
+    -fx-background-color: linear-gradient(#4f79c6, #3b59a6);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
-    -fx-border-radius: 20px; /* slighly ovular edges of button */
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
-.welcome-button:hover {
-    -fx-background-color: #B22222; /* light red */
+.welcome-button:hover, .button:hover {
+    -fx-background-color: linear-gradient(#5c89e0, #4f79c6);
 }
 
+/* ComboBox base styling */
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #4f79c6;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+/* ComboBox arrow button */
+.combo-box .arrow-button {
+    -fx-background-color: #e0e0e0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+}
+.combo-box .arrow-button:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+/* ComboBox displayed text area */
+.combo-box .text-field {
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: #666666;
+}
+
+/* Disabled ComboBox text */
+.combo-box:disabled .text-field,
+.combo-box .text-field:disabled {
+    -fx-text-fill: #333333;
+    -fx-opacity: 1;
+}
+
+/* ComboBox dropdown popup */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-border-color: #4f79c6;
+    -fx-border-radius: 0 0 4px 4px;
+}
+.combo-box-popup .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #4f79c6;
+    -fx-text-fill: #ffffff;
+}
+
+/* Checkboxes */
+.check-box {
+    -fx-text-fill: #333333;
+}
+.check-box .box {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #bbbbbb;
+}
+.check-box:selected .box {
+    -fx-background-color: #4f79c6;
+}
+
+/* Toggle Buttons (Grid & Heatmap toggles) */
+.toggle-button {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #4f79c6;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+.toggle-button:selected {
+    -fx-background-color: #4f79c6;
+    -fx-text-fill: #ffffff;
+}
+
+/* Tooltip */
+.tooltip {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #1a1a1a;
+    -fx-border-color: #4f79c6;
+}
+
+/* Alerts */
+.dialog-pane {
+    -fx-background-color: #ffffff;
+}
+.dialog-pane .content.label {
+    -fx-text-fill: #1a1a1a;
+}
+.dialog-pane .header-panel {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #1a1a1a;
+}
+
+/* Chart background */
+.chart {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.chart-plot-background {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #4f79c6;
+    -fx-border-width: 1px;
+}
+
+/* Chart title */
+.chart-title {
+    -fx-text-fill: #000000;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Axis styling */
+.axis {
+    -fx-tick-label-fill: #000000;
+    -fx-axis-line-visible: true;
+    -fx-axis-line-color: #4f79c6;
+    -fx-tick-mark-length: 5;
+}
+.axis-label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.chart-legend {
+    -fx-background-color: transparent;
+}
+.chart-legend-item-symbol {
+    -fx-background-color: #4f79c6;
+}
+.chart-legend-item {
+    -fx-text-fill: #333333;
+}
+
+/* Chart lines */
+.default-color0.chart-series-line {
+    -fx-stroke: #4f79c6;
+    -fx-stroke-width: 2px;
+}
+.default-color0.chart-line-symbol {
+    -fx-background-color: #4f79c6, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 4px;
+}
+
+/* Tooltip styling for charts */
+.chart .tooltip {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-border-color: #4f79c6;
+}

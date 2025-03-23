@@ -6,6 +6,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Tooltip;
 import java.util.List;
 
+/**
+ * This is used for the display of the graph for the moving average of the pollutant
+ */
 public class Graphs {
     private NumberAxis xAxis = new NumberAxis(2018, 2023, 1);
     private NumberAxis yAxis = new NumberAxis();
@@ -41,6 +44,9 @@ public class Graphs {
         }
     }
 
+    /**
+     * This just makes it so the points can be hovered over with it displaying information
+     */
     private void generateTooltips() {
 
             for (XYChart.Data<Number, Number> data : series.getData()) {
