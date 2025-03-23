@@ -2,7 +2,11 @@ import java.io.BufferedReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+/*
+This class just loads the API key into the api handler to validate API requests
+The API key is stored in the .env file
 
+*/
 public class ApiKeyLoader {
     private static String API_KEY;
 

@@ -3,6 +3,12 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * This stores a given location in london from the JSONResponse made by the fetchLocationData() method in the APIHandler class
+ * This means that it stores the locations from endpoint: https://api.openaq.org/v3/locations?bbox=-0.40653443,51.395246,0.20205370,51.627741&limit=100
+ * This then allows for easy access for locationID, locationName, latitude, longitude
+ * also maps the pollutant type to the sensorId which allows for pollutant checks in the APIHandler
+ */
 public class LocationData {
     private int locationId;
     private String locationName;

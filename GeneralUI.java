@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +28,9 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
+/**
+ * This is the class that handles UI related stuff
+ */
 public class GeneralUI extends Application {
     private static final int MAP_WIDTH = 1781;
     private static final int MAP_HEIGHT = 1100;
@@ -48,73 +50,78 @@ public class GeneralUI extends Application {
     public GeneralUI() {
     }
 
+    @Override
     public void start(Stage primaryStage) {
-     statsDataDisplaying = false;
-        
-        // INITIALISATION
-        // create a tab pane for switching between pages
+        statsDataDisplaying = false;
         TabPane tabPane = new TabPane();
+        createMapTab(tabPane);
+        createStatsTab(tabPane);
+        createMainScene(primaryStage, tabPane);
+    }
 
-        // create map and stats tabs
+    /**
+     * Makes the tab that has the map and its related features
+     * @param tabPane the tabpane
+     */
+    private void createMapTab(TabPane tabPane) {
         Tab mapTab = new Tab("Map");
-        Tab statsTab = new Tab("Stats");
-
-        // prevent tabs from being closed
         mapTab.setClosable(false);
-        statsTab.setClosable(false);
 
-
-        // MAP TAB CREATION
-        // creating the borderpane
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
-
-        //CREATION OF MAP SIDEBAR
-
-        // create a sidebar for dropdowns in the map tab, containing the UI vertically
         VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
-
-        //setting mapside bar's display preferences
         mapSideBar.setPrefWidth(150);
         mapSideBar.setAlignment(Pos.TOP_CENTER);
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
+        ComboBox<String> yearDropdown = new ComboBox<>();
+        yearDropdown.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
 
-        //CREATION OF DROPDOWN BOXES FOR SIDEBAR
+        ComboBox<String> pollutantDropdown = new ComboBox<>();
+        pollutantDropdown.getItems().addAll("NO2", "PM10", "PM2.5");
 
+        setupMapSideBar(mapSideBar, yearDropdown, pollutantDropdown);
 
-        // first dropdown box, for choosing the year
-        Label dropdown1Label = new Label("Year:");
-        ComboBox<String> dropdown1 = new ComboBox<>();
-        dropdown1.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+        ImageView londonImageView = new ImageView(
+                new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()));
+        londonImageView.setPreserveRatio(false);
+        londonImageView.setFitWidth(MAP_WIDTH);
+        londonImageView.setFitHeight(MAP_HEIGHT);
+        londonImageView.fitWidthProperty().bind(stack.widthProperty());
+        londonImageView.fitHeightProperty().bind(stack.heightProperty());
 
-        // second dropdown box, for choosing the pollutant
-        Label dropdown2Label = new Label("Pollutant:");
-        ComboBox<String> dropdown2 = new ComboBox<>();
-        dropdown2.getItems().addAll("NO2", "PM10", "PM2.5");
+        stack.getChildren().addAll(londonImageView, grid);
+        mapLayout.setCenter(stack);
+        mapLayout.setLeft(mapSideBar);
 
-        //modifying the display of the comboboxes
-        dropdown1.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        dropdown2.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        
-        // title for filter section in sidebar
+        mapTab.setContent(mapLayout);
+        tabPane.getTabs().add(mapTab);
+    }
+
+    /**
+     * adds components to the mapside bar
+     * @param mapSideBar
+     * @param yearDropdown
+     * @param pollutantDropdown
+     */
+    private void setupMapSideBar(VBox mapSideBar, ComboBox<String> yearDropdown, ComboBox<String> pollutantDropdown) {
+        Label yearLabel = new Label("Year:");
+        Label pollutantLabel = new Label("Pollutant:");
+
+        yearDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        pollutantDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+
         Label filterLabel = new Label("Filter by Pollution Level:");
-
-        // create checkboxes for each pollution level
         CheckBox greenCheck = new CheckBox("Low (Green)");
         CheckBox yellowCheck = new CheckBox("Moderate (Yellow)");
         CheckBox orangeCheck = new CheckBox("High (Orange)");
         CheckBox redCheck = new CheckBox("Very High (Red)");
         CheckBox crimsonCheck = new CheckBox("Severe (Crimson)");
         CheckBox purpleCheck = new CheckBox("Hazardous (Purple)");
-        
-        // button to manually apply the filter (not strictly needed, but can be useful)
-        Button applyFilter = new Button("Apply Filter");
-        
-        // all pollution levels are visible by default
+
         greenCheck.setSelected(true);
         yellowCheck.setSelected(true);
         orangeCheck.setSelected(true);
@@ -122,171 +129,112 @@ public class GeneralUI extends Application {
         crimsonCheck.setSelected(true);
         purpleCheck.setSelected(true);
 
+        Button applyFilter = new Button("Apply Filter");
         applyFilter.setOnAction(e -> applyPollutionFilter(greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck));
-        
-        //CREATION OF TOGGLE BUTTONS FOR MAP GRID AND HEAT MAP
 
-        // create a toggle group of toggle buttons
-        ToggleGroup gridToggleGroup = new ToggleGroup();
-
-        //MAPGRID
-        // create a single toggle button for the grid
         ToggleButton mapGridOn = new ToggleButton("Map Grid");
-
-        mapGridOn.setToggleGroup(gridToggleGroup);
-
-        // set default state for map grid as off
-        mapGridOn.setSelected(false);
-
-        // event handler for toggling the button for the map grid
+        mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         mapGridOn.setOnAction(e -> {
             gridMapToggle();
-            if (gridMapIsOn() == true) {
-                gridOn(null);  // grid ON effect
+            if (gridMapIsOn()) {
+                gridOn(null);
             } else {
-                gridOff(null); // when toggled off, call grid OFF effect
+                gridOff(null);
             }
         });
 
-
-        //HEATMAP
-        //Create sinlge toggle button for the heatmap
         ToggleButton heatMap = new ToggleButton("Heat Map");
-
-        //modifying the display of the map grid and heatmap
-        mapGridOn.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
         heatMap.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        //made heatbutton usable
         heatMap.setOnAction(this::heatMapToggle);
-        
+
         Button fetchLiveDataButton = new Button("Fetch Real-Time Pollution Data");
-        fetchLiveDataButton.setOnAction((e) -> this.fetchRealTimeData(dropdown2));
-        
-        //MAPSIDEBAR
-        // add the dropdown boxes to the sidebar, containing the UI vertically
-        mapSideBar.getChildren().addAll(dropdown2Label, dropdown2, dropdown1Label, dropdown1, mapGridOn, heatMap, fetchLiveDataButton, filterLabel, greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck, applyFilter);
-        mapLayout.setLeft(mapSideBar);
+        fetchLiveDataButton.setOnAction(e -> fetchRealTimeData(pollutantDropdown));
 
+        Button toggleDarkMode = new Button("Toggle Dark Mode");
+        toggleDarkMode.setOnAction(e -> toggleDarkMode(mapSideBar.getScene()));
 
+        mapSideBar.getChildren().addAll(
+                pollutantLabel, pollutantDropdown, yearLabel, yearDropdown,
+                mapGridOn, heatMap, fetchLiveDataButton,
+                filterLabel, greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck,
+                applyFilter, toggleDarkMode
+        );
 
-        //LONDON IMAGE
-        // load and display the map image
-        Image londonImage = new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()); // this is to prevent null exceptions
-        ImageView londonImageView = new ImageView(londonImage);
+        yearDropdown.setOnAction(e -> handleComboBoxSelection(pollutantDropdown, yearDropdown, new ComboBox<>()));
+        pollutantDropdown.setOnAction(e -> handleComboBoxSelection(pollutantDropdown, yearDropdown, new ComboBox<>()));
+    }
 
-        // ensure the image scales properly if true
-        londonImageView.setPreserveRatio(false);
-        londonImageView.setFitWidth(1781.0);
-        londonImageView.setFitHeight(1100.0);
+    /**
+     * Handles the CSS changes between light/dark mode
+     * @param scene the scene
+     */
+    private void toggleDarkMode(Scene scene) {
+        if (scene.getStylesheets().contains(getClass().getResource("style.css").toExternalForm())) {
+            scene.getStylesheets().remove(getClass().getResource("style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("dark-style.css").toExternalForm());
+        } else {
+            scene.getStylesheets().remove(getClass().getResource("dark-style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        }
+    }
 
-        // map image scales with window
-        londonImageView.fitWidthProperty().bind(stack.widthProperty());
-        londonImageView.fitHeightProperty().bind(stack.heightProperty());
+    /**
+     * makes the tabs for the stats related components
+     * @param tabPane the tab pane
+     */
+    private void createStatsTab(TabPane tabPane) {
+        Tab statsTab = new Tab("Stats");
+        statsTab.setClosable(false);
 
-
-        //NEW PANE TO FIT MULTIPLE DISPLAYS ON CENTER BORDER PANE
-        // use a stack pane to fit grid map onto image
-        stack.getChildren().add(londonImageView);
-        stack.getChildren().add(grid);
-
-        // place the image in the center of the map layout
-        mapLayout.setCenter(stack);
-        
-        // assign the completed layout to the map tab
-        mapTab.setContent(mapLayout);
-
-
-        // STATS TAB CREATION
         BorderPane statsLayout = new BorderPane();
         statsLayout.getStyleClass().add("main-background");
 
-
-        //STATS SIDE BAR CREATION
-        // create a sidebar for dropdowns in the stats tab, containing the UI vertically
-        //modifying display of sidebar
         statsSideBar.getStyleClass().add("sidebar");
         statsSideBar.setAlignment(Pos.TOP_CENTER);
         statsSideBar.prefHeightProperty().bind(stack.heightProperty());
         statsSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
-        
 
+        Label statsDropdownLabel = new Label("Metric:");
+        ComboBox<String> statsDropdown = new ComboBox<>();
+        statsDropdown.getItems().addAll("Highest", "Average by Period", "Average by Area");
+        statsDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+        statsDropdown.setOnAction(e -> handleComboBoxSelection(new ComboBox<>(), new ComboBox<>(), statsDropdown));
 
-        //CREATION OF STATS DROPDOWN BOXES
-
-        //second dropdown box, for highest or average
-        Label statsdropdownLabel = new Label("Metric:");
-        ComboBox<String> statsdropdown = new ComboBox<>();
-        statsdropdown.getItems().addAll("Highest", "Average by Period", "Average by Area");
-
-
-        //Listeners for the comboboxes
-        dropdown1.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown));
-        dropdown2.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown));
-
-
-        // listener for the metric dropdown of "Average"
-        statsdropdown.setOnAction(e -> handleComboBoxSelection(dropdown2, dropdown1, statsdropdown));
-
-
-        //assigning fixed width and binding to stats side bar
-        statsdropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
-
-
-        //adding functioning buttons and labels to stats side bar
-        statsSideBar.getChildren().addAll(statsdropdownLabel, statsdropdown);
+        statsSideBar.getChildren().addAll(statsDropdownLabel, statsDropdown);
         statsLayout.setLeft(statsSideBar);
-        
-        // place the stats chart in the center
         statsLayout.setCenter(pollutionGraph.getGraph());
 
-        // assign the completed layout to the stats tab
         statsTab.setContent(statsLayout);
+        tabPane.getTabs().add(statsTab);
+    }
 
-        // FINALISING SCENE
-        tabPane.getTabs().addAll(mapTab, statsTab);
-
-        // create the primary scene within the tab pane
+    /**
+     * makes and sets up the main scene
+     * @param primaryStage the stage used
+     * @param tabPane the tab pane used
+     */
+    private void createMainScene(Stage primaryStage, TabPane tabPane) {
         Scene mainScene = new Scene(tabPane, 800, 600);
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dark-style.css")).toExternalForm());
 
-
-        //connect external css file
-        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("dark-style.css")).toExternalForm()); // this is to prevent nullpointer exceptions when accessing css files
-
-        Button toggleDarkMode = new Button("Toggle Dark Mode");
-        toggleDarkMode.setOnAction(e -> {
-            if (mainScene.getStylesheets().contains(getClass().getResource("style.css").toExternalForm())) {
-                mainScene.getStylesheets().remove(getClass().getResource("style.css").toExternalForm());
-                mainScene.getStylesheets().add(getClass().getResource("dark-style.css").toExternalForm());
-            } else {
-                mainScene.getStylesheets().remove(getClass().getResource("dark-style.css").toExternalForm());
-                mainScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            }
-        });
-        mapSideBar.getChildren().add(toggleDarkMode);
-
-        // set the title of the application
         primaryStage.setTitle("Pollution Solution");
-
-
-        // set up primaryStage mainScene
         primaryStage.setScene(mainScene);
-        primaryStage.setResizable(true);
-
-
-        //taking note of the minimum number of nodes on the stats side bar
-
-        // Enable fullscreen AFTER switching scenes
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
         primaryStage.setFullScreen(true);
-        primaryStage.show(); // Show the new window
+        primaryStage.show();
     }
+
+
 
     public boolean gridMapIsOn() {
         return gridMapOn;
     }
 
 
+    /**
+     * turns the grid map on and off
+     */
     private void gridMapToggle() {
         gridMapOn = !gridMapOn;
     }
@@ -302,15 +250,8 @@ public class GeneralUI extends Application {
      * Turns the heatmap on and off
      */
     private void heatMapToggle(ActionEvent actionEvent) {
-        if (filename == null || filename.isEmpty()) {
-            System.out.println("No dataset selected for heatmap!");
-            return;
-        }
-
         heatMapOn = !heatMapOn;  // Toggle the heatmap state
-
-        //Ensure data updates correctly
-        displayData(filename);
+        displayDataOntoMap(filename);
     }
 
     /**
@@ -347,15 +288,23 @@ public class GeneralUI extends Application {
     }
 
     /**
-     * Handles the events for each combo box when something has been selected from one of them
+     * handles the actions done when the map related comboboxes are selected
+     * @param pollutantDropDown which pollutant is selected
+     * @param yearDropDown which year is selected
+     * @param statsdropdown which metric from the stats page is selected
      */
     public void handleComboBoxSelection(ComboBox<String> pollutantDropDown, ComboBox<String> yearDropDown, ComboBox<String> statsdropdown) {
         String pollutant = pollutantDropDown.getSelectionModel().getSelectedItem();
         String year = yearDropDown.getSelectionModel().getSelectedItem();
         String metric = statsdropdown.getSelectionModel().getSelectedItem();
         if (pollutant != null && year != null) {
+            if (pollutant == null || year == null) {
+                System.out.println("Pollutant or year not selected yet.");
+                return;
+            }
+
             filename = DataHandler.generateFilename(pollutant, year);
-            displayData(filename);
+            displayDataOntoMap(filename);
             if (metric != null){
                 if (metric.equals("Highest")) {
                 displayHighestPollutantLevels(new ArrayList<>(DataHandler.getHighestPollutantTrends(pollutant)));
@@ -377,9 +326,11 @@ public class GeneralUI extends Application {
             previousPollutant = pollutant;
         }
     }
-    
+
     /**
-     * Creates labels for the average pollutant level by area and displays it
+     * this just shows the average pollutant levels for a given gridcode area
+     * @param pollutant the pollutant
+     * @param gridCode the gridcode area
      */
     private void displayAveragePollutantLevelsByArea(String pollutant, int gridCode){
         if(statsDataDisplaying){
@@ -399,9 +350,12 @@ public class GeneralUI extends Application {
         statsDataDisplaying = true;
         averageDisplaying = true;
     }
-    
+
     /**
-     * Creates labels for the average pollutant level by year and displays it
+     * Displays the average levels of pollution by years
+     * @param value the pollution level
+     * @param year the year
+     * @param pollutant the pollutant
      */
     private void displayAveragePollutantLevelsByYear(double value, String year, String pollutant)
     {   
@@ -416,13 +370,14 @@ public class GeneralUI extends Application {
     }
 
     /**
-     * Displays the markers on the map
+     * Displays the data of onto the map
+     * @param filename the filename of the dataset used
      */
-    public void displayData(String filename) {
+    public void displayDataOntoMap(String filename) {
         if (!filename.isEmpty()) {
             DataLoader loader = new DataLoader();
             DataSet dataSet = loader.loadDataFile(filename);
-            List<Node> markers = HeatmapAndMarkerGenerator.generateMarkers(this.heatMapOn, dataSet);
+            List<Node> markers = HeatmapAndMarkerGenerator.generateMarkers(heatMapIsOn(), dataSet);
             Platform.runLater(() -> {
                 this.stack.getChildren().removeIf((node) -> node instanceof Shape);
                 this.stack.getChildren().addAll(markers);
@@ -432,7 +387,8 @@ public class GeneralUI extends Application {
     }
 
     /**
-     * Created labels to display the data the ten highest pollutant levels
+     * shows the highest pollution levels recorded for each grid element
+     * @param data the list of datapoints
      */
     private void displayHighestPollutantLevels(ArrayList<DataPoint> data) {
         if(statsDataDisplaying){
@@ -468,12 +424,24 @@ public class GeneralUI extends Application {
             }
         }
     }
-    
-    // check which boxes are checked and apply the filtering to the pollution markers
+
+    /**
+     * calls filterPollutionPoints() method to hide certain markers
+     * @param greenCheck checkbox
+     * @param yellowCheck checkbox
+     * @param orangeCheck checkbox
+     * @param redCheck checkbox
+     * @param crimsonCheck checkbox
+     * @param purpleCheck checkbox
+     */
     private void applyPollutionFilter(CheckBox greenCheck, CheckBox yellowCheck, CheckBox orangeCheck, CheckBox redCheck, CheckBox crimsonCheck, CheckBox purpleCheck) {
         HeatmapAndMarkerGenerator.filterPollutionPoints(this.stack.getChildren(), greenCheck.isSelected(), yellowCheck.isSelected(), orangeCheck.isSelected(), redCheck.isSelected(), crimsonCheck.isSelected(), purpleCheck.isSelected());
     }
 
+    /**
+     * This calls methods from APIHandler to retrieve real time API responses for pollution
+     * @param dropdown the pollutant selected
+     */
     private void fetchRealTimeData(ComboBox<String> dropdown) {
         Platform.runLater(() -> {
             String pollutant = dropdown.getSelectionModel().getSelectedItem();

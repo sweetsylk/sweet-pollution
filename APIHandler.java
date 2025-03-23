@@ -7,17 +7,24 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/*
+ * A class for handling API requests to OpenAQ.org
+ *
+ * This class provides methods to fetch all location data From London locations and also to retrieve most recent measurements for the needed pollutants for each location
+ * It also includes a default constructor using the real API key, and an additional constructor for JUnit testing purposes.
+ *
+ */
 public class APIHandler {
     private static String apiKey;
 
     // Default constructor uses the real key
     public APIHandler() {
-        this.apiKey = ApiKeyLoader.getApiKey();
+        apiKey = ApiKeyLoader.getApiKey();
     }
 
     // Additional constructor used in JUNI test
     public APIHandler(String customKey) {
-        this.apiKey = customKey;
+        apiKey = customKey;
     }
 
     public static JSONArray fetchLocationData() throws Exception {
