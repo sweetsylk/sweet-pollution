@@ -116,13 +116,15 @@ public class HeatmapAndMarkerGenerator {
         Tooltip tooltip = new Tooltip(String.format("%s (%s) \nPollution: %.2f %s \nx: %d\ny: %d\n GridCode: %d ", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
         Tooltip.install(marker, tooltip);
         marker.setOnMouseClicked((e) -> {
-            double average = DataHandler.getAveragePollutantLevelForArea(data.getPollutant(), point.gridCode());
+            GeneralUI.setSelectedGridCode(point.gridCode());
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Pollution Data");
             alert.setHeaderText("Pollution Details for Selected Location");
-            alert.setContentText(String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d\nAverage Pollution over the years: %.2f", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode(), average));
+            alert.setContentText(String.format("Pollutant: %s (%s)\nPollution Level: %.2f %s\nX: %d\nY: %d\nGridCode: %d\n", data.getPollutant(), data.getYear(), pollution, data.getUnits(), point.x(), point.y(), point.gridCode()));
             alert.showAndWait();
-        });
+        }
+        );
+
     }
 
 

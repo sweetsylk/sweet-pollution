@@ -49,21 +49,48 @@ public class GeneralUI extends Application {
     private boolean averageDisplaying;
     private String previousPollutant;
 
+    private ComboBox<String> mapYearDropdown;
+    private ComboBox<String> mapPollutantDropdown;
     private ComboBox<String> yearDropdown;
     private ComboBox<String> pollutantDropdown;
     private ComboBox<String> statsDropdown;
 
+    private static int selectedGridCode = -1;
 
+    /**
+     * This is the intitial set up of the JavaFx program for the main program
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
-     statsDataDisplaying = false;
+        statsDataDisplaying = false;
 
-        // INITIALISATION
-        // create a tab pane for switching between pages
+        // Initialize dropdowns for the map sidebar
+        mapYearDropdown = new ComboBox<>();
+        mapYearDropdown.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+
+        mapPollutantDropdown = new ComboBox<>();
+        mapPollutantDropdown.getItems().addAll("NO2", "PM10", "PM2.5");
+
+        // Initialize dropdowns for the stats sidebar
+        yearDropdown = new ComboBox<>();
+        yearDropdown.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
+
+        pollutantDropdown = new ComboBox<>();
+        pollutantDropdown.getItems().addAll("NO2", "PM10", "PM2.5");
+
+        // Synchronize selections between both sets of dropdowns
+        mapYearDropdown.setOnAction(e -> yearDropdown.setValue(mapYearDropdown.getValue()));
+        yearDropdown.setOnAction(e -> mapYearDropdown.setValue(yearDropdown.getValue()));
+
+        mapPollutantDropdown.setOnAction(e -> pollutantDropdown.setValue(mapPollutantDropdown.getValue()));
+        pollutantDropdown.setOnAction(e -> mapPollutantDropdown.setValue(pollutantDropdown.getValue()));
+
         TabPane tabPane = new TabPane();
         createMapTab(tabPane);
         createStatsTab(tabPane);
         createMainScene(primaryStage, tabPane);
     }
+
 
     /**
      * Makes the tab that has the map and its related features
@@ -71,38 +98,19 @@ public class GeneralUI extends Application {
      */
     private void createMapTab(TabPane tabPane) {
         Tab mapTab = new Tab("Map");
-        Tab statsTab = new Tab("Stats");
-
-        // prevent tabs from being closed
         mapTab.setClosable(false);
-        statsTab.setClosable(false);
 
-
-        // MAP TAB CREATION
-        // creating the borderpane
         BorderPane mapLayout = new BorderPane();
         mapLayout.getStyleClass().add("main-background");
 
-
-        //CREATION OF MAP SIDEBAR
-
-        // create a sidebar for dropdowns in the map tab, containing the UI vertically
         VBox mapSideBar = new VBox(12);
         mapSideBar.getStyleClass().add("sidebar");
-
-        //setting mapside bar's display preferences
         mapSideBar.setPrefWidth(150);
         mapSideBar.setAlignment(Pos.TOP_CENTER);
         mapSideBar.prefHeightProperty().bind(stack.heightProperty());
         mapSideBar.prefWidthProperty().bind(tabPane.widthProperty().multiply(0.15));
 
-        yearDropdown = new ComboBox<>();
-        yearDropdown.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
-
-        pollutantDropdown = new ComboBox<>();
-        pollutantDropdown.getItems().addAll("NO2", "PM10", "PM2.5");
-
-        setupMapSideBar(mapSideBar, yearDropdown, pollutantDropdown);
+        setupMapSideBar(mapSideBar);
 
         ImageView londonImageView = new ImageView(
                 new Image(Objects.requireNonNull(getClass().getResource("London.png")).toExternalForm()));
@@ -123,15 +131,10 @@ public class GeneralUI extends Application {
     /**
      * adds components to the mapside bar
      * @param mapSideBar the map sidebar
-     * @param yearDropdown the year dropdown
-     * @param pollutantDropdown the pollutant dropdown
      */
-    private void setupMapSideBar(VBox mapSideBar, ComboBox<String> yearDropdown, ComboBox<String> pollutantDropdown) {
-        Label yearLabel = new Label("Year:");
-        Label pollutantLabel = new Label("Pollutant:");
-
-        yearDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
-        pollutantDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+    private void setupMapSideBar(VBox mapSideBar) {
+        mapPollutantDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
+        mapYearDropdown.prefWidthProperty().bind(mapSideBar.widthProperty().multiply(0.9));
 
         Label filterLabel = new Label("Filter by Pollution Level:");
         CheckBox greenCheck = new CheckBox("Low (Green)");
@@ -167,20 +170,18 @@ public class GeneralUI extends Application {
         heatMap.setOnAction(this::heatMapToggle);
 
         Button fetchLiveDataButton = new Button("Fetch Real-Time Pollution Data");
-        fetchLiveDataButton.setOnAction(e -> fetchRealTimeData(pollutantDropdown));
+        fetchLiveDataButton.setOnAction(e -> fetchRealTimeData(mapPollutantDropdown));
 
         Button toggleDarkMode = new Button("Toggle Dark Mode");
         toggleDarkMode.setOnAction(e -> toggleDarkMode(mapSideBar.getScene()));
 
         mapSideBar.getChildren().addAll(
-                pollutantLabel, pollutantDropdown, yearLabel, yearDropdown,
+                new Label("Pollutant:"), mapPollutantDropdown,
+                new Label("Year:"), mapYearDropdown,
                 mapGridOn, heatMap, fetchLiveDataButton,
                 filterLabel, greenCheck, yellowCheck, orangeCheck, redCheck, crimsonCheck, purpleCheck,
                 applyFilter, toggleDarkMode
         );
-
-        yearDropdown.setOnAction(e -> handleComboBoxSelection(pollutantDropdown, yearDropdown, new ComboBox<>()));
-        pollutantDropdown.setOnAction(e -> handleComboBoxSelection(pollutantDropdown, yearDropdown, new ComboBox<>()));
     }
 
     /**
@@ -215,31 +216,31 @@ public class GeneralUI extends Application {
 
         Label statsDropdownLabel = new Label("Metric:");
         statsDropdown = new ComboBox<>();
-        statsDropdown.getItems().addAll("Highest", "Average by Period");
+        statsDropdown.getItems().addAll("Highest", "Average by Period", "Average for Area");
         statsDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
         statsDropdown.setOnAction(e -> handleComboBoxSelection(pollutantDropdown, yearDropdown, statsDropdown));
 
-        Label pollutantLabel = new Label("Pollutant");
-        ComboBox<String> pollutantDropdown = new ComboBox<>();
-        pollutantDropdown.getItems().addAll("NO2", "PM10", "PM2.5");
-        pollutantDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
 
-        Label yearLabel = new Label("Year:");
-        ComboBox<String> yearDropdown = new ComboBox<>();
-        yearDropdown.getItems().addAll("2023", "2022", "2021", "2020", "2019", "2018");
-        yearDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
 
-        yearDropdown.setOnAction(e -> {
+        this.pollutantDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+
+        this.yearDropdown.prefWidthProperty().bind(statsSideBar.widthProperty().multiply(0.9));
+
+        this.yearDropdown.setOnAction(e -> {
             this.yearDropdown.getSelectionModel().select(yearDropdown.getSelectionModel().getSelectedItem());
-            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, this.statsDropdown);
+            handleComboBoxSelection(this.pollutantDropdown, this.yearDropdown, statsDropdown);
         });
 
-        pollutantDropdown.setOnAction(e -> {
+        this.pollutantDropdown.setOnAction(e -> {
             pollutantDropdown.getSelectionModel().select(pollutantDropdown.getSelectionModel().getSelectedItem());
-            handleComboBoxSelection(pollutantDropdown, this.yearDropdown, this.statsDropdown);
+            handleComboBoxSelection(this.pollutantDropdown, this.yearDropdown, statsDropdown);
         });
 
-        statsSideBar.getChildren().addAll(statsDropdownLabel, statsDropdown, yearLabel, yearDropdown, pollutantLabel, pollutantDropdown);
+        statsSideBar.getChildren().addAll(
+                statsDropdownLabel, statsDropdown,
+                new Label("Year:"), yearDropdown,
+                new Label("Pollutant:"), pollutantDropdown
+        );
         statsLayout.setLeft(statsSideBar);
         statsLayout.setCenter(pollutionGraph.getGraph());
 
@@ -302,6 +303,9 @@ public class GeneralUI extends Application {
         heatMapOn = !heatMapOn;  // Toggle the heatmap state
         displayDataOntoMap(filename);
     }
+    public static void setSelectedGridCode(int gridCode) {
+        selectedGridCode = gridCode;
+    }
 
     /**
      * displays map grid
@@ -355,18 +359,34 @@ public class GeneralUI extends Application {
                 displayHighestPollutantLevels(new ArrayList<>(DataHandler.getHighestPollutantTrends(pollutant)));
                 }
                 else {
-                    if (metric.equals("Average by Period")){
+                    if (metric.equals("Average by Period")) {
                         displayAveragePollutantLevelsByYear(DataHandler.getAveragePollutantLevelByPeriod(pollutant, year), year, pollutant);
-                        }
+                    }
+
+                    else if (metric.equals("Average for Area")) {
+                        System.out.println("lol");
+                        displayAveragePollutantLevelsByArea(pollutant, selectedGridCode);
+
                     }
                 }
+                }
             }
-        if (!Objects.equals(pollutant, previousPollutant)){ //load up the graph
-            List<Integer> years = List.of(2018, 2019, 2020, 2021, 2022, 2023);
+        if (!Objects.equals(pollutant, previousPollutant)) {
+            List<Integer> years = new ArrayList<>();
             List<Double> pollutionLevels = DataHandler.getPollutantTrends(pollutant);
+
+            for (int currentYear = 2018; currentYear <= 2023; currentYear++) {
+                if (pollutionLevels.size() >= (currentYear - 2018 + 1)) {
+                    years.add(currentYear);
+                }
+            }
+
+            // Now load data without mismatched indices
             pollutionGraph.loadData(years, pollutionLevels);
             previousPollutant = pollutant;
-        }
+
+
+    }
     }
 
 
@@ -387,6 +407,37 @@ public class GeneralUI extends Application {
         statsDataDisplaying = true;
         averageDisplaying = true;
     }
+
+    /**
+     * This method just shows the average pollution for a given gridcode on the stats tab
+     * @param pollutant the pollutant
+     * @param gridCode the gridcode
+     */
+    private void displayAveragePollutantLevelsByArea(String pollutant, int gridCode) {
+        if (statsDataDisplaying) {
+            removeNodes();
+        }
+        double average = DataHandler.getAveragePollutantLevelForArea(pollutant, gridCode);
+        Label text;
+
+        if (average == 0.0) {
+            text = new Label("No data found for grid code: " + gridCode + ". Please double-click a point on the map.");
+            text.setTextFill(Color.GRAY);
+        } else {
+            text = new Label(String.format("Average %s level for grid code %d (2018–2023): %.2f", pollutant, gridCode, average));
+            text.setWrapText(true);
+            if (average < 10) text.setTextFill(Color.GREEN);
+            else if (average < 20) text.setTextFill(Color.GOLDENROD);
+            else if (average < 30) text.setTextFill(Color.ORANGE);
+            else text.setTextFill(Color.DARKRED);
+        }
+
+        statsSideBar.getChildren().add(text);
+        statsDataDisplaying = true;
+        averageDisplaying = true;
+    }
+
+
 
     /**
      * Displays the data of onto the map

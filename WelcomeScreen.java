@@ -17,6 +17,10 @@ import java.util.Objects;
  */
 
 public class WelcomeScreen extends Application {
+    /**
+     * This is the intial set up for the welcome screen program
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         // create a layout for the welcome page, holding the UI vertically in the center
         VBox welcomeLayout = new VBox(20);
